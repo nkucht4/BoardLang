@@ -1,6 +1,6 @@
 # BoardLang
 
-Skład zespołu: Kalina Rączka, Natalia Kuchta
+Skład zespołu: Kalina Rączka, Natalia Kuchta <br>
 Kontakt: karaczka@student.agh.edu.pl, nkuchta@student.agh.edu.pl
 
 ## Opis projektu
@@ -25,11 +25,14 @@ BOOL isEmpty = TRUE $
 
 ## Zmienne:
 ### Obsługiwane typy zmiennych
-	INT
+
+```
+INT
 BOOL
 CHAR
 STRING
 COLOR
+```
 
 ### TILE
 tba
@@ -50,6 +53,8 @@ const INT z = 10 $
 ```
 
 ## Dostępne operatory
+
+```
 +
 -
 /
@@ -68,6 +73,7 @@ AND
 NOT
 ++
 – –
+```
 
 ## Instrukcje warunkowe
 Instrukcję warunkową zaczynamy słowem kluczowym if, po którym następuje warunek zapisany w nawiasach okrągłych. Opcjonalnie można użyć również otherif i otherwise.
