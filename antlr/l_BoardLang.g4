@@ -50,7 +50,7 @@ PLUSPLUS: '++';
 MINUSMINUS: '--';
 COLON: ':';
 QUOT_SINGLE: '\'';
-QUOT_DOUBLE: '\“';
+QUOT_DOUBLE: '“';
 END_M: '$';
 
 // Literaly i identyfikatory
@@ -66,4 +66,3 @@ ID: [A-Za-z_]([A-Za-z0-9_\-])*;
 //Komentarze
 WS: [ \t\r\n]+ -> skip;
 COMMENT: '#';
-
