@@ -20,7 +20,6 @@ Przykład definiowania zmiennych
 ```
 INT x = 9 $
 BOOL isEmpty = TRUE $
-
 ```
 
 ## Zmienne:
@@ -34,8 +33,14 @@ STRING
 COLOR
 ```
 
-### TILE
-tba
+### TileType
+Tile "płytka" jest podstawową jednostką działania programu. Definiując typ płytki (TileType) użytkownik tworzy szablon płytki, który może wielokrotnie umiejscawiać na wielu polach. Aby zdefiniować płytkę, trzeba jako argument podać albo jej kolor albo string zawierający ścieżkę / link do obrazu, który ma zostać użyty na gotowej planszy.
+
+```
+TileType touch_grass = TileType(#5ec15f)
+
+```
+
 
 ### Tablice
 Przykładowe tworzenie tablic:
@@ -50,6 +55,33 @@ INT y = tab[0] $
 Deklarację zmiennej można poprzedzić słowem kluczowym “const”, dzięki czemu nie można jej edytować później w trakcie działania programu.
 ```
 const INT z = 10 $
+```
+
+## Operacje na planszy
+
+### board_size
+Każdy program w BoardLangu musi rozpocząć się od zdefiniowania rozmiaru planszy, którą póżniej program będzie zapełniał.
+```
+board_size[45:90] $
+```
+
+### draw
+Instrukcja służąca do narysowania płytki na planszy. Płytkę można umieścić używając wybranych współrzędnych lub obecnego położenia kursora.
+```
+draw [x:y] touch_grass $
+draw [here] touch_grass $
+draw [2:8] toucg_grass $
+draw [x:9] touch_grass $
+```
+
+### setpos i reset
+Instrukcje setpos i reset służą do ustawiania obecnej pozycji kursora na planszy. Do obecnej pozycji kursora można się odwołać używając 'here'.
+```
+reset $
+setpos [5:8] $
+setpos [here.x+2:here.y] $
+int x = here.x $
+
 ```
 
 ## Dostępne operatory
