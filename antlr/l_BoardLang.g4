@@ -1,4 +1,4 @@
-grammar l_BoardLang;
+lexer grammar l_BoardLang;
 
 // Slowa kluczowe
 
@@ -12,19 +12,20 @@ FUNCTION_T: 'FUNCTION';
 RETURN_T: 'return';
 DRAW_T: 'draw';
 HERE_T: 'here';
-RESER_T: 'reset';
+RESET_T: 'reset';
 SETPOS: 'setpos';
+BOARDSIZE_T: 'board_size';
 BREAK: 'break';
 CONTINUE: 'continue';
 
 CONST: 'CONST';
-STATIC: 'STATIC';
 TT: 'TileType';
 INT_T: 'INT';
 BOOL_T: 'BOOL';
 CHAR_T: 'CHAR';
 STRING_T: 'STRING';
 COLOUR_T: 'COLOUR';
+ARRAY_T: 'ARRAY';
 
 //Opearatory
 PLUS: '+';
@@ -36,6 +37,8 @@ LEFT_PAR: '(';
 RIGHT_PAR: ')';
 LEFT_SQUARE_PAR: '[';
 RIGHT_SQUARE_PAR: ']';
+LEFT_CLAMP_PAR: '{';
+RIGHT_CLAMP_PAR: '}';
 GT: '>';
 LT: '<';
 EQ: '=';
@@ -51,6 +54,7 @@ MINUSMINUS: '--';
 COLON: ':';
 QUOT_SINGLE: '\'';
 QUOT_DOUBLE: '“';
+COMA: ',';
 END_M: '$';
 
 // Literaly i identyfikatory
@@ -60,7 +64,7 @@ fragment DIGIT : [0-9] ;
 BOOL_V: 'TRUE' | 'FALSE';
 STRING_V: (CHAR_V)*;
 CHAR_V: [0-9a-zA-Z ] ;
-COLOUR:'#'([0-9A-F]){6};
+COLOUR_V:'#'([0-9A-F]){6};
 ID: [A-Za-z_]([A-Za-z0-9_\-])*;
 
 //Komentarze
