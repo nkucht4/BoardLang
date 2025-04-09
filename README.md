@@ -5,13 +5,17 @@ Kontakt: karaczka@student.agh.edu.pl, nkuchta@student.agh.edu.pl
 
 ## Opis projektu
 
-Projekt skupia się na stworzenie języka programowania służącego do generacji plansz do gier planszowych lub fabularnych. 
+Projekt skupia się na stworzenie języka programowania (oraz jego interpretera) służącego do generacji plansz do gier planszowych lub fabularnych. Projekt jest implementowany w języku Python z pomocą narzędzia ANTLR4.
 
 Projekt realizowany w ramach przedmiotu Teoria Kompilacji i Kompilatory.
 
 ## Podstawowe zasady działania projektu:
 Użytkownik definiuje rozmiar planszy, liczony w “kratkach”, po której następnie może się dowolnie poruszać używając instrukcji języka.
 Użytkownik umieszcza wcześniej zdefiniowane przez siebie płytki (Tiles) na kratkach, tworząc własne plansze do gry.
+
+## Opis tokenów oraz gramatyka
+ - [Spis tokenów](https://github.com/nkucht4/BoardLang/blob/main/antlr/l_BoardLang.g4)
+ - [Gramatyka](https://github.com/nkucht4/BoardLang/blob/main/antlr/p_BoardLang.g4)
 
 ## Podstawowe założenia składni języka:
 Linia instrukcji kończy się znakiem ‘$’
@@ -38,7 +42,6 @@ Tile "płytka" jest podstawową jednostką działania programu. Definiując typ 
 
 ```
 TileType touch_grass = TileType(#5ec15f)
-
 ```
 
 
