@@ -1,4 +1,3 @@
-# Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .p_BoardLang import p_BoardLang
@@ -8,6 +7,9 @@ else:
 # This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
 class p_BoardLangVisitor(ParseTreeVisitor):
+    def __init__(self):
+        super().__init__()
+        self.memory = {}
 
     # Visit a parse tree produced by p_BoardLang#program.
     def visitProgram(self, ctx:p_BoardLang.ProgramContext):

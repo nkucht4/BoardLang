@@ -1,4 +1,3 @@
-# Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/l_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 from io import StringIO
 import sys
