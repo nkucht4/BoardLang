@@ -75,12 +75,21 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#tile_decl_w_ass.
     def visitTile_decl_w_ass(self, ctx:p_BoardLang.Tile_decl_w_assContext):
-        return self.visitChildren(ctx)
+        id = ctx.ID().getText()
+        if id in self.memory.keys():
+            raise NameError("Identifier already exists and cannot be overwritten")
+        color = self.visit(ctx.tt_arg())
+        self.memory[id] = {"type": "TileType", "value": color}
+        print(self.memory[id])
+        return True
 
 
     # Visit a parse tree produced by p_BoardLang#tt_arg.
     def visitTt_arg(self, ctx:p_BoardLang.Tt_argContext):
-        return self.visitChildren(ctx)
+        if ctx.COLOUR_V():
+            return self.hex_to_rgb(ctx.COLOUR_V().getText())
+        if ctx.STRING_V():
+            return ctx.STRING_V().getText()
 
 
     # Visit a parse tree produced by p_BoardLang#assignment.
@@ -207,6 +216,12 @@ class p_BoardLangVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by p_BoardLang#math_operator.
     def visitMath_operator(self, ctx:p_BoardLang.Math_operatorContext):
         return self.visitChildren(ctx)
+
+    def hex_to_rgb(self, hex: str):
+        r = int(hex[1:3], 16)
+        g = int(hex[3:5], 16)
+        b = int(hex[5:], 16)
+        return tuple((r, g, b))
 
 
 
