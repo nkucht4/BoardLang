@@ -43,7 +43,8 @@ class BoardGenerator:
         map = tilemap['map']
         for x, row in enumerate(map):
             for y, color in enumerate(row):
-                self.render_tile(x, y, pygame.Color(tuple(color)))
+                if color != 0:
+                    self.render_tile(x, y, pygame.Color(tuple(color)))
         pygame.display.flip()
 
 

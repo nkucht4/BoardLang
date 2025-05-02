@@ -30,7 +30,8 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         self.tilemap['size'] = (width, height)
         with open(self.filename, 'w') as f:
             json.dump(self.tilemap, f)
-        return self.visitChildren(ctx)
+        self.tilemap['map'] = [[0 for _ in range(width)] for _ in range(height)]
+        return True
 
 
     # Visit a parse tree produced by p_BoardLang#out_instructions.
@@ -80,7 +81,6 @@ class p_BoardLangVisitor(ParseTreeVisitor):
             raise NameError("Identifier already exists and cannot be overwritten")
         color = self.visit(ctx.tt_arg())
         self.memory[id] = {"type": "TileType", "value": color}
-        print(self.memory[id])
         return True
 
 
@@ -119,12 +119,28 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#draw_instr.
     def visitDraw_instr(self, ctx:p_BoardLang.Draw_instrContext):
-        return self.visitChildren(ctx)
+        x, y = self.visit(ctx.draw_args())
+        tilename = ctx.ID().getText()
+        if tilename not in self.memory.keys():
+            raise KeyError(f'No such identifier as {tilename}')
+        elif self.memory[tilename]['type'] != 'TileType':
+            raise TypeError('Expected TileType')
+        else:
+            color = self.memory[tilename]['value']
+            self.tilemap['map'][x][y] = color
+            with open(self.filename, 'w') as f:
+                json.dump(self.tilemap, f)
+        return x, y
 
 
     # Visit a parse tree produced by p_BoardLang#draw_args.
     def visitDraw_args(self, ctx:p_BoardLang.Draw_argsContext):
-        return self.visitChildren(ctx)
+        if ctx.HERE_T():
+            raise NotImplementedError
+        else:
+            x = self.visit(ctx.id_and_int()[0])
+            y = self.visit(ctx.id_and_int()[1])
+            return x, y
 
 
     # Visit a parse tree produced by p_BoardLang#setpos_instr.
@@ -170,7 +186,7 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         if ctx.ID():
             id_text = ctx.ID().getText()
             if id_text not in self.memory:
-                raise KeyError(f'No such variable as {id_text} defined')
+                raise KeyError(f'No such identifier as {id_text} defined')
 
             id_type = self.memory[ctx.ID().get_Text()]['type']
             if id_type == 'INT':
