@@ -1,3 +1,4 @@
+# Generated from C:/Users/DELL/PycharmProjects/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .p_BoardLang import p_BoardLang
@@ -16,66 +17,12 @@ class p_BoardLangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by p_BoardLang#literal.
-    def enterLiteral(self, ctx:p_BoardLang.LiteralContext):
+    # Enter a parse tree produced by p_BoardLang#board_size_definition.
+    def enterBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
         pass
 
-    # Exit a parse tree produced by p_BoardLang#literal.
-    def exitLiteral(self, ctx:p_BoardLang.LiteralContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#var_types.
-    def enterVar_types(self, ctx:p_BoardLang.Var_typesContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#var_types.
-    def exitVar_types(self, ctx:p_BoardLang.Var_typesContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#rel_operator.
-    def enterRel_operator(self, ctx:p_BoardLang.Rel_operatorContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#rel_operator.
-    def exitRel_operator(self, ctx:p_BoardLang.Rel_operatorContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#math_operator.
-    def enterMath_operator(self, ctx:p_BoardLang.Math_operatorContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#math_operator.
-    def exitMath_operator(self, ctx:p_BoardLang.Math_operatorContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#expr.
-    def enterExpr(self, ctx:p_BoardLang.ExprContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#expr.
-    def exitExpr(self, ctx:p_BoardLang.ExprContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#bool_expr.
-    def enterBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#bool_expr.
-    def exitBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#math_expr.
-    def enterMath_expr(self, ctx:p_BoardLang.Math_exprContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#math_expr.
-    def exitMath_expr(self, ctx:p_BoardLang.Math_exprContext):
+    # Exit a parse tree produced by p_BoardLang#board_size_definition.
+    def exitBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
         pass
 
 
@@ -94,6 +41,33 @@ class p_BoardLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by p_BoardLang#instructions.
     def exitInstructions(self, ctx:p_BoardLang.InstructionsContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#function_def.
+    def enterFunction_def(self, ctx:p_BoardLang.Function_defContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#function_def.
+    def exitFunction_def(self, ctx:p_BoardLang.Function_defContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#function_declaration_args.
+    def enterFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#function_declaration_args.
+    def exitFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#function_call.
+    def enterFunction_call(self, ctx:p_BoardLang.Function_callContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#function_call.
+    def exitFunction_call(self, ctx:p_BoardLang.Function_callContext):
         pass
 
 
@@ -142,21 +116,30 @@ class p_BoardLangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by p_BoardLang#args_list.
-    def enterArgs_list(self, ctx:p_BoardLang.Args_listContext):
+    # Enter a parse tree produced by p_BoardLang#expr.
+    def enterExpr(self, ctx:p_BoardLang.ExprContext):
         pass
 
-    # Exit a parse tree produced by p_BoardLang#args_list.
-    def exitArgs_list(self, ctx:p_BoardLang.Args_listContext):
+    # Exit a parse tree produced by p_BoardLang#expr.
+    def exitExpr(self, ctx:p_BoardLang.ExprContext):
         pass
 
 
-    # Enter a parse tree produced by p_BoardLang#board_size_definition.
-    def enterBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
+    # Enter a parse tree produced by p_BoardLang#bool_expr.
+    def enterBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
         pass
 
-    # Exit a parse tree produced by p_BoardLang#board_size_definition.
-    def exitBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
+    # Exit a parse tree produced by p_BoardLang#bool_expr.
+    def exitBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#math_expr.
+    def enterMath_expr(self, ctx:p_BoardLang.Math_exprContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#math_expr.
+    def exitMath_expr(self, ctx:p_BoardLang.Math_exprContext):
         pass
 
 
@@ -277,30 +260,48 @@ class p_BoardLangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by p_BoardLang#function_def.
-    def enterFunction_def(self, ctx:p_BoardLang.Function_defContext):
+    # Enter a parse tree produced by p_BoardLang#args_list.
+    def enterArgs_list(self, ctx:p_BoardLang.Args_listContext):
         pass
 
-    # Exit a parse tree produced by p_BoardLang#function_def.
-    def exitFunction_def(self, ctx:p_BoardLang.Function_defContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#function_declaration_args.
-    def enterFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#function_declaration_args.
-    def exitFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
+    # Exit a parse tree produced by p_BoardLang#args_list.
+    def exitArgs_list(self, ctx:p_BoardLang.Args_listContext):
         pass
 
 
-    # Enter a parse tree produced by p_BoardLang#function_call.
-    def enterFunction_call(self, ctx:p_BoardLang.Function_callContext):
+    # Enter a parse tree produced by p_BoardLang#literal.
+    def enterLiteral(self, ctx:p_BoardLang.LiteralContext):
         pass
 
-    # Exit a parse tree produced by p_BoardLang#function_call.
-    def exitFunction_call(self, ctx:p_BoardLang.Function_callContext):
+    # Exit a parse tree produced by p_BoardLang#literal.
+    def exitLiteral(self, ctx:p_BoardLang.LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#var_types.
+    def enterVar_types(self, ctx:p_BoardLang.Var_typesContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#var_types.
+    def exitVar_types(self, ctx:p_BoardLang.Var_typesContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#rel_operator.
+    def enterRel_operator(self, ctx:p_BoardLang.Rel_operatorContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#rel_operator.
+    def exitRel_operator(self, ctx:p_BoardLang.Rel_operatorContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#math_operator.
+    def enterMath_operator(self, ctx:p_BoardLang.Math_operatorContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#math_operator.
+    def exitMath_operator(self, ctx:p_BoardLang.Math_operatorContext):
         pass
 
 
