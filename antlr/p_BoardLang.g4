@@ -51,17 +51,14 @@ setpos_instr: SETPOS LEFT_SQUARE_PAR id_and_int COLON id_and_int RIGHT_SQUARE_PA
 
 // Conditionals
 
-if_instr: if_then_statement | if_then_otherwise_statement;
+if_instr: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR
+(OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR)*
+(OTHERWISE_T LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR)?;
 
-if_then_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR;
-
-if_then_otherwise_statement:  IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR (otherif_statement)? (OTHERWISE_T LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR)?;
-
-otherif_statement: OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR | otherif_statement otherif_statement ; // pomocnicza do if
 
 if_inside_loop_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR
-(OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR)*(OTHERWISE_T LEFT_CLAMP_PAR (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR)?;
-
+(OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR)*
+(OTHERWISE_T LEFT_CLAMP_PAR (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR)?;
 //Loops
 
 for_loop: FOR_T LEFT_PAR id_and_int COLON id_and_int COLON id_and_int RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
