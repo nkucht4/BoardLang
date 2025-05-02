@@ -28,7 +28,7 @@ declaration: CONST? var_types (LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR)? ID;
 
 declaration_with_assign: CONST? var_types ID 	EQ expr |  CONST? var_types LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR ID EQ args_list;
 tile_decl_w_ass: CONST? TT ID EQ TT LEFT_PAR tt_arg RIGHT_PAR;
-tt_arg: COLOR_V | STRING_V;
+tt_arg: COLOUR_V | STRING_V;
 
 assignment: ID EQ expr | ID LEFT_SQUARE_PAR
  DIGIT RIGHT_SQUARE_PAR
@@ -36,7 +36,7 @@ assignment: ID EQ expr | ID LEFT_SQUARE_PAR
 
 //Expressions
 expr: bool_expr | math_expr;
-bool_expr: bool_expr AND_T bool_expr | bool_expr OR_T bool_expr | NOT bool_expr | math_expr rel_operator math_expr | LEFT_PAR bool_expr RIGHT_PAR;
+bool_expr: bool_expr AND_T bool_expr | bool_expr OR_T bool_expr | NOT_T bool_expr | math_expr rel_operator math_expr | LEFT_PAR bool_expr RIGHT_PAR;
 math_expr: LEFT_PAR math_expr RIGHT_PAR | math_expr math_operator math_expr | literal | ID | function_call;
 
 

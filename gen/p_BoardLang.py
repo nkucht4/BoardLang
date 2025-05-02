@@ -1,3 +1,4 @@
+# Generated from C:/Users/DELL/PycharmProjects/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -9,151 +10,152 @@ else:
 
 def serializedATN():
     return [
-        4,1,62,414,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,60,414,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
         2,27,7,27,2,28,7,28,2,29,7,29,2,30,7,30,2,31,7,31,2,32,7,32,1,0,
-        1,0,4,0,69,8,0,11,0,12,0,70,1,1,1,1,1,2,1,2,1,3,1,3,1,4,1,4,1,5,
-        1,5,3,5,83,8,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,3,6,96,
-        8,6,1,6,1,6,1,6,1,6,1,6,1,6,5,6,104,8,6,10,6,12,6,107,9,6,1,7,1,
-        7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,117,8,7,1,7,1,7,1,7,1,7,5,7,123,8,
-        7,10,7,12,7,126,9,7,1,8,1,8,3,8,130,8,8,1,9,1,9,1,9,1,9,1,9,1,9,
-        1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,
-        3,9,154,8,9,1,9,1,9,5,9,158,8,9,10,9,12,9,161,9,9,1,10,3,10,164,
-        8,10,1,10,1,10,1,10,1,10,3,10,170,8,10,1,10,1,10,1,11,3,11,175,8,
-        11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,183,8,11,1,11,1,11,1,11,1,
-        11,1,11,1,11,1,11,1,11,3,11,193,8,11,1,12,3,12,196,8,12,1,12,1,12,
-        1,12,1,12,1,12,1,12,1,12,1,12,1,13,1,13,1,14,1,14,1,14,1,14,1,14,
-        1,14,1,14,1,14,1,14,3,14,217,8,14,1,15,1,15,1,15,3,15,222,8,15,1,
-        15,1,15,1,15,5,15,227,8,15,10,15,12,15,230,9,15,1,16,1,16,1,16,1,
-        16,1,16,1,16,1,16,1,17,1,17,1,17,3,17,242,8,17,1,18,1,18,1,18,1,
-        18,1,18,1,18,1,19,1,19,1,19,1,19,1,19,3,19,255,8,19,1,20,1,20,1,
-        20,1,20,1,20,1,20,1,20,1,21,1,21,3,21,266,8,21,1,22,1,22,1,22,1,
-        22,1,22,1,22,1,22,1,22,1,23,1,23,1,23,1,23,1,23,1,23,1,23,1,23,3,
-        23,284,8,23,1,23,1,23,1,23,1,23,1,23,3,23,291,8,23,1,24,1,24,1,24,
-        1,24,1,24,1,24,1,24,1,24,1,24,1,24,1,24,5,24,304,8,24,10,24,12,24,
-        307,9,24,1,25,1,25,1,25,1,25,1,25,1,25,1,25,1,25,3,25,317,8,25,1,
-        25,1,25,1,25,1,25,1,25,1,25,1,25,1,25,1,25,3,25,328,8,25,1,25,1,
-        25,5,25,332,8,25,10,25,12,25,335,9,25,1,25,1,25,1,25,1,25,1,25,3,
-        25,342,8,25,1,25,3,25,345,8,25,1,26,1,26,1,26,1,26,1,26,1,26,1,26,
-        1,26,1,26,1,26,1,26,1,26,1,27,1,27,1,28,1,28,1,28,3,28,364,8,28,
-        1,28,1,28,5,28,368,8,28,10,28,12,28,371,9,28,1,29,1,29,1,29,1,29,
-        1,29,1,29,1,29,1,29,1,29,1,29,1,30,1,30,1,30,1,30,1,30,1,30,1,30,
-        1,30,1,30,1,31,1,31,1,31,1,31,1,31,1,31,1,31,5,31,399,8,31,10,31,
-        12,31,402,9,31,1,32,1,32,1,32,1,32,1,32,1,32,1,32,1,32,3,32,412,
-        8,32,1,32,0,7,12,14,18,30,48,56,62,33,0,2,4,6,8,10,12,14,16,18,20,
-        22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,
-        0,6,1,0,52,56,1,0,18,22,1,0,38,41,1,0,24,28,2,0,54,54,61,61,2,0,
-        52,52,57,57,428,0,66,1,0,0,0,2,72,1,0,0,0,4,74,1,0,0,0,6,76,1,0,
-        0,0,8,78,1,0,0,0,10,82,1,0,0,0,12,95,1,0,0,0,14,116,1,0,0,0,16,129,
-        1,0,0,0,18,153,1,0,0,0,20,163,1,0,0,0,22,192,1,0,0,0,24,195,1,0,
-        0,0,26,205,1,0,0,0,28,216,1,0,0,0,30,221,1,0,0,0,32,231,1,0,0,0,
-        34,241,1,0,0,0,36,243,1,0,0,0,38,254,1,0,0,0,40,256,1,0,0,0,42,265,
-        1,0,0,0,44,267,1,0,0,0,46,275,1,0,0,0,48,292,1,0,0,0,50,308,1,0,
-        0,0,52,346,1,0,0,0,54,358,1,0,0,0,56,363,1,0,0,0,58,372,1,0,0,0,
-        60,382,1,0,0,0,62,391,1,0,0,0,64,411,1,0,0,0,66,68,3,32,16,0,67,
-        69,3,16,8,0,68,67,1,0,0,0,69,70,1,0,0,0,70,68,1,0,0,0,70,71,1,0,
-        0,0,71,1,1,0,0,0,72,73,7,0,0,0,73,3,1,0,0,0,74,75,7,1,0,0,75,5,1,
-        0,0,0,76,77,7,2,0,0,77,7,1,0,0,0,78,79,7,3,0,0,79,9,1,0,0,0,80,83,
-        3,12,6,0,81,83,3,14,7,0,82,80,1,0,0,0,82,81,1,0,0,0,83,11,1,0,0,
-        0,84,85,6,6,-1,0,85,86,5,60,0,0,86,96,3,12,6,3,87,88,3,14,7,0,88,
-        89,3,6,3,0,89,90,3,14,7,0,90,96,1,0,0,0,91,92,5,29,0,0,92,93,3,12,
-        6,0,93,94,5,30,0,0,94,96,1,0,0,0,95,84,1,0,0,0,95,87,1,0,0,0,95,
-        91,1,0,0,0,96,105,1,0,0,0,97,98,10,5,0,0,98,99,5,43,0,0,99,104,3,
-        12,6,6,100,101,10,4,0,0,101,102,5,42,0,0,102,104,3,12,6,5,103,97,
-        1,0,0,0,103,100,1,0,0,0,104,107,1,0,0,0,105,103,1,0,0,0,105,106,
-        1,0,0,0,106,13,1,0,0,0,107,105,1,0,0,0,108,109,6,7,-1,0,109,110,
-        5,29,0,0,110,111,3,14,7,0,111,112,5,30,0,0,112,117,1,0,0,0,113,117,
-        3,2,1,0,114,117,5,57,0,0,115,117,3,64,32,0,116,108,1,0,0,0,116,113,
-        1,0,0,0,116,114,1,0,0,0,116,115,1,0,0,0,117,124,1,0,0,0,118,119,
-        10,4,0,0,119,120,3,8,4,0,120,121,3,14,7,5,121,123,1,0,0,0,122,118,
-        1,0,0,0,123,126,1,0,0,0,124,122,1,0,0,0,124,125,1,0,0,0,125,15,1,
-        0,0,0,126,124,1,0,0,0,127,130,3,18,9,0,128,130,3,60,30,0,129,127,
-        1,0,0,0,129,128,1,0,0,0,130,17,1,0,0,0,131,132,6,9,-1,0,132,133,
-        3,20,10,0,133,134,5,51,0,0,134,154,1,0,0,0,135,136,3,22,11,0,136,
-        137,5,51,0,0,137,154,1,0,0,0,138,139,3,24,12,0,139,140,5,51,0,0,
-        140,154,1,0,0,0,141,142,3,28,14,0,142,143,5,51,0,0,143,154,1,0,0,
-        0,144,145,3,64,32,0,145,146,5,51,0,0,146,154,1,0,0,0,147,148,3,34,
-        17,0,148,149,5,51,0,0,149,154,1,0,0,0,150,154,3,42,21,0,151,154,
-        3,52,26,0,152,154,3,58,29,0,153,131,1,0,0,0,153,135,1,0,0,0,153,
-        138,1,0,0,0,153,141,1,0,0,0,153,144,1,0,0,0,153,147,1,0,0,0,153,
-        150,1,0,0,0,153,151,1,0,0,0,153,152,1,0,0,0,154,159,1,0,0,0,155,
-        156,10,10,0,0,156,158,3,18,9,11,157,155,1,0,0,0,158,161,1,0,0,0,
-        159,157,1,0,0,0,159,160,1,0,0,0,160,19,1,0,0,0,161,159,1,0,0,0,162,
-        164,5,16,0,0,163,162,1,0,0,0,163,164,1,0,0,0,164,165,1,0,0,0,165,
-        169,3,4,2,0,166,167,5,31,0,0,167,168,5,52,0,0,168,170,5,32,0,0,169,
-        166,1,0,0,0,169,170,1,0,0,0,170,171,1,0,0,0,171,172,5,57,0,0,172,
-        21,1,0,0,0,173,175,5,16,0,0,174,173,1,0,0,0,174,175,1,0,0,0,175,
-        176,1,0,0,0,176,177,3,4,2,0,177,178,5,57,0,0,178,179,5,37,0,0,179,
-        180,3,10,5,0,180,193,1,0,0,0,181,183,5,16,0,0,182,181,1,0,0,0,182,
-        183,1,0,0,0,183,184,1,0,0,0,184,185,3,4,2,0,185,186,5,31,0,0,186,
-        187,5,52,0,0,187,188,5,32,0,0,188,189,5,57,0,0,189,190,5,37,0,0,
-        190,191,3,30,15,0,191,193,1,0,0,0,192,174,1,0,0,0,192,182,1,0,0,
-        0,193,23,1,0,0,0,194,196,5,16,0,0,195,194,1,0,0,0,195,196,1,0,0,
-        0,196,197,1,0,0,0,197,198,5,17,0,0,198,199,5,57,0,0,199,200,5,37,
-        0,0,200,201,5,17,0,0,201,202,5,29,0,0,202,203,3,26,13,0,203,204,
-        5,30,0,0,204,25,1,0,0,0,205,206,7,4,0,0,206,27,1,0,0,0,207,208,5,
-        57,0,0,208,209,5,37,0,0,209,217,3,10,5,0,210,211,5,57,0,0,211,212,
-        5,31,0,0,212,213,5,62,0,0,213,214,5,32,0,0,214,215,5,37,0,0,215,
-        217,3,10,5,0,216,207,1,0,0,0,216,210,1,0,0,0,217,29,1,0,0,0,218,
-        219,6,15,-1,0,219,222,5,57,0,0,220,222,3,2,1,0,221,218,1,0,0,0,221,
-        220,1,0,0,0,222,228,1,0,0,0,223,224,10,1,0,0,224,225,5,50,0,0,225,
-        227,3,30,15,2,226,223,1,0,0,0,227,230,1,0,0,0,228,226,1,0,0,0,228,
-        229,1,0,0,0,229,31,1,0,0,0,230,228,1,0,0,0,231,232,5,13,0,0,232,
-        233,5,31,0,0,233,234,3,54,27,0,234,235,5,47,0,0,235,236,3,54,27,
-        0,236,237,5,32,0,0,237,33,1,0,0,0,238,242,3,36,18,0,239,242,5,11,
-        0,0,240,242,3,40,20,0,241,238,1,0,0,0,241,239,1,0,0,0,241,240,1,
-        0,0,0,242,35,1,0,0,0,243,244,5,9,0,0,244,245,5,31,0,0,245,246,3,
-        38,19,0,246,247,5,32,0,0,247,248,5,57,0,0,248,37,1,0,0,0,249,255,
-        5,10,0,0,250,251,3,54,27,0,251,252,5,47,0,0,252,253,3,54,27,0,253,
-        255,1,0,0,0,254,249,1,0,0,0,254,250,1,0,0,0,255,39,1,0,0,0,256,257,
-        5,12,0,0,257,258,5,31,0,0,258,259,3,54,27,0,259,260,5,47,0,0,260,
-        261,3,54,27,0,261,262,5,32,0,0,262,41,1,0,0,0,263,266,3,44,22,0,
-        264,266,3,46,23,0,265,263,1,0,0,0,265,264,1,0,0,0,266,43,1,0,0,0,
-        267,268,5,1,0,0,268,269,5,29,0,0,269,270,3,10,5,0,270,271,5,30,0,
-        0,271,272,5,33,0,0,272,273,3,18,9,0,273,274,5,34,0,0,274,45,1,0,
-        0,0,275,276,5,1,0,0,276,277,5,29,0,0,277,278,3,10,5,0,278,279,5,
-        30,0,0,279,280,5,33,0,0,280,281,3,18,9,0,281,283,5,34,0,0,282,284,
-        3,48,24,0,283,282,1,0,0,0,283,284,1,0,0,0,284,290,1,0,0,0,285,286,
-        5,3,0,0,286,287,5,33,0,0,287,288,3,18,9,0,288,289,5,34,0,0,289,291,
-        1,0,0,0,290,285,1,0,0,0,290,291,1,0,0,0,291,47,1,0,0,0,292,293,6,
-        24,-1,0,293,294,5,2,0,0,294,295,5,29,0,0,295,296,3,10,5,0,296,297,
-        5,30,0,0,297,298,5,33,0,0,298,299,3,18,9,0,299,300,5,34,0,0,300,
-        305,1,0,0,0,301,302,10,1,0,0,302,304,3,48,24,2,303,301,1,0,0,0,304,
-        307,1,0,0,0,305,303,1,0,0,0,305,306,1,0,0,0,306,49,1,0,0,0,307,305,
-        1,0,0,0,308,309,5,1,0,0,309,310,5,29,0,0,310,311,3,10,5,0,311,312,
-        5,30,0,0,312,316,5,33,0,0,313,317,3,18,9,0,314,317,5,14,0,0,315,
-        317,5,15,0,0,316,313,1,0,0,0,316,314,1,0,0,0,316,315,1,0,0,0,317,
-        318,1,0,0,0,318,333,5,34,0,0,319,320,5,2,0,0,320,321,5,29,0,0,321,
-        322,3,10,5,0,322,323,5,30,0,0,323,327,5,33,0,0,324,328,3,18,9,0,
-        325,328,5,14,0,0,326,328,5,15,0,0,327,324,1,0,0,0,327,325,1,0,0,
-        0,327,326,1,0,0,0,328,329,1,0,0,0,329,330,5,34,0,0,330,332,1,0,0,
-        0,331,319,1,0,0,0,332,335,1,0,0,0,333,331,1,0,0,0,333,334,1,0,0,
-        0,334,344,1,0,0,0,335,333,1,0,0,0,336,337,5,3,0,0,337,341,5,33,0,
-        0,338,342,3,18,9,0,339,342,5,14,0,0,340,342,5,15,0,0,341,338,1,0,
-        0,0,341,339,1,0,0,0,341,340,1,0,0,0,342,343,1,0,0,0,343,345,5,34,
-        0,0,344,336,1,0,0,0,344,345,1,0,0,0,345,51,1,0,0,0,346,347,5,6,0,
-        0,347,348,5,29,0,0,348,349,3,54,27,0,349,350,5,47,0,0,350,351,3,
-        54,27,0,351,352,5,47,0,0,352,353,3,54,27,0,353,354,5,30,0,0,354,
-        355,5,33,0,0,355,356,3,56,28,0,356,357,5,34,0,0,357,53,1,0,0,0,358,
-        359,7,5,0,0,359,55,1,0,0,0,360,361,6,28,-1,0,361,364,3,18,9,0,362,
-        364,3,50,25,0,363,360,1,0,0,0,363,362,1,0,0,0,364,369,1,0,0,0,365,
-        366,10,1,0,0,366,368,3,56,28,2,367,365,1,0,0,0,368,371,1,0,0,0,369,
-        367,1,0,0,0,369,370,1,0,0,0,370,57,1,0,0,0,371,369,1,0,0,0,372,373,
-        5,4,0,0,373,374,5,5,0,0,374,375,5,4,0,0,375,376,5,29,0,0,376,377,
-        3,10,5,0,377,378,5,30,0,0,378,379,5,33,0,0,379,380,3,18,9,0,380,
-        381,5,34,0,0,381,59,1,0,0,0,382,383,5,7,0,0,383,384,5,57,0,0,384,
-        385,5,29,0,0,385,386,3,62,31,0,386,387,5,30,0,0,387,388,5,33,0,0,
-        388,389,3,18,9,0,389,390,5,34,0,0,390,61,1,0,0,0,391,392,6,31,-1,
-        0,392,393,3,4,2,0,393,394,5,57,0,0,394,400,1,0,0,0,395,396,10,1,
-        0,0,396,397,5,50,0,0,397,399,3,62,31,2,398,395,1,0,0,0,399,402,1,
-        0,0,0,400,398,1,0,0,0,400,401,1,0,0,0,401,63,1,0,0,0,402,400,1,0,
-        0,0,403,404,5,57,0,0,404,405,5,29,0,0,405,406,3,30,15,0,406,407,
-        5,30,0,0,407,412,1,0,0,0,408,409,5,57,0,0,409,410,5,29,0,0,410,412,
-        5,30,0,0,411,403,1,0,0,0,411,408,1,0,0,0,412,65,1,0,0,0,34,70,82,
-        95,103,105,116,124,129,153,159,163,169,174,182,192,195,216,221,228,
-        241,254,265,283,290,305,316,327,333,341,344,363,369,400,411
+        1,0,4,0,69,8,0,11,0,12,0,70,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,
+        3,2,82,8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,
+        3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,106,8,3,1,3,1,3,5,3,110,8,
+        3,10,3,12,3,113,9,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,5,1,5,
+        1,5,1,5,1,5,1,5,1,5,5,5,131,8,5,10,5,12,5,134,9,5,1,6,1,6,1,6,1,
+        6,1,6,1,6,1,6,1,6,3,6,144,8,6,1,7,3,7,147,8,7,1,7,1,7,1,7,1,7,3,
+        7,153,8,7,1,7,1,7,1,8,3,8,158,8,8,1,8,1,8,1,8,1,8,1,8,1,8,3,8,166,
+        8,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,3,8,176,8,8,1,9,3,9,179,8,9,
+        1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,10,1,10,1,11,1,11,1,11,1,11,1,
+        11,1,11,1,11,1,11,1,11,3,11,200,8,11,1,12,1,12,3,12,204,8,12,1,13,
+        1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,217,8,13,
+        1,13,1,13,1,13,1,13,1,13,1,13,5,13,225,8,13,10,13,12,13,228,9,13,
+        1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,3,14,238,8,14,1,14,1,14,
+        1,14,1,14,5,14,244,8,14,10,14,12,14,247,9,14,1,15,1,15,1,15,3,15,
+        252,8,15,1,16,1,16,1,16,1,16,1,16,1,16,1,17,1,17,1,17,1,17,1,17,
+        3,17,265,8,17,1,18,1,18,1,18,1,18,1,18,1,18,1,18,1,19,1,19,3,19,
+        276,8,19,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,21,1,21,1,21,
+        1,21,1,21,1,21,1,21,1,21,3,21,294,8,21,1,21,1,21,1,21,1,21,1,21,
+        3,21,301,8,21,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,
+        1,22,5,22,314,8,22,10,22,12,22,317,9,22,1,23,1,23,1,23,1,23,1,23,
+        1,23,1,23,1,23,3,23,327,8,23,1,23,1,23,1,23,1,23,1,23,1,23,1,23,
+        1,23,1,23,3,23,338,8,23,1,23,1,23,5,23,342,8,23,10,23,12,23,345,
+        9,23,1,23,1,23,1,23,1,23,1,23,3,23,352,8,23,1,23,3,23,355,8,23,1,
+        24,1,24,1,24,1,24,1,24,1,24,1,24,1,24,1,24,1,24,1,24,1,24,1,25,1,
+        25,1,26,1,26,1,26,3,26,374,8,26,1,26,1,26,5,26,378,8,26,10,26,12,
+        26,381,9,26,1,27,1,27,1,27,1,27,1,27,1,27,1,27,1,27,1,27,1,27,1,
+        28,1,28,1,28,3,28,396,8,28,1,28,1,28,1,28,5,28,401,8,28,10,28,12,
+        28,404,9,28,1,29,1,29,1,30,1,30,1,31,1,31,1,32,1,32,1,32,0,7,6,10,
+        26,28,44,52,56,33,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,
+        34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,0,6,2,0,55,55,57,
+        57,2,0,52,52,58,58,2,0,52,52,54,57,1,0,18,22,1,0,38,41,1,0,24,28,
+        428,0,66,1,0,0,0,2,72,1,0,0,0,4,81,1,0,0,0,6,105,1,0,0,0,8,114,1,
+        0,0,0,10,123,1,0,0,0,12,143,1,0,0,0,14,146,1,0,0,0,16,175,1,0,0,
+        0,18,178,1,0,0,0,20,188,1,0,0,0,22,199,1,0,0,0,24,203,1,0,0,0,26,
+        216,1,0,0,0,28,237,1,0,0,0,30,251,1,0,0,0,32,253,1,0,0,0,34,264,
+        1,0,0,0,36,266,1,0,0,0,38,275,1,0,0,0,40,277,1,0,0,0,42,285,1,0,
+        0,0,44,302,1,0,0,0,46,318,1,0,0,0,48,356,1,0,0,0,50,368,1,0,0,0,
+        52,373,1,0,0,0,54,382,1,0,0,0,56,395,1,0,0,0,58,405,1,0,0,0,60,407,
+        1,0,0,0,62,409,1,0,0,0,64,411,1,0,0,0,66,68,3,2,1,0,67,69,3,4,2,
+        0,68,67,1,0,0,0,69,70,1,0,0,0,70,68,1,0,0,0,70,71,1,0,0,0,71,1,1,
+        0,0,0,72,73,5,13,0,0,73,74,5,31,0,0,74,75,3,50,25,0,75,76,5,47,0,
+        0,76,77,3,50,25,0,77,78,5,32,0,0,78,3,1,0,0,0,79,82,3,6,3,0,80,82,
+        3,8,4,0,81,79,1,0,0,0,81,80,1,0,0,0,82,5,1,0,0,0,83,84,6,3,-1,0,
+        84,85,3,14,7,0,85,86,5,51,0,0,86,106,1,0,0,0,87,88,3,16,8,0,88,89,
+        5,51,0,0,89,106,1,0,0,0,90,91,3,18,9,0,91,92,5,51,0,0,92,106,1,0,
+        0,0,93,94,3,22,11,0,94,95,5,51,0,0,95,106,1,0,0,0,96,97,3,12,6,0,
+        97,98,5,51,0,0,98,106,1,0,0,0,99,100,3,30,15,0,100,101,5,51,0,0,
+        101,106,1,0,0,0,102,106,3,38,19,0,103,106,3,48,24,0,104,106,3,54,
+        27,0,105,83,1,0,0,0,105,87,1,0,0,0,105,90,1,0,0,0,105,93,1,0,0,0,
+        105,96,1,0,0,0,105,99,1,0,0,0,105,102,1,0,0,0,105,103,1,0,0,0,105,
+        104,1,0,0,0,106,111,1,0,0,0,107,108,10,10,0,0,108,110,3,6,3,11,109,
+        107,1,0,0,0,110,113,1,0,0,0,111,109,1,0,0,0,111,112,1,0,0,0,112,
+        7,1,0,0,0,113,111,1,0,0,0,114,115,5,7,0,0,115,116,5,58,0,0,116,117,
+        5,29,0,0,117,118,3,10,5,0,118,119,5,30,0,0,119,120,5,33,0,0,120,
+        121,3,6,3,0,121,122,5,34,0,0,122,9,1,0,0,0,123,124,6,5,-1,0,124,
+        125,3,60,30,0,125,126,5,58,0,0,126,132,1,0,0,0,127,128,10,1,0,0,
+        128,129,5,50,0,0,129,131,3,10,5,2,130,127,1,0,0,0,131,134,1,0,0,
+        0,132,130,1,0,0,0,132,133,1,0,0,0,133,11,1,0,0,0,134,132,1,0,0,0,
+        135,136,5,58,0,0,136,137,5,29,0,0,137,138,3,56,28,0,138,139,5,30,
+        0,0,139,144,1,0,0,0,140,141,5,58,0,0,141,142,5,29,0,0,142,144,5,
+        30,0,0,143,135,1,0,0,0,143,140,1,0,0,0,144,13,1,0,0,0,145,147,5,
+        16,0,0,146,145,1,0,0,0,146,147,1,0,0,0,147,148,1,0,0,0,148,152,3,
+        60,30,0,149,150,5,31,0,0,150,151,5,52,0,0,151,153,5,32,0,0,152,149,
+        1,0,0,0,152,153,1,0,0,0,153,154,1,0,0,0,154,155,5,58,0,0,155,15,
+        1,0,0,0,156,158,5,16,0,0,157,156,1,0,0,0,157,158,1,0,0,0,158,159,
+        1,0,0,0,159,160,3,60,30,0,160,161,5,58,0,0,161,162,5,37,0,0,162,
+        163,3,24,12,0,163,176,1,0,0,0,164,166,5,16,0,0,165,164,1,0,0,0,165,
+        166,1,0,0,0,166,167,1,0,0,0,167,168,3,60,30,0,168,169,5,31,0,0,169,
+        170,5,52,0,0,170,171,5,32,0,0,171,172,5,58,0,0,172,173,5,37,0,0,
+        173,174,3,56,28,0,174,176,1,0,0,0,175,157,1,0,0,0,175,165,1,0,0,
+        0,176,17,1,0,0,0,177,179,5,16,0,0,178,177,1,0,0,0,178,179,1,0,0,
+        0,179,180,1,0,0,0,180,181,5,17,0,0,181,182,5,58,0,0,182,183,5,37,
+        0,0,183,184,5,17,0,0,184,185,5,29,0,0,185,186,3,20,10,0,186,187,
+        5,30,0,0,187,19,1,0,0,0,188,189,7,0,0,0,189,21,1,0,0,0,190,191,5,
+        58,0,0,191,192,5,37,0,0,192,200,3,24,12,0,193,194,5,58,0,0,194,195,
+        5,31,0,0,195,196,5,53,0,0,196,197,5,32,0,0,197,198,5,37,0,0,198,
+        200,3,24,12,0,199,190,1,0,0,0,199,193,1,0,0,0,200,23,1,0,0,0,201,
+        204,3,26,13,0,202,204,3,28,14,0,203,201,1,0,0,0,203,202,1,0,0,0,
+        204,25,1,0,0,0,205,206,6,13,-1,0,206,207,5,44,0,0,207,217,3,26,13,
+        3,208,209,3,28,14,0,209,210,3,62,31,0,210,211,3,28,14,0,211,217,
+        1,0,0,0,212,213,5,29,0,0,213,214,3,26,13,0,214,215,5,30,0,0,215,
+        217,1,0,0,0,216,205,1,0,0,0,216,208,1,0,0,0,216,212,1,0,0,0,217,
+        226,1,0,0,0,218,219,10,5,0,0,219,220,5,43,0,0,220,225,3,26,13,6,
+        221,222,10,4,0,0,222,223,5,42,0,0,223,225,3,26,13,5,224,218,1,0,
+        0,0,224,221,1,0,0,0,225,228,1,0,0,0,226,224,1,0,0,0,226,227,1,0,
+        0,0,227,27,1,0,0,0,228,226,1,0,0,0,229,230,6,14,-1,0,230,231,5,29,
+        0,0,231,232,3,28,14,0,232,233,5,30,0,0,233,238,1,0,0,0,234,238,3,
+        58,29,0,235,238,5,58,0,0,236,238,3,12,6,0,237,229,1,0,0,0,237,234,
+        1,0,0,0,237,235,1,0,0,0,237,236,1,0,0,0,238,245,1,0,0,0,239,240,
+        10,4,0,0,240,241,3,64,32,0,241,242,3,28,14,5,242,244,1,0,0,0,243,
+        239,1,0,0,0,244,247,1,0,0,0,245,243,1,0,0,0,245,246,1,0,0,0,246,
+        29,1,0,0,0,247,245,1,0,0,0,248,252,3,32,16,0,249,252,5,11,0,0,250,
+        252,3,36,18,0,251,248,1,0,0,0,251,249,1,0,0,0,251,250,1,0,0,0,252,
+        31,1,0,0,0,253,254,5,9,0,0,254,255,5,31,0,0,255,256,3,34,17,0,256,
+        257,5,32,0,0,257,258,5,58,0,0,258,33,1,0,0,0,259,265,5,10,0,0,260,
+        261,3,50,25,0,261,262,5,47,0,0,262,263,3,50,25,0,263,265,1,0,0,0,
+        264,259,1,0,0,0,264,260,1,0,0,0,265,35,1,0,0,0,266,267,5,12,0,0,
+        267,268,5,31,0,0,268,269,3,50,25,0,269,270,5,47,0,0,270,271,3,50,
+        25,0,271,272,5,32,0,0,272,37,1,0,0,0,273,276,3,40,20,0,274,276,3,
+        42,21,0,275,273,1,0,0,0,275,274,1,0,0,0,276,39,1,0,0,0,277,278,5,
+        1,0,0,278,279,5,29,0,0,279,280,3,24,12,0,280,281,5,30,0,0,281,282,
+        5,33,0,0,282,283,3,6,3,0,283,284,5,34,0,0,284,41,1,0,0,0,285,286,
+        5,1,0,0,286,287,5,29,0,0,287,288,3,24,12,0,288,289,5,30,0,0,289,
+        290,5,33,0,0,290,291,3,6,3,0,291,293,5,34,0,0,292,294,3,44,22,0,
+        293,292,1,0,0,0,293,294,1,0,0,0,294,300,1,0,0,0,295,296,5,3,0,0,
+        296,297,5,33,0,0,297,298,3,6,3,0,298,299,5,34,0,0,299,301,1,0,0,
+        0,300,295,1,0,0,0,300,301,1,0,0,0,301,43,1,0,0,0,302,303,6,22,-1,
+        0,303,304,5,2,0,0,304,305,5,29,0,0,305,306,3,24,12,0,306,307,5,30,
+        0,0,307,308,5,33,0,0,308,309,3,6,3,0,309,310,5,34,0,0,310,315,1,
+        0,0,0,311,312,10,1,0,0,312,314,3,44,22,2,313,311,1,0,0,0,314,317,
+        1,0,0,0,315,313,1,0,0,0,315,316,1,0,0,0,316,45,1,0,0,0,317,315,1,
+        0,0,0,318,319,5,1,0,0,319,320,5,29,0,0,320,321,3,24,12,0,321,322,
+        5,30,0,0,322,326,5,33,0,0,323,327,3,6,3,0,324,327,5,14,0,0,325,327,
+        5,15,0,0,326,323,1,0,0,0,326,324,1,0,0,0,326,325,1,0,0,0,327,328,
+        1,0,0,0,328,343,5,34,0,0,329,330,5,2,0,0,330,331,5,29,0,0,331,332,
+        3,24,12,0,332,333,5,30,0,0,333,337,5,33,0,0,334,338,3,6,3,0,335,
+        338,5,14,0,0,336,338,5,15,0,0,337,334,1,0,0,0,337,335,1,0,0,0,337,
+        336,1,0,0,0,338,339,1,0,0,0,339,340,5,34,0,0,340,342,1,0,0,0,341,
+        329,1,0,0,0,342,345,1,0,0,0,343,341,1,0,0,0,343,344,1,0,0,0,344,
+        354,1,0,0,0,345,343,1,0,0,0,346,347,5,3,0,0,347,351,5,33,0,0,348,
+        352,3,6,3,0,349,352,5,14,0,0,350,352,5,15,0,0,351,348,1,0,0,0,351,
+        349,1,0,0,0,351,350,1,0,0,0,352,353,1,0,0,0,353,355,5,34,0,0,354,
+        346,1,0,0,0,354,355,1,0,0,0,355,47,1,0,0,0,356,357,5,6,0,0,357,358,
+        5,29,0,0,358,359,3,50,25,0,359,360,5,47,0,0,360,361,3,50,25,0,361,
+        362,5,47,0,0,362,363,3,50,25,0,363,364,5,30,0,0,364,365,5,33,0,0,
+        365,366,3,52,26,0,366,367,5,34,0,0,367,49,1,0,0,0,368,369,7,1,0,
+        0,369,51,1,0,0,0,370,371,6,26,-1,0,371,374,3,6,3,0,372,374,3,46,
+        23,0,373,370,1,0,0,0,373,372,1,0,0,0,374,379,1,0,0,0,375,376,10,
+        1,0,0,376,378,3,52,26,2,377,375,1,0,0,0,378,381,1,0,0,0,379,377,
+        1,0,0,0,379,380,1,0,0,0,380,53,1,0,0,0,381,379,1,0,0,0,382,383,5,
+        4,0,0,383,384,5,5,0,0,384,385,5,4,0,0,385,386,5,29,0,0,386,387,3,
+        24,12,0,387,388,5,30,0,0,388,389,5,33,0,0,389,390,3,6,3,0,390,391,
+        5,34,0,0,391,55,1,0,0,0,392,393,6,28,-1,0,393,396,5,58,0,0,394,396,
+        3,58,29,0,395,392,1,0,0,0,395,394,1,0,0,0,396,402,1,0,0,0,397,398,
+        10,1,0,0,398,399,5,50,0,0,399,401,3,56,28,2,400,397,1,0,0,0,401,
+        404,1,0,0,0,402,400,1,0,0,0,402,403,1,0,0,0,403,57,1,0,0,0,404,402,
+        1,0,0,0,405,406,7,2,0,0,406,59,1,0,0,0,407,408,7,3,0,0,408,61,1,
+        0,0,0,409,410,7,4,0,0,410,63,1,0,0,0,411,412,7,5,0,0,412,65,1,0,
+        0,0,34,70,81,105,111,132,143,146,152,157,165,175,178,199,203,216,
+        224,226,237,245,251,264,275,293,300,315,326,337,343,351,354,373,
+        379,395,402
     ]
 
 class p_BoardLang ( Parser ):
@@ -176,7 +178,8 @@ class p_BoardLang ( Parser ):
                      "'>='", "'<='", "'OR'", "'AND'", "'NOT'", "'++'", "'--'", 
                      "':'", "'''", "'\\u00E2\\u20AC\\u015B'", "','", "'$'", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "'#'" ]
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "'#'" ]
 
     symbolicNames = [ "<INVALID>", "IF_T", "OTHERIF_T", "OTHERWISE_T", "AS_T", 
                       "LONG_T", "FOR_T", "FUNCTION_T", "RETURN_T", "DRAW_T", 
@@ -188,53 +191,52 @@ class p_BoardLang ( Parser ):
                       "RIGHT_CLAMP_PAR", "GT", "LT", "EQ", "CHECK_EQ", "NOT_EQ", 
                       "GTOREQ", "LTOREQ", "OR_T", "AND_T", "NOT_T", "PLUSPLUS", 
                       "MINUSMINUS", "COLON", "QUOT_SINGLE", "QUOT_DOUBLE", 
-                      "COMA", "END_M", "INT_V", "BOOL_V", "STRING_V", "CHAR_V", 
-                      "COLOUR_V", "ID", "WS", "COMMENT", "NOT", "COLOR_V", 
-                      "DIGIT" ]
+                      "COMA", "END_M", "INT_V", "DIGIT", "BOOL_V", "STRING_V", 
+                      "CHAR_V", "COLOUR_V", "ID", "WS", "COMMENT" ]
 
     RULE_program = 0
-    RULE_literal = 1
-    RULE_var_types = 2
-    RULE_rel_operator = 3
-    RULE_math_operator = 4
-    RULE_expr = 5
-    RULE_bool_expr = 6
-    RULE_math_expr = 7
-    RULE_out_instructions = 8
-    RULE_instructions = 9
-    RULE_declaration = 10
-    RULE_declaration_with_assign = 11
-    RULE_tile_decl_w_ass = 12
-    RULE_tt_arg = 13
-    RULE_assignment = 14
-    RULE_args_list = 15
-    RULE_board_size_definition = 16
-    RULE_board_instr = 17
-    RULE_draw_instr = 18
-    RULE_draw_args = 19
-    RULE_setpos_instr = 20
-    RULE_if_instr = 21
-    RULE_if_then_statement = 22
-    RULE_if_then_otherwise_statement = 23
-    RULE_otherif_statement = 24
-    RULE_if_inside_loop_statement = 25
-    RULE_for_loop = 26
-    RULE_id_and_int = 27
-    RULE_inside_loop = 28
-    RULE_as_long_as_loop = 29
-    RULE_function_def = 30
-    RULE_function_declaration_args = 31
-    RULE_function_call = 32
+    RULE_board_size_definition = 1
+    RULE_out_instructions = 2
+    RULE_instructions = 3
+    RULE_function_def = 4
+    RULE_function_declaration_args = 5
+    RULE_function_call = 6
+    RULE_declaration = 7
+    RULE_declaration_with_assign = 8
+    RULE_tile_decl_w_ass = 9
+    RULE_tt_arg = 10
+    RULE_assignment = 11
+    RULE_expr = 12
+    RULE_bool_expr = 13
+    RULE_math_expr = 14
+    RULE_board_instr = 15
+    RULE_draw_instr = 16
+    RULE_draw_args = 17
+    RULE_setpos_instr = 18
+    RULE_if_instr = 19
+    RULE_if_then_statement = 20
+    RULE_if_then_otherwise_statement = 21
+    RULE_otherif_statement = 22
+    RULE_if_inside_loop_statement = 23
+    RULE_for_loop = 24
+    RULE_id_and_int = 25
+    RULE_inside_loop = 26
+    RULE_as_long_as_loop = 27
+    RULE_args_list = 28
+    RULE_literal = 29
+    RULE_var_types = 30
+    RULE_rel_operator = 31
+    RULE_math_operator = 32
 
-    ruleNames =  [ "program", "literal", "var_types", "rel_operator", "math_operator", 
-                   "expr", "bool_expr", "math_expr", "out_instructions", 
-                   "instructions", "declaration", "declaration_with_assign", 
-                   "tile_decl_w_ass", "tt_arg", "assignment", "args_list", 
-                   "board_size_definition", "board_instr", "draw_instr", 
-                   "draw_args", "setpos_instr", "if_instr", "if_then_statement", 
-                   "if_then_otherwise_statement", "otherif_statement", "if_inside_loop_statement", 
-                   "for_loop", "id_and_int", "inside_loop", "as_long_as_loop", 
-                   "function_def", "function_declaration_args", "function_call" ]
+    ruleNames =  [ "program", "board_size_definition", "out_instructions", 
+                   "instructions", "function_def", "function_declaration_args", 
+                   "function_call", "declaration", "declaration_with_assign", 
+                   "tile_decl_w_ass", "tt_arg", "assignment", "expr", "bool_expr", 
+                   "math_expr", "board_instr", "draw_instr", "draw_args", 
+                   "setpos_instr", "if_instr", "if_then_statement", "if_then_otherwise_statement", 
+                   "otherif_statement", "if_inside_loop_statement", "for_loop", 
+                   "id_and_int", "inside_loop", "as_long_as_loop", "args_list", 
+                   "literal", "var_types", "rel_operator", "math_operator" ]
 
     EOF = Token.EOF
     IF_T=1
@@ -289,16 +291,14 @@ class p_BoardLang ( Parser ):
     COMA=50
     END_M=51
     INT_V=52
-    BOOL_V=53
-    STRING_V=54
-    CHAR_V=55
-    COLOUR_V=56
-    ID=57
-    WS=58
-    COMMENT=59
-    NOT=60
-    COLOR_V=61
-    DIGIT=62
+    DIGIT=53
+    BOOL_V=54
+    STRING_V=55
+    CHAR_V=56
+    COLOUR_V=57
+    ID=58
+    WS=59
+    COMMENT=60
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -365,7 +365,7 @@ class p_BoardLang ( Parser ):
                 self.state = 70 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 144115188084185810) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 288230376160041682) != 0)):
                     break
 
         except RecognitionException as re:
@@ -377,597 +377,76 @@ class p_BoardLang ( Parser ):
         return localctx
 
 
-    class LiteralContext(ParserRuleContext):
+    class Board_size_definitionContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def INT_V(self):
-            return self.getToken(p_BoardLang.INT_V, 0)
+        def BOARDSIZE_T(self):
+            return self.getToken(p_BoardLang.BOARDSIZE_T, 0)
 
-        def BOOL_V(self):
-            return self.getToken(p_BoardLang.BOOL_V, 0)
+        def LEFT_SQUARE_PAR(self):
+            return self.getToken(p_BoardLang.LEFT_SQUARE_PAR, 0)
 
-        def STRING_V(self):
-            return self.getToken(p_BoardLang.STRING_V, 0)
+        def id_and_int(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(p_BoardLang.Id_and_intContext)
+            else:
+                return self.getTypedRuleContext(p_BoardLang.Id_and_intContext,i)
 
-        def CHAR_V(self):
-            return self.getToken(p_BoardLang.CHAR_V, 0)
 
-        def COLOUR_V(self):
-            return self.getToken(p_BoardLang.COLOUR_V, 0)
+        def COLON(self):
+            return self.getToken(p_BoardLang.COLON, 0)
+
+        def RIGHT_SQUARE_PAR(self):
+            return self.getToken(p_BoardLang.RIGHT_SQUARE_PAR, 0)
 
         def getRuleIndex(self):
-            return p_BoardLang.RULE_literal
+            return p_BoardLang.RULE_board_size_definition
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLiteral" ):
-                listener.enterLiteral(self)
+            if hasattr( listener, "enterBoard_size_definition" ):
+                listener.enterBoard_size_definition(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLiteral" ):
-                listener.exitLiteral(self)
+            if hasattr( listener, "exitBoard_size_definition" ):
+                listener.exitBoard_size_definition(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLiteral" ):
-                return visitor.visitLiteral(self)
+            if hasattr( visitor, "visitBoard_size_definition" ):
+                return visitor.visitBoard_size_definition(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def literal(self):
+    def board_size_definition(self):
 
-        localctx = p_BoardLang.LiteralContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 2, self.RULE_literal)
-        self._la = 0 # Token type
+        localctx = p_BoardLang.Board_size_definitionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 2, self.RULE_board_size_definition)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 72
-            _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 139611588448485376) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class Var_typesContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def INT_T(self):
-            return self.getToken(p_BoardLang.INT_T, 0)
-
-        def BOOL_T(self):
-            return self.getToken(p_BoardLang.BOOL_T, 0)
-
-        def CHAR_T(self):
-            return self.getToken(p_BoardLang.CHAR_T, 0)
-
-        def STRING_T(self):
-            return self.getToken(p_BoardLang.STRING_T, 0)
-
-        def COLOUR_T(self):
-            return self.getToken(p_BoardLang.COLOUR_T, 0)
-
-        def getRuleIndex(self):
-            return p_BoardLang.RULE_var_types
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterVar_types" ):
-                listener.enterVar_types(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitVar_types" ):
-                listener.exitVar_types(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitVar_types" ):
-                return visitor.visitVar_types(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def var_types(self):
-
-        localctx = p_BoardLang.Var_typesContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 4, self.RULE_var_types)
-        self._la = 0 # Token type
-        try:
-            self.enterOuterAlt(localctx, 1)
+            self.match(p_BoardLang.BOARDSIZE_T)
+            self.state = 73
+            self.match(p_BoardLang.LEFT_SQUARE_PAR)
             self.state = 74
-            _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 8126464) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class Rel_operatorContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def CHECK_EQ(self):
-            return self.getToken(p_BoardLang.CHECK_EQ, 0)
-
-        def NOT_EQ(self):
-            return self.getToken(p_BoardLang.NOT_EQ, 0)
-
-        def GTOREQ(self):
-            return self.getToken(p_BoardLang.GTOREQ, 0)
-
-        def LTOREQ(self):
-            return self.getToken(p_BoardLang.LTOREQ, 0)
-
-        def getRuleIndex(self):
-            return p_BoardLang.RULE_rel_operator
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRel_operator" ):
-                listener.enterRel_operator(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRel_operator" ):
-                listener.exitRel_operator(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRel_operator" ):
-                return visitor.visitRel_operator(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def rel_operator(self):
-
-        localctx = p_BoardLang.Rel_operatorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_rel_operator)
-        self._la = 0 # Token type
-        try:
-            self.enterOuterAlt(localctx, 1)
+            self.id_and_int()
+            self.state = 75
+            self.match(p_BoardLang.COLON)
             self.state = 76
-            _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 4123168604160) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
+            self.id_and_int()
+            self.state = 77
+            self.match(p_BoardLang.RIGHT_SQUARE_PAR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
         finally:
             self.exitRule()
-        return localctx
-
-
-    class Math_operatorContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def PLUS(self):
-            return self.getToken(p_BoardLang.PLUS, 0)
-
-        def MINUS(self):
-            return self.getToken(p_BoardLang.MINUS, 0)
-
-        def DIVIDE(self):
-            return self.getToken(p_BoardLang.DIVIDE, 0)
-
-        def MOD(self):
-            return self.getToken(p_BoardLang.MOD, 0)
-
-        def MULTIPLY(self):
-            return self.getToken(p_BoardLang.MULTIPLY, 0)
-
-        def getRuleIndex(self):
-            return p_BoardLang.RULE_math_operator
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMath_operator" ):
-                listener.enterMath_operator(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMath_operator" ):
-                listener.exitMath_operator(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitMath_operator" ):
-                return visitor.visitMath_operator(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def math_operator(self):
-
-        localctx = p_BoardLang.Math_operatorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 8, self.RULE_math_operator)
-        self._la = 0 # Token type
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 78
-            _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 520093696) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class ExprContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def bool_expr(self):
-            return self.getTypedRuleContext(p_BoardLang.Bool_exprContext,0)
-
-
-        def math_expr(self):
-            return self.getTypedRuleContext(p_BoardLang.Math_exprContext,0)
-
-
-        def getRuleIndex(self):
-            return p_BoardLang.RULE_expr
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpr" ):
-                listener.enterExpr(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpr" ):
-                listener.exitExpr(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr" ):
-                return visitor.visitExpr(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def expr(self):
-
-        localctx = p_BoardLang.ExprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_expr)
-        try:
-            self.state = 82
-            self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
-            if la_ == 1:
-                self.enterOuterAlt(localctx, 1)
-                self.state = 80
-                self.bool_expr(0)
-                pass
-
-            elif la_ == 2:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 81
-                self.math_expr(0)
-                pass
-
-
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class Bool_exprContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def NOT(self):
-            return self.getToken(p_BoardLang.NOT, 0)
-
-        def bool_expr(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(p_BoardLang.Bool_exprContext)
-            else:
-                return self.getTypedRuleContext(p_BoardLang.Bool_exprContext,i)
-
-
-        def math_expr(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(p_BoardLang.Math_exprContext)
-            else:
-                return self.getTypedRuleContext(p_BoardLang.Math_exprContext,i)
-
-
-        def rel_operator(self):
-            return self.getTypedRuleContext(p_BoardLang.Rel_operatorContext,0)
-
-
-        def LEFT_PAR(self):
-            return self.getToken(p_BoardLang.LEFT_PAR, 0)
-
-        def RIGHT_PAR(self):
-            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
-
-        def AND_T(self):
-            return self.getToken(p_BoardLang.AND_T, 0)
-
-        def OR_T(self):
-            return self.getToken(p_BoardLang.OR_T, 0)
-
-        def getRuleIndex(self):
-            return p_BoardLang.RULE_bool_expr
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBool_expr" ):
-                listener.enterBool_expr(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBool_expr" ):
-                listener.exitBool_expr(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBool_expr" ):
-                return visitor.visitBool_expr(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-    def bool_expr(self, _p:int=0):
-        _parentctx = self._ctx
-        _parentState = self.state
-        localctx = p_BoardLang.Bool_exprContext(self, self._ctx, _parentState)
-        _prevctx = localctx
-        _startState = 12
-        self.enterRecursionRule(localctx, 12, self.RULE_bool_expr, _p)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 95
-            self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
-            if la_ == 1:
-                self.state = 85
-                self.match(p_BoardLang.NOT)
-                self.state = 86
-                self.bool_expr(3)
-                pass
-
-            elif la_ == 2:
-                self.state = 87
-                self.math_expr(0)
-                self.state = 88
-                self.rel_operator()
-                self.state = 89
-                self.math_expr(0)
-                pass
-
-            elif la_ == 3:
-                self.state = 91
-                self.match(p_BoardLang.LEFT_PAR)
-                self.state = 92
-                self.bool_expr(0)
-                self.state = 93
-                self.match(p_BoardLang.RIGHT_PAR)
-                pass
-
-
-            self._ctx.stop = self._input.LT(-1)
-            self.state = 105
-            self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,4,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
-                    if self._parseListeners is not None:
-                        self.triggerExitRuleEvent()
-                    _prevctx = localctx
-                    self.state = 103
-                    self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
-                    if la_ == 1:
-                        localctx = p_BoardLang.Bool_exprContext(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_bool_expr)
-                        self.state = 97
-                        if not self.precpred(self._ctx, 5):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
-                        self.state = 98
-                        self.match(p_BoardLang.AND_T)
-                        self.state = 99
-                        self.bool_expr(6)
-                        pass
-
-                    elif la_ == 2:
-                        localctx = p_BoardLang.Bool_exprContext(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_bool_expr)
-                        self.state = 100
-                        if not self.precpred(self._ctx, 4):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                        self.state = 101
-                        self.match(p_BoardLang.OR_T)
-                        self.state = 102
-                        self.bool_expr(5)
-                        pass
-
-             
-                self.state = 107
-                self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,4,self._ctx)
-
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.unrollRecursionContexts(_parentctx)
-        return localctx
-
-
-    class Math_exprContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def LEFT_PAR(self):
-            return self.getToken(p_BoardLang.LEFT_PAR, 0)
-
-        def math_expr(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(p_BoardLang.Math_exprContext)
-            else:
-                return self.getTypedRuleContext(p_BoardLang.Math_exprContext,i)
-
-
-        def RIGHT_PAR(self):
-            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
-
-        def literal(self):
-            return self.getTypedRuleContext(p_BoardLang.LiteralContext,0)
-
-
-        def ID(self):
-            return self.getToken(p_BoardLang.ID, 0)
-
-        def function_call(self):
-            return self.getTypedRuleContext(p_BoardLang.Function_callContext,0)
-
-
-        def math_operator(self):
-            return self.getTypedRuleContext(p_BoardLang.Math_operatorContext,0)
-
-
-        def getRuleIndex(self):
-            return p_BoardLang.RULE_math_expr
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMath_expr" ):
-                listener.enterMath_expr(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMath_expr" ):
-                listener.exitMath_expr(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitMath_expr" ):
-                return visitor.visitMath_expr(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-    def math_expr(self, _p:int=0):
-        _parentctx = self._ctx
-        _parentState = self.state
-        localctx = p_BoardLang.Math_exprContext(self, self._ctx, _parentState)
-        _prevctx = localctx
-        _startState = 14
-        self.enterRecursionRule(localctx, 14, self.RULE_math_expr, _p)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 116
-            self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
-            if la_ == 1:
-                self.state = 109
-                self.match(p_BoardLang.LEFT_PAR)
-                self.state = 110
-                self.math_expr(0)
-                self.state = 111
-                self.match(p_BoardLang.RIGHT_PAR)
-                pass
-
-            elif la_ == 2:
-                self.state = 113
-                self.literal()
-                pass
-
-            elif la_ == 3:
-                self.state = 114
-                self.match(p_BoardLang.ID)
-                pass
-
-            elif la_ == 4:
-                self.state = 115
-                self.function_call()
-                pass
-
-
-            self._ctx.stop = self._input.LT(-1)
-            self.state = 124
-            self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
-                    if self._parseListeners is not None:
-                        self.triggerExitRuleEvent()
-                    _prevctx = localctx
-                    localctx = p_BoardLang.Math_exprContext(self, _parentctx, _parentState)
-                    self.pushNewRecursionContext(localctx, _startState, self.RULE_math_expr)
-                    self.state = 118
-                    if not self.precpred(self._ctx, 4):
-                        from antlr4.error.Errors import FailedPredicateException
-                        raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                    self.state = 119
-                    self.math_operator()
-                    self.state = 120
-                    self.math_expr(5) 
-                self.state = 126
-                self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
-
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.unrollRecursionContexts(_parentctx)
         return localctx
 
 
@@ -1009,19 +488,19 @@ class p_BoardLang ( Parser ):
     def out_instructions(self):
 
         localctx = p_BoardLang.Out_instructionsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_out_instructions)
+        self.enterRule(localctx, 4, self.RULE_out_instructions)
         try:
-            self.state = 129
+            self.state = 81
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 57]:
+            if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 58]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 127
+                self.state = 79
                 self.instructions(0)
                 pass
             elif token in [7]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 128
+                self.state = 80
                 self.function_def()
                 pass
             else:
@@ -1113,75 +592,75 @@ class p_BoardLang ( Parser ):
         _parentState = self.state
         localctx = p_BoardLang.InstructionsContext(self, self._ctx, _parentState)
         _prevctx = localctx
-        _startState = 18
-        self.enterRecursionRule(localctx, 18, self.RULE_instructions, _p)
+        _startState = 6
+        self.enterRecursionRule(localctx, 6, self.RULE_instructions, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 153
+            self.state = 105
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
             if la_ == 1:
-                self.state = 132
+                self.state = 84
                 self.declaration()
-                self.state = 133
+                self.state = 85
                 self.match(p_BoardLang.END_M)
                 pass
 
             elif la_ == 2:
-                self.state = 135
+                self.state = 87
                 self.declaration_with_assign()
-                self.state = 136
+                self.state = 88
                 self.match(p_BoardLang.END_M)
                 pass
 
             elif la_ == 3:
-                self.state = 138
+                self.state = 90
                 self.tile_decl_w_ass()
-                self.state = 139
+                self.state = 91
                 self.match(p_BoardLang.END_M)
                 pass
 
             elif la_ == 4:
-                self.state = 141
+                self.state = 93
                 self.assignment()
-                self.state = 142
+                self.state = 94
                 self.match(p_BoardLang.END_M)
                 pass
 
             elif la_ == 5:
-                self.state = 144
+                self.state = 96
                 self.function_call()
-                self.state = 145
+                self.state = 97
                 self.match(p_BoardLang.END_M)
                 pass
 
             elif la_ == 6:
-                self.state = 147
+                self.state = 99
                 self.board_instr()
-                self.state = 148
+                self.state = 100
                 self.match(p_BoardLang.END_M)
                 pass
 
             elif la_ == 7:
-                self.state = 150
+                self.state = 102
                 self.if_instr()
                 pass
 
             elif la_ == 8:
-                self.state = 151
+                self.state = 103
                 self.for_loop()
                 pass
 
             elif la_ == 9:
-                self.state = 152
+                self.state = 104
                 self.as_long_as_loop()
                 pass
 
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 159
+            self.state = 111
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,9,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
@@ -1189,15 +668,15 @@ class p_BoardLang ( Parser ):
                     _prevctx = localctx
                     localctx = p_BoardLang.InstructionsContext(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_instructions)
-                    self.state = 155
+                    self.state = 107
                     if not self.precpred(self._ctx, 10):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 10)")
-                    self.state = 156
+                    self.state = 108
                     self.instructions(11) 
-                self.state = 161
+                self.state = 113
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,9,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1205,6 +684,258 @@ class p_BoardLang ( Parser ):
             self._errHandler.recover(self, re)
         finally:
             self.unrollRecursionContexts(_parentctx)
+        return localctx
+
+
+    class Function_defContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def FUNCTION_T(self):
+            return self.getToken(p_BoardLang.FUNCTION_T, 0)
+
+        def ID(self):
+            return self.getToken(p_BoardLang.ID, 0)
+
+        def LEFT_PAR(self):
+            return self.getToken(p_BoardLang.LEFT_PAR, 0)
+
+        def function_declaration_args(self):
+            return self.getTypedRuleContext(p_BoardLang.Function_declaration_argsContext,0)
+
+
+        def RIGHT_PAR(self):
+            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
+
+        def LEFT_CLAMP_PAR(self):
+            return self.getToken(p_BoardLang.LEFT_CLAMP_PAR, 0)
+
+        def instructions(self):
+            return self.getTypedRuleContext(p_BoardLang.InstructionsContext,0)
+
+
+        def RIGHT_CLAMP_PAR(self):
+            return self.getToken(p_BoardLang.RIGHT_CLAMP_PAR, 0)
+
+        def getRuleIndex(self):
+            return p_BoardLang.RULE_function_def
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterFunction_def" ):
+                listener.enterFunction_def(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitFunction_def" ):
+                listener.exitFunction_def(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunction_def" ):
+                return visitor.visitFunction_def(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def function_def(self):
+
+        localctx = p_BoardLang.Function_defContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 8, self.RULE_function_def)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 114
+            self.match(p_BoardLang.FUNCTION_T)
+            self.state = 115
+            self.match(p_BoardLang.ID)
+            self.state = 116
+            self.match(p_BoardLang.LEFT_PAR)
+            self.state = 117
+            self.function_declaration_args(0)
+            self.state = 118
+            self.match(p_BoardLang.RIGHT_PAR)
+            self.state = 119
+            self.match(p_BoardLang.LEFT_CLAMP_PAR)
+            self.state = 120
+            self.instructions(0)
+            self.state = 121
+            self.match(p_BoardLang.RIGHT_CLAMP_PAR)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Function_declaration_argsContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def var_types(self):
+            return self.getTypedRuleContext(p_BoardLang.Var_typesContext,0)
+
+
+        def ID(self):
+            return self.getToken(p_BoardLang.ID, 0)
+
+        def function_declaration_args(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(p_BoardLang.Function_declaration_argsContext)
+            else:
+                return self.getTypedRuleContext(p_BoardLang.Function_declaration_argsContext,i)
+
+
+        def COMA(self):
+            return self.getToken(p_BoardLang.COMA, 0)
+
+        def getRuleIndex(self):
+            return p_BoardLang.RULE_function_declaration_args
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterFunction_declaration_args" ):
+                listener.enterFunction_declaration_args(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitFunction_declaration_args" ):
+                listener.exitFunction_declaration_args(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunction_declaration_args" ):
+                return visitor.visitFunction_declaration_args(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+    def function_declaration_args(self, _p:int=0):
+        _parentctx = self._ctx
+        _parentState = self.state
+        localctx = p_BoardLang.Function_declaration_argsContext(self, self._ctx, _parentState)
+        _prevctx = localctx
+        _startState = 10
+        self.enterRecursionRule(localctx, 10, self.RULE_function_declaration_args, _p)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 124
+            self.var_types()
+            self.state = 125
+            self.match(p_BoardLang.ID)
+            self._ctx.stop = self._input.LT(-1)
+            self.state = 132
+            self._errHandler.sync(self)
+            _alt = self._interp.adaptivePredict(self._input,4,self._ctx)
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt==1:
+                    if self._parseListeners is not None:
+                        self.triggerExitRuleEvent()
+                    _prevctx = localctx
+                    localctx = p_BoardLang.Function_declaration_argsContext(self, _parentctx, _parentState)
+                    self.pushNewRecursionContext(localctx, _startState, self.RULE_function_declaration_args)
+                    self.state = 127
+                    if not self.precpred(self._ctx, 1):
+                        from antlr4.error.Errors import FailedPredicateException
+                        raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
+                    self.state = 128
+                    self.match(p_BoardLang.COMA)
+                    self.state = 129
+                    self.function_declaration_args(2) 
+                self.state = 134
+                self._errHandler.sync(self)
+                _alt = self._interp.adaptivePredict(self._input,4,self._ctx)
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.unrollRecursionContexts(_parentctx)
+        return localctx
+
+
+    class Function_callContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def ID(self):
+            return self.getToken(p_BoardLang.ID, 0)
+
+        def LEFT_PAR(self):
+            return self.getToken(p_BoardLang.LEFT_PAR, 0)
+
+        def args_list(self):
+            return self.getTypedRuleContext(p_BoardLang.Args_listContext,0)
+
+
+        def RIGHT_PAR(self):
+            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
+
+        def getRuleIndex(self):
+            return p_BoardLang.RULE_function_call
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterFunction_call" ):
+                listener.enterFunction_call(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitFunction_call" ):
+                listener.exitFunction_call(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunction_call" ):
+                return visitor.visitFunction_call(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def function_call(self):
+
+        localctx = p_BoardLang.Function_callContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 12, self.RULE_function_call)
+        try:
+            self.state = 143
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 135
+                self.match(p_BoardLang.ID)
+                self.state = 136
+                self.match(p_BoardLang.LEFT_PAR)
+                self.state = 137
+                self.args_list(0)
+                self.state = 138
+                self.match(p_BoardLang.RIGHT_PAR)
+                pass
+
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 140
+                self.match(p_BoardLang.ID)
+                self.state = 141
+                self.match(p_BoardLang.LEFT_PAR)
+                self.state = 142
+                self.match(p_BoardLang.RIGHT_PAR)
+                pass
+
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
         return localctx
 
 
@@ -1257,33 +988,33 @@ class p_BoardLang ( Parser ):
     def declaration(self):
 
         localctx = p_BoardLang.DeclarationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 20, self.RULE_declaration)
+        self.enterRule(localctx, 14, self.RULE_declaration)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 163
+            self.state = 146
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==16:
-                self.state = 162
+                self.state = 145
                 self.match(p_BoardLang.CONST)
 
 
-            self.state = 165
+            self.state = 148
             self.var_types()
-            self.state = 169
+            self.state = 152
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==31:
-                self.state = 166
+                self.state = 149
                 self.match(p_BoardLang.LEFT_SQUARE_PAR)
-                self.state = 167
+                self.state = 150
                 self.match(p_BoardLang.INT_V)
-                self.state = 168
+                self.state = 151
                 self.match(p_BoardLang.RIGHT_SQUARE_PAR)
 
 
-            self.state = 171
+            self.state = 154
             self.match(p_BoardLang.ID)
         except RecognitionException as re:
             localctx.exception = re
@@ -1354,55 +1085,55 @@ class p_BoardLang ( Parser ):
     def declaration_with_assign(self):
 
         localctx = p_BoardLang.Declaration_with_assignContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 22, self.RULE_declaration_with_assign)
+        self.enterRule(localctx, 16, self.RULE_declaration_with_assign)
         self._la = 0 # Token type
         try:
-            self.state = 192
+            self.state = 175
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 174
+                self.state = 157
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==16:
-                    self.state = 173
+                    self.state = 156
                     self.match(p_BoardLang.CONST)
 
 
-                self.state = 176
+                self.state = 159
                 self.var_types()
-                self.state = 177
+                self.state = 160
                 self.match(p_BoardLang.ID)
-                self.state = 178
+                self.state = 161
                 self.match(p_BoardLang.EQ)
-                self.state = 179
+                self.state = 162
                 self.expr()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 182
+                self.state = 165
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==16:
-                    self.state = 181
+                    self.state = 164
                     self.match(p_BoardLang.CONST)
 
 
-                self.state = 184
+                self.state = 167
                 self.var_types()
-                self.state = 185
+                self.state = 168
                 self.match(p_BoardLang.LEFT_SQUARE_PAR)
-                self.state = 186
+                self.state = 169
                 self.match(p_BoardLang.INT_V)
-                self.state = 187
+                self.state = 170
                 self.match(p_BoardLang.RIGHT_SQUARE_PAR)
-                self.state = 188
+                self.state = 171
                 self.match(p_BoardLang.ID)
-                self.state = 189
+                self.state = 172
                 self.match(p_BoardLang.EQ)
-                self.state = 190
+                self.state = 173
                 self.args_list(0)
                 pass
 
@@ -1471,31 +1202,31 @@ class p_BoardLang ( Parser ):
     def tile_decl_w_ass(self):
 
         localctx = p_BoardLang.Tile_decl_w_assContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 24, self.RULE_tile_decl_w_ass)
+        self.enterRule(localctx, 18, self.RULE_tile_decl_w_ass)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 195
+            self.state = 178
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==16:
-                self.state = 194
+                self.state = 177
                 self.match(p_BoardLang.CONST)
 
 
-            self.state = 197
+            self.state = 180
             self.match(p_BoardLang.TT)
-            self.state = 198
+            self.state = 181
             self.match(p_BoardLang.ID)
-            self.state = 199
+            self.state = 182
             self.match(p_BoardLang.EQ)
-            self.state = 200
+            self.state = 183
             self.match(p_BoardLang.TT)
-            self.state = 201
+            self.state = 184
             self.match(p_BoardLang.LEFT_PAR)
-            self.state = 202
+            self.state = 185
             self.tt_arg()
-            self.state = 203
+            self.state = 186
             self.match(p_BoardLang.RIGHT_PAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -1513,8 +1244,8 @@ class p_BoardLang ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def COLOR_V(self):
-            return self.getToken(p_BoardLang.COLOR_V, 0)
+        def COLOUR_V(self):
+            return self.getToken(p_BoardLang.COLOUR_V, 0)
 
         def STRING_V(self):
             return self.getToken(p_BoardLang.STRING_V, 0)
@@ -1542,13 +1273,13 @@ class p_BoardLang ( Parser ):
     def tt_arg(self):
 
         localctx = p_BoardLang.Tt_argContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 26, self.RULE_tt_arg)
+        self.enterRule(localctx, 20, self.RULE_tt_arg)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 205
+            self.state = 188
             _la = self._input.LA(1)
-            if not(_la==54 or _la==61):
+            if not(_la==55 or _la==57):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1611,34 +1342,34 @@ class p_BoardLang ( Parser ):
     def assignment(self):
 
         localctx = p_BoardLang.AssignmentContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 28, self.RULE_assignment)
+        self.enterRule(localctx, 22, self.RULE_assignment)
         try:
-            self.state = 216
+            self.state = 199
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,16,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,12,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 207
+                self.state = 190
                 self.match(p_BoardLang.ID)
-                self.state = 208
+                self.state = 191
                 self.match(p_BoardLang.EQ)
-                self.state = 209
+                self.state = 192
                 self.expr()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 210
+                self.state = 193
                 self.match(p_BoardLang.ID)
-                self.state = 211
+                self.state = 194
                 self.match(p_BoardLang.LEFT_SQUARE_PAR)
-                self.state = 212
+                self.state = 195
                 self.match(p_BoardLang.DIGIT)
-                self.state = 213
+                self.state = 196
                 self.match(p_BoardLang.RIGHT_SQUARE_PAR)
-                self.state = 214
+                self.state = 197
                 self.match(p_BoardLang.EQ)
-                self.state = 215
+                self.state = 198
                 self.expr()
                 pass
 
@@ -1652,94 +1383,210 @@ class p_BoardLang ( Parser ):
         return localctx
 
 
-    class Args_listContext(ParserRuleContext):
+    class ExprContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self):
-            return self.getToken(p_BoardLang.ID, 0)
-
-        def literal(self):
-            return self.getTypedRuleContext(p_BoardLang.LiteralContext,0)
+        def bool_expr(self):
+            return self.getTypedRuleContext(p_BoardLang.Bool_exprContext,0)
 
 
-        def args_list(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(p_BoardLang.Args_listContext)
-            else:
-                return self.getTypedRuleContext(p_BoardLang.Args_listContext,i)
+        def math_expr(self):
+            return self.getTypedRuleContext(p_BoardLang.Math_exprContext,0)
 
-
-        def COMA(self):
-            return self.getToken(p_BoardLang.COMA, 0)
 
         def getRuleIndex(self):
-            return p_BoardLang.RULE_args_list
+            return p_BoardLang.RULE_expr
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterArgs_list" ):
-                listener.enterArgs_list(self)
+            if hasattr( listener, "enterExpr" ):
+                listener.enterExpr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitArgs_list" ):
-                listener.exitArgs_list(self)
+            if hasattr( listener, "exitExpr" ):
+                listener.exitExpr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitArgs_list" ):
-                return visitor.visitArgs_list(self)
+            if hasattr( visitor, "visitExpr" ):
+                return visitor.visitExpr(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
-    def args_list(self, _p:int=0):
+
+    def expr(self):
+
+        localctx = p_BoardLang.ExprContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 24, self.RULE_expr)
+        try:
+            self.state = 203
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 201
+                self.bool_expr(0)
+                pass
+
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 202
+                self.math_expr(0)
+                pass
+
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Bool_exprContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def NOT_T(self):
+            return self.getToken(p_BoardLang.NOT_T, 0)
+
+        def bool_expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(p_BoardLang.Bool_exprContext)
+            else:
+                return self.getTypedRuleContext(p_BoardLang.Bool_exprContext,i)
+
+
+        def math_expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(p_BoardLang.Math_exprContext)
+            else:
+                return self.getTypedRuleContext(p_BoardLang.Math_exprContext,i)
+
+
+        def rel_operator(self):
+            return self.getTypedRuleContext(p_BoardLang.Rel_operatorContext,0)
+
+
+        def LEFT_PAR(self):
+            return self.getToken(p_BoardLang.LEFT_PAR, 0)
+
+        def RIGHT_PAR(self):
+            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
+
+        def AND_T(self):
+            return self.getToken(p_BoardLang.AND_T, 0)
+
+        def OR_T(self):
+            return self.getToken(p_BoardLang.OR_T, 0)
+
+        def getRuleIndex(self):
+            return p_BoardLang.RULE_bool_expr
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterBool_expr" ):
+                listener.enterBool_expr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitBool_expr" ):
+                listener.exitBool_expr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBool_expr" ):
+                return visitor.visitBool_expr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+    def bool_expr(self, _p:int=0):
         _parentctx = self._ctx
         _parentState = self.state
-        localctx = p_BoardLang.Args_listContext(self, self._ctx, _parentState)
+        localctx = p_BoardLang.Bool_exprContext(self, self._ctx, _parentState)
         _prevctx = localctx
-        _startState = 30
-        self.enterRecursionRule(localctx, 30, self.RULE_args_list, _p)
+        _startState = 26
+        self.enterRecursionRule(localctx, 26, self.RULE_bool_expr, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 221
+            self.state = 216
             self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [57]:
-                self.state = 219
-                self.match(p_BoardLang.ID)
+            la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
+            if la_ == 1:
+                self.state = 206
+                self.match(p_BoardLang.NOT_T)
+                self.state = 207
+                self.bool_expr(3)
                 pass
-            elif token in [52, 53, 54, 55, 56]:
-                self.state = 220
-                self.literal()
+
+            elif la_ == 2:
+                self.state = 208
+                self.math_expr(0)
+                self.state = 209
+                self.rel_operator()
+                self.state = 210
+                self.math_expr(0)
                 pass
-            else:
-                raise NoViableAltException(self)
+
+            elif la_ == 3:
+                self.state = 212
+                self.match(p_BoardLang.LEFT_PAR)
+                self.state = 213
+                self.bool_expr(0)
+                self.state = 214
+                self.match(p_BoardLang.RIGHT_PAR)
+                pass
+
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 228
+            self.state = 226
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,16,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    localctx = p_BoardLang.Args_listContext(self, _parentctx, _parentState)
-                    self.pushNewRecursionContext(localctx, _startState, self.RULE_args_list)
-                    self.state = 223
-                    if not self.precpred(self._ctx, 1):
-                        from antlr4.error.Errors import FailedPredicateException
-                        raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
                     self.state = 224
-                    self.match(p_BoardLang.COMA)
-                    self.state = 225
-                    self.args_list(2) 
-                self.state = 230
+                    self._errHandler.sync(self)
+                    la_ = self._interp.adaptivePredict(self._input,15,self._ctx)
+                    if la_ == 1:
+                        localctx = p_BoardLang.Bool_exprContext(self, _parentctx, _parentState)
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_bool_expr)
+                        self.state = 218
+                        if not self.precpred(self._ctx, 5):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
+                        self.state = 219
+                        self.match(p_BoardLang.AND_T)
+                        self.state = 220
+                        self.bool_expr(6)
+                        pass
+
+                    elif la_ == 2:
+                        localctx = p_BoardLang.Bool_exprContext(self, _parentctx, _parentState)
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_bool_expr)
+                        self.state = 221
+                        if not self.precpred(self._ctx, 4):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
+                        self.state = 222
+                        self.match(p_BoardLang.OR_T)
+                        self.state = 223
+                        self.bool_expr(5)
+                        pass
+
+             
+                self.state = 228
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,16,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1750,76 +1597,126 @@ class p_BoardLang ( Parser ):
         return localctx
 
 
-    class Board_size_definitionContext(ParserRuleContext):
+    class Math_exprContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def BOARDSIZE_T(self):
-            return self.getToken(p_BoardLang.BOARDSIZE_T, 0)
+        def LEFT_PAR(self):
+            return self.getToken(p_BoardLang.LEFT_PAR, 0)
 
-        def LEFT_SQUARE_PAR(self):
-            return self.getToken(p_BoardLang.LEFT_SQUARE_PAR, 0)
-
-        def id_and_int(self, i:int=None):
+        def math_expr(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(p_BoardLang.Id_and_intContext)
+                return self.getTypedRuleContexts(p_BoardLang.Math_exprContext)
             else:
-                return self.getTypedRuleContext(p_BoardLang.Id_and_intContext,i)
+                return self.getTypedRuleContext(p_BoardLang.Math_exprContext,i)
 
 
-        def COLON(self):
-            return self.getToken(p_BoardLang.COLON, 0)
+        def RIGHT_PAR(self):
+            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
 
-        def RIGHT_SQUARE_PAR(self):
-            return self.getToken(p_BoardLang.RIGHT_SQUARE_PAR, 0)
+        def literal(self):
+            return self.getTypedRuleContext(p_BoardLang.LiteralContext,0)
+
+
+        def ID(self):
+            return self.getToken(p_BoardLang.ID, 0)
+
+        def function_call(self):
+            return self.getTypedRuleContext(p_BoardLang.Function_callContext,0)
+
+
+        def math_operator(self):
+            return self.getTypedRuleContext(p_BoardLang.Math_operatorContext,0)
+
 
         def getRuleIndex(self):
-            return p_BoardLang.RULE_board_size_definition
+            return p_BoardLang.RULE_math_expr
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBoard_size_definition" ):
-                listener.enterBoard_size_definition(self)
+            if hasattr( listener, "enterMath_expr" ):
+                listener.enterMath_expr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBoard_size_definition" ):
-                listener.exitBoard_size_definition(self)
+            if hasattr( listener, "exitMath_expr" ):
+                listener.exitMath_expr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBoard_size_definition" ):
-                return visitor.visitBoard_size_definition(self)
+            if hasattr( visitor, "visitMath_expr" ):
+                return visitor.visitMath_expr(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
-
-    def board_size_definition(self):
-
-        localctx = p_BoardLang.Board_size_definitionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 32, self.RULE_board_size_definition)
+    def math_expr(self, _p:int=0):
+        _parentctx = self._ctx
+        _parentState = self.state
+        localctx = p_BoardLang.Math_exprContext(self, self._ctx, _parentState)
+        _prevctx = localctx
+        _startState = 28
+        self.enterRecursionRule(localctx, 28, self.RULE_math_expr, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 231
-            self.match(p_BoardLang.BOARDSIZE_T)
-            self.state = 232
-            self.match(p_BoardLang.LEFT_SQUARE_PAR)
-            self.state = 233
-            self.id_and_int()
-            self.state = 234
-            self.match(p_BoardLang.COLON)
-            self.state = 235
-            self.id_and_int()
-            self.state = 236
-            self.match(p_BoardLang.RIGHT_SQUARE_PAR)
+            self.state = 237
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,17,self._ctx)
+            if la_ == 1:
+                self.state = 230
+                self.match(p_BoardLang.LEFT_PAR)
+                self.state = 231
+                self.math_expr(0)
+                self.state = 232
+                self.match(p_BoardLang.RIGHT_PAR)
+                pass
+
+            elif la_ == 2:
+                self.state = 234
+                self.literal()
+                pass
+
+            elif la_ == 3:
+                self.state = 235
+                self.match(p_BoardLang.ID)
+                pass
+
+            elif la_ == 4:
+                self.state = 236
+                self.function_call()
+                pass
+
+
+            self._ctx.stop = self._input.LT(-1)
+            self.state = 245
+            self._errHandler.sync(self)
+            _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt==1:
+                    if self._parseListeners is not None:
+                        self.triggerExitRuleEvent()
+                    _prevctx = localctx
+                    localctx = p_BoardLang.Math_exprContext(self, _parentctx, _parentState)
+                    self.pushNewRecursionContext(localctx, _startState, self.RULE_math_expr)
+                    self.state = 239
+                    if not self.precpred(self._ctx, 4):
+                        from antlr4.error.Errors import FailedPredicateException
+                        raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
+                    self.state = 240
+                    self.math_operator()
+                    self.state = 241
+                    self.math_expr(5) 
+                self.state = 247
+                self._errHandler.sync(self)
+                _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
         finally:
-            self.exitRule()
+            self.unrollRecursionContexts(_parentctx)
         return localctx
 
 
@@ -1864,24 +1761,24 @@ class p_BoardLang ( Parser ):
     def board_instr(self):
 
         localctx = p_BoardLang.Board_instrContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 34, self.RULE_board_instr)
+        self.enterRule(localctx, 30, self.RULE_board_instr)
         try:
-            self.state = 241
+            self.state = 251
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [9]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 238
+                self.state = 248
                 self.draw_instr()
                 pass
             elif token in [11]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 239
+                self.state = 249
                 self.match(p_BoardLang.RESET_T)
                 pass
             elif token in [12]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 240
+                self.state = 250
                 self.setpos_instr()
                 pass
             else:
@@ -1942,18 +1839,18 @@ class p_BoardLang ( Parser ):
     def draw_instr(self):
 
         localctx = p_BoardLang.Draw_instrContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 36, self.RULE_draw_instr)
+        self.enterRule(localctx, 32, self.RULE_draw_instr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 243
+            self.state = 253
             self.match(p_BoardLang.DRAW_T)
-            self.state = 244
+            self.state = 254
             self.match(p_BoardLang.LEFT_SQUARE_PAR)
-            self.state = 245
+            self.state = 255
             self.draw_args()
-            self.state = 246
+            self.state = 256
             self.match(p_BoardLang.RIGHT_SQUARE_PAR)
-            self.state = 247
+            self.state = 257
             self.match(p_BoardLang.ID)
         except RecognitionException as re:
             localctx.exception = re
@@ -2007,23 +1904,23 @@ class p_BoardLang ( Parser ):
     def draw_args(self):
 
         localctx = p_BoardLang.Draw_argsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 38, self.RULE_draw_args)
+        self.enterRule(localctx, 34, self.RULE_draw_args)
         try:
-            self.state = 254
+            self.state = 264
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [10]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 249
+                self.state = 259
                 self.match(p_BoardLang.HERE_T)
                 pass
-            elif token in [52, 57]:
+            elif token in [52, 58]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 250
+                self.state = 260
                 self.id_and_int()
-                self.state = 251
+                self.state = 261
                 self.match(p_BoardLang.COLON)
-                self.state = 252
+                self.state = 262
                 self.id_and_int()
                 pass
             else:
@@ -2087,20 +1984,20 @@ class p_BoardLang ( Parser ):
     def setpos_instr(self):
 
         localctx = p_BoardLang.Setpos_instrContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 40, self.RULE_setpos_instr)
+        self.enterRule(localctx, 36, self.RULE_setpos_instr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 256
+            self.state = 266
             self.match(p_BoardLang.SETPOS)
-            self.state = 257
+            self.state = 267
             self.match(p_BoardLang.LEFT_SQUARE_PAR)
-            self.state = 258
+            self.state = 268
             self.id_and_int()
-            self.state = 259
+            self.state = 269
             self.match(p_BoardLang.COLON)
-            self.state = 260
+            self.state = 270
             self.id_and_int()
-            self.state = 261
+            self.state = 271
             self.match(p_BoardLang.RIGHT_SQUARE_PAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -2149,20 +2046,20 @@ class p_BoardLang ( Parser ):
     def if_instr(self):
 
         localctx = p_BoardLang.If_instrContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 42, self.RULE_if_instr)
+        self.enterRule(localctx, 38, self.RULE_if_instr)
         try:
-            self.state = 265
+            self.state = 275
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,21,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 263
+                self.state = 273
                 self.if_then_statement()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 264
+                self.state = 274
                 self.if_then_otherwise_statement()
                 pass
 
@@ -2229,22 +2126,22 @@ class p_BoardLang ( Parser ):
     def if_then_statement(self):
 
         localctx = p_BoardLang.If_then_statementContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 44, self.RULE_if_then_statement)
+        self.enterRule(localctx, 40, self.RULE_if_then_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 267
+            self.state = 277
             self.match(p_BoardLang.IF_T)
-            self.state = 268
+            self.state = 278
             self.match(p_BoardLang.LEFT_PAR)
-            self.state = 269
+            self.state = 279
             self.expr()
-            self.state = 270
+            self.state = 280
             self.match(p_BoardLang.RIGHT_PAR)
-            self.state = 271
+            self.state = 281
             self.match(p_BoardLang.LEFT_CLAMP_PAR)
-            self.state = 272
+            self.state = 282
             self.instructions(0)
-            self.state = 273
+            self.state = 283
             self.match(p_BoardLang.RIGHT_CLAMP_PAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -2324,42 +2221,42 @@ class p_BoardLang ( Parser ):
     def if_then_otherwise_statement(self):
 
         localctx = p_BoardLang.If_then_otherwise_statementContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 46, self.RULE_if_then_otherwise_statement)
+        self.enterRule(localctx, 42, self.RULE_if_then_otherwise_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 275
+            self.state = 285
             self.match(p_BoardLang.IF_T)
-            self.state = 276
+            self.state = 286
             self.match(p_BoardLang.LEFT_PAR)
-            self.state = 277
+            self.state = 287
             self.expr()
-            self.state = 278
+            self.state = 288
             self.match(p_BoardLang.RIGHT_PAR)
-            self.state = 279
+            self.state = 289
             self.match(p_BoardLang.LEFT_CLAMP_PAR)
-            self.state = 280
+            self.state = 290
             self.instructions(0)
-            self.state = 281
+            self.state = 291
             self.match(p_BoardLang.RIGHT_CLAMP_PAR)
-            self.state = 283
+            self.state = 293
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,22,self._ctx)
             if la_ == 1:
-                self.state = 282
+                self.state = 292
                 self.otherif_statement(0)
 
 
-            self.state = 290
+            self.state = 300
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,23,self._ctx)
             if la_ == 1:
-                self.state = 285
+                self.state = 295
                 self.match(p_BoardLang.OTHERWISE_T)
-                self.state = 286
+                self.state = 296
                 self.match(p_BoardLang.LEFT_CLAMP_PAR)
-                self.state = 287
+                self.state = 297
                 self.instructions(0)
-                self.state = 288
+                self.state = 298
                 self.match(p_BoardLang.RIGHT_CLAMP_PAR)
 
 
@@ -2433,26 +2330,26 @@ class p_BoardLang ( Parser ):
         _parentState = self.state
         localctx = p_BoardLang.Otherif_statementContext(self, self._ctx, _parentState)
         _prevctx = localctx
-        _startState = 48
-        self.enterRecursionRule(localctx, 48, self.RULE_otherif_statement, _p)
+        _startState = 44
+        self.enterRecursionRule(localctx, 44, self.RULE_otherif_statement, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 293
+            self.state = 303
             self.match(p_BoardLang.OTHERIF_T)
-            self.state = 294
+            self.state = 304
             self.match(p_BoardLang.LEFT_PAR)
-            self.state = 295
+            self.state = 305
             self.expr()
-            self.state = 296
+            self.state = 306
             self.match(p_BoardLang.RIGHT_PAR)
-            self.state = 297
+            self.state = 307
             self.match(p_BoardLang.LEFT_CLAMP_PAR)
-            self.state = 298
+            self.state = 308
             self.instructions(0)
-            self.state = 299
+            self.state = 309
             self.match(p_BoardLang.RIGHT_CLAMP_PAR)
             self._ctx.stop = self._input.LT(-1)
-            self.state = 305
+            self.state = 315
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,24,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -2462,13 +2359,13 @@ class p_BoardLang ( Parser ):
                     _prevctx = localctx
                     localctx = p_BoardLang.Otherif_statementContext(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_otherif_statement)
-                    self.state = 301
+                    self.state = 311
                     if not self.precpred(self._ctx, 1):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
-                    self.state = 302
+                    self.state = 312
                     self.otherif_statement(2) 
-                self.state = 307
+                self.state = 317
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,24,self._ctx)
 
@@ -2573,105 +2470,105 @@ class p_BoardLang ( Parser ):
     def if_inside_loop_statement(self):
 
         localctx = p_BoardLang.If_inside_loop_statementContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 50, self.RULE_if_inside_loop_statement)
+        self.enterRule(localctx, 46, self.RULE_if_inside_loop_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 308
+            self.state = 318
             self.match(p_BoardLang.IF_T)
-            self.state = 309
+            self.state = 319
             self.match(p_BoardLang.LEFT_PAR)
-            self.state = 310
+            self.state = 320
             self.expr()
-            self.state = 311
+            self.state = 321
             self.match(p_BoardLang.RIGHT_PAR)
-            self.state = 312
+            self.state = 322
             self.match(p_BoardLang.LEFT_CLAMP_PAR)
-            self.state = 316
+            self.state = 326
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 57]:
-                self.state = 313
+            if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 58]:
+                self.state = 323
                 self.instructions(0)
                 pass
             elif token in [14]:
-                self.state = 314
+                self.state = 324
                 self.match(p_BoardLang.BREAK)
                 pass
             elif token in [15]:
-                self.state = 315
+                self.state = 325
                 self.match(p_BoardLang.CONTINUE)
                 pass
             else:
                 raise NoViableAltException(self)
 
-            self.state = 318
+            self.state = 328
             self.match(p_BoardLang.RIGHT_CLAMP_PAR)
-            self.state = 333
+            self.state = 343
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,27,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 319
+                    self.state = 329
                     self.match(p_BoardLang.OTHERIF_T)
-                    self.state = 320
+                    self.state = 330
                     self.match(p_BoardLang.LEFT_PAR)
-                    self.state = 321
+                    self.state = 331
                     self.expr()
-                    self.state = 322
+                    self.state = 332
                     self.match(p_BoardLang.RIGHT_PAR)
-                    self.state = 323
+                    self.state = 333
                     self.match(p_BoardLang.LEFT_CLAMP_PAR)
-                    self.state = 327
+                    self.state = 337
                     self._errHandler.sync(self)
                     token = self._input.LA(1)
-                    if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 57]:
-                        self.state = 324
+                    if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 58]:
+                        self.state = 334
                         self.instructions(0)
                         pass
                     elif token in [14]:
-                        self.state = 325
+                        self.state = 335
                         self.match(p_BoardLang.BREAK)
                         pass
                     elif token in [15]:
-                        self.state = 326
+                        self.state = 336
                         self.match(p_BoardLang.CONTINUE)
                         pass
                     else:
                         raise NoViableAltException(self)
 
-                    self.state = 329
+                    self.state = 339
                     self.match(p_BoardLang.RIGHT_CLAMP_PAR) 
-                self.state = 335
+                self.state = 345
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,27,self._ctx)
 
-            self.state = 344
+            self.state = 354
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,29,self._ctx)
             if la_ == 1:
-                self.state = 336
+                self.state = 346
                 self.match(p_BoardLang.OTHERWISE_T)
-                self.state = 337
+                self.state = 347
                 self.match(p_BoardLang.LEFT_CLAMP_PAR)
-                self.state = 341
+                self.state = 351
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 57]:
-                    self.state = 338
+                if token in [1, 4, 6, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 58]:
+                    self.state = 348
                     self.instructions(0)
                     pass
                 elif token in [14]:
-                    self.state = 339
+                    self.state = 349
                     self.match(p_BoardLang.BREAK)
                     pass
                 elif token in [15]:
-                    self.state = 340
+                    self.state = 350
                     self.match(p_BoardLang.CONTINUE)
                     pass
                 else:
                     raise NoViableAltException(self)
 
-                self.state = 343
+                self.state = 353
                 self.match(p_BoardLang.RIGHT_CLAMP_PAR)
 
 
@@ -2746,30 +2643,30 @@ class p_BoardLang ( Parser ):
     def for_loop(self):
 
         localctx = p_BoardLang.For_loopContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 52, self.RULE_for_loop)
+        self.enterRule(localctx, 48, self.RULE_for_loop)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 346
-            self.match(p_BoardLang.FOR_T)
-            self.state = 347
-            self.match(p_BoardLang.LEFT_PAR)
-            self.state = 348
-            self.id_and_int()
-            self.state = 349
-            self.match(p_BoardLang.COLON)
-            self.state = 350
-            self.id_and_int()
-            self.state = 351
-            self.match(p_BoardLang.COLON)
-            self.state = 352
-            self.id_and_int()
-            self.state = 353
-            self.match(p_BoardLang.RIGHT_PAR)
-            self.state = 354
-            self.match(p_BoardLang.LEFT_CLAMP_PAR)
-            self.state = 355
-            self.inside_loop(0)
             self.state = 356
+            self.match(p_BoardLang.FOR_T)
+            self.state = 357
+            self.match(p_BoardLang.LEFT_PAR)
+            self.state = 358
+            self.id_and_int()
+            self.state = 359
+            self.match(p_BoardLang.COLON)
+            self.state = 360
+            self.id_and_int()
+            self.state = 361
+            self.match(p_BoardLang.COLON)
+            self.state = 362
+            self.id_and_int()
+            self.state = 363
+            self.match(p_BoardLang.RIGHT_PAR)
+            self.state = 364
+            self.match(p_BoardLang.LEFT_CLAMP_PAR)
+            self.state = 365
+            self.inside_loop(0)
+            self.state = 366
             self.match(p_BoardLang.RIGHT_CLAMP_PAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -2816,13 +2713,13 @@ class p_BoardLang ( Parser ):
     def id_and_int(self):
 
         localctx = p_BoardLang.Id_and_intContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 54, self.RULE_id_and_int)
+        self.enterRule(localctx, 50, self.RULE_id_and_int)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 358
+            self.state = 368
             _la = self._input.LA(1)
-            if not(_la==52 or _la==57):
+            if not(_la==52 or _la==58):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2882,26 +2779,26 @@ class p_BoardLang ( Parser ):
         _parentState = self.state
         localctx = p_BoardLang.Inside_loopContext(self, self._ctx, _parentState)
         _prevctx = localctx
-        _startState = 56
-        self.enterRecursionRule(localctx, 56, self.RULE_inside_loop, _p)
+        _startState = 52
+        self.enterRecursionRule(localctx, 52, self.RULE_inside_loop, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 363
+            self.state = 373
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,30,self._ctx)
             if la_ == 1:
-                self.state = 361
+                self.state = 371
                 self.instructions(0)
                 pass
 
             elif la_ == 2:
-                self.state = 362
+                self.state = 372
                 self.if_inside_loop_statement()
                 pass
 
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 369
+            self.state = 379
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,31,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -2911,13 +2808,13 @@ class p_BoardLang ( Parser ):
                     _prevctx = localctx
                     localctx = p_BoardLang.Inside_loopContext(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_inside_loop)
-                    self.state = 365
+                    self.state = 375
                     if not self.precpred(self._ctx, 1):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
-                    self.state = 366
+                    self.state = 376
                     self.inside_loop(2) 
-                self.state = 371
+                self.state = 381
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,31,self._ctx)
 
@@ -2989,110 +2886,26 @@ class p_BoardLang ( Parser ):
     def as_long_as_loop(self):
 
         localctx = p_BoardLang.As_long_as_loopContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 58, self.RULE_as_long_as_loop)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 372
-            self.match(p_BoardLang.AS_T)
-            self.state = 373
-            self.match(p_BoardLang.LONG_T)
-            self.state = 374
-            self.match(p_BoardLang.AS_T)
-            self.state = 375
-            self.match(p_BoardLang.LEFT_PAR)
-            self.state = 376
-            self.expr()
-            self.state = 377
-            self.match(p_BoardLang.RIGHT_PAR)
-            self.state = 378
-            self.match(p_BoardLang.LEFT_CLAMP_PAR)
-            self.state = 379
-            self.instructions(0)
-            self.state = 380
-            self.match(p_BoardLang.RIGHT_CLAMP_PAR)
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class Function_defContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def FUNCTION_T(self):
-            return self.getToken(p_BoardLang.FUNCTION_T, 0)
-
-        def ID(self):
-            return self.getToken(p_BoardLang.ID, 0)
-
-        def LEFT_PAR(self):
-            return self.getToken(p_BoardLang.LEFT_PAR, 0)
-
-        def function_declaration_args(self):
-            return self.getTypedRuleContext(p_BoardLang.Function_declaration_argsContext,0)
-
-
-        def RIGHT_PAR(self):
-            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
-
-        def LEFT_CLAMP_PAR(self):
-            return self.getToken(p_BoardLang.LEFT_CLAMP_PAR, 0)
-
-        def instructions(self):
-            return self.getTypedRuleContext(p_BoardLang.InstructionsContext,0)
-
-
-        def RIGHT_CLAMP_PAR(self):
-            return self.getToken(p_BoardLang.RIGHT_CLAMP_PAR, 0)
-
-        def getRuleIndex(self):
-            return p_BoardLang.RULE_function_def
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFunction_def" ):
-                listener.enterFunction_def(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFunction_def" ):
-                listener.exitFunction_def(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFunction_def" ):
-                return visitor.visitFunction_def(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def function_def(self):
-
-        localctx = p_BoardLang.Function_defContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 60, self.RULE_function_def)
+        self.enterRule(localctx, 54, self.RULE_as_long_as_loop)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 382
-            self.match(p_BoardLang.FUNCTION_T)
+            self.match(p_BoardLang.AS_T)
             self.state = 383
-            self.match(p_BoardLang.ID)
+            self.match(p_BoardLang.LONG_T)
             self.state = 384
-            self.match(p_BoardLang.LEFT_PAR)
+            self.match(p_BoardLang.AS_T)
             self.state = 385
-            self.function_declaration_args(0)
+            self.match(p_BoardLang.LEFT_PAR)
             self.state = 386
-            self.match(p_BoardLang.RIGHT_PAR)
+            self.expr()
             self.state = 387
-            self.match(p_BoardLang.LEFT_CLAMP_PAR)
+            self.match(p_BoardLang.RIGHT_PAR)
             self.state = 388
-            self.instructions(0)
+            self.match(p_BoardLang.LEFT_CLAMP_PAR)
             self.state = 389
+            self.instructions(0)
+            self.state = 390
             self.match(p_BoardLang.RIGHT_CLAMP_PAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -3103,84 +2916,94 @@ class p_BoardLang ( Parser ):
         return localctx
 
 
-    class Function_declaration_argsContext(ParserRuleContext):
+    class Args_listContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def var_types(self):
-            return self.getTypedRuleContext(p_BoardLang.Var_typesContext,0)
-
-
         def ID(self):
             return self.getToken(p_BoardLang.ID, 0)
 
-        def function_declaration_args(self, i:int=None):
+        def literal(self):
+            return self.getTypedRuleContext(p_BoardLang.LiteralContext,0)
+
+
+        def args_list(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(p_BoardLang.Function_declaration_argsContext)
+                return self.getTypedRuleContexts(p_BoardLang.Args_listContext)
             else:
-                return self.getTypedRuleContext(p_BoardLang.Function_declaration_argsContext,i)
+                return self.getTypedRuleContext(p_BoardLang.Args_listContext,i)
 
 
         def COMA(self):
             return self.getToken(p_BoardLang.COMA, 0)
 
         def getRuleIndex(self):
-            return p_BoardLang.RULE_function_declaration_args
+            return p_BoardLang.RULE_args_list
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFunction_declaration_args" ):
-                listener.enterFunction_declaration_args(self)
+            if hasattr( listener, "enterArgs_list" ):
+                listener.enterArgs_list(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFunction_declaration_args" ):
-                listener.exitFunction_declaration_args(self)
+            if hasattr( listener, "exitArgs_list" ):
+                listener.exitArgs_list(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFunction_declaration_args" ):
-                return visitor.visitFunction_declaration_args(self)
+            if hasattr( visitor, "visitArgs_list" ):
+                return visitor.visitArgs_list(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
-    def function_declaration_args(self, _p:int=0):
+    def args_list(self, _p:int=0):
         _parentctx = self._ctx
         _parentState = self.state
-        localctx = p_BoardLang.Function_declaration_argsContext(self, self._ctx, _parentState)
+        localctx = p_BoardLang.Args_listContext(self, self._ctx, _parentState)
         _prevctx = localctx
-        _startState = 62
-        self.enterRecursionRule(localctx, 62, self.RULE_function_declaration_args, _p)
+        _startState = 56
+        self.enterRecursionRule(localctx, 56, self.RULE_args_list, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 392
-            self.var_types()
-            self.state = 393
-            self.match(p_BoardLang.ID)
-            self._ctx.stop = self._input.LT(-1)
-            self.state = 400
+            self.state = 395
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,32,self._ctx)
+            token = self._input.LA(1)
+            if token in [58]:
+                self.state = 393
+                self.match(p_BoardLang.ID)
+                pass
+            elif token in [52, 54, 55, 56, 57]:
+                self.state = 394
+                self.literal()
+                pass
+            else:
+                raise NoViableAltException(self)
+
+            self._ctx.stop = self._input.LT(-1)
+            self.state = 402
+            self._errHandler.sync(self)
+            _alt = self._interp.adaptivePredict(self._input,33,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    localctx = p_BoardLang.Function_declaration_argsContext(self, _parentctx, _parentState)
-                    self.pushNewRecursionContext(localctx, _startState, self.RULE_function_declaration_args)
-                    self.state = 395
+                    localctx = p_BoardLang.Args_listContext(self, _parentctx, _parentState)
+                    self.pushNewRecursionContext(localctx, _startState, self.RULE_args_list)
+                    self.state = 397
                     if not self.precpred(self._ctx, 1):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
-                    self.state = 396
+                    self.state = 398
                     self.match(p_BoardLang.COMA)
-                    self.state = 397
-                    self.function_declaration_args(2) 
-                self.state = 402
+                    self.state = 399
+                    self.args_list(2) 
+                self.state = 404
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,32,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,33,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -3191,77 +3014,254 @@ class p_BoardLang ( Parser ):
         return localctx
 
 
-    class Function_callContext(ParserRuleContext):
+    class LiteralContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self):
-            return self.getToken(p_BoardLang.ID, 0)
+        def INT_V(self):
+            return self.getToken(p_BoardLang.INT_V, 0)
 
-        def LEFT_PAR(self):
-            return self.getToken(p_BoardLang.LEFT_PAR, 0)
+        def BOOL_V(self):
+            return self.getToken(p_BoardLang.BOOL_V, 0)
 
-        def args_list(self):
-            return self.getTypedRuleContext(p_BoardLang.Args_listContext,0)
+        def STRING_V(self):
+            return self.getToken(p_BoardLang.STRING_V, 0)
 
+        def CHAR_V(self):
+            return self.getToken(p_BoardLang.CHAR_V, 0)
 
-        def RIGHT_PAR(self):
-            return self.getToken(p_BoardLang.RIGHT_PAR, 0)
+        def COLOUR_V(self):
+            return self.getToken(p_BoardLang.COLOUR_V, 0)
 
         def getRuleIndex(self):
-            return p_BoardLang.RULE_function_call
+            return p_BoardLang.RULE_literal
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFunction_call" ):
-                listener.enterFunction_call(self)
+            if hasattr( listener, "enterLiteral" ):
+                listener.enterLiteral(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFunction_call" ):
-                listener.exitFunction_call(self)
+            if hasattr( listener, "exitLiteral" ):
+                listener.exitLiteral(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFunction_call" ):
-                return visitor.visitFunction_call(self)
+            if hasattr( visitor, "visitLiteral" ):
+                return visitor.visitLiteral(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def function_call(self):
+    def literal(self):
 
-        localctx = p_BoardLang.Function_callContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 64, self.RULE_function_call)
+        localctx = p_BoardLang.LiteralContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 58, self.RULE_literal)
+        self._la = 0 # Token type
         try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 405
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 274719577269600256) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Var_typesContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def INT_T(self):
+            return self.getToken(p_BoardLang.INT_T, 0)
+
+        def BOOL_T(self):
+            return self.getToken(p_BoardLang.BOOL_T, 0)
+
+        def CHAR_T(self):
+            return self.getToken(p_BoardLang.CHAR_T, 0)
+
+        def STRING_T(self):
+            return self.getToken(p_BoardLang.STRING_T, 0)
+
+        def COLOUR_T(self):
+            return self.getToken(p_BoardLang.COLOUR_T, 0)
+
+        def getRuleIndex(self):
+            return p_BoardLang.RULE_var_types
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterVar_types" ):
+                listener.enterVar_types(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitVar_types" ):
+                listener.exitVar_types(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVar_types" ):
+                return visitor.visitVar_types(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def var_types(self):
+
+        localctx = p_BoardLang.Var_typesContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 60, self.RULE_var_types)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 407
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 8126464) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Rel_operatorContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def CHECK_EQ(self):
+            return self.getToken(p_BoardLang.CHECK_EQ, 0)
+
+        def NOT_EQ(self):
+            return self.getToken(p_BoardLang.NOT_EQ, 0)
+
+        def GTOREQ(self):
+            return self.getToken(p_BoardLang.GTOREQ, 0)
+
+        def LTOREQ(self):
+            return self.getToken(p_BoardLang.LTOREQ, 0)
+
+        def getRuleIndex(self):
+            return p_BoardLang.RULE_rel_operator
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterRel_operator" ):
+                listener.enterRel_operator(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitRel_operator" ):
+                listener.exitRel_operator(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRel_operator" ):
+                return visitor.visitRel_operator(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def rel_operator(self):
+
+        localctx = p_BoardLang.Rel_operatorContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 62, self.RULE_rel_operator)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 409
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 4123168604160) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Math_operatorContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def PLUS(self):
+            return self.getToken(p_BoardLang.PLUS, 0)
+
+        def MINUS(self):
+            return self.getToken(p_BoardLang.MINUS, 0)
+
+        def DIVIDE(self):
+            return self.getToken(p_BoardLang.DIVIDE, 0)
+
+        def MOD(self):
+            return self.getToken(p_BoardLang.MOD, 0)
+
+        def MULTIPLY(self):
+            return self.getToken(p_BoardLang.MULTIPLY, 0)
+
+        def getRuleIndex(self):
+            return p_BoardLang.RULE_math_operator
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMath_operator" ):
+                listener.enterMath_operator(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMath_operator" ):
+                listener.exitMath_operator(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMath_operator" ):
+                return visitor.visitMath_operator(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def math_operator(self):
+
+        localctx = p_BoardLang.Math_operatorContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 64, self.RULE_math_operator)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
             self.state = 411
-            self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,33,self._ctx)
-            if la_ == 1:
-                self.enterOuterAlt(localctx, 1)
-                self.state = 403
-                self.match(p_BoardLang.ID)
-                self.state = 404
-                self.match(p_BoardLang.LEFT_PAR)
-                self.state = 405
-                self.args_list(0)
-                self.state = 406
-                self.match(p_BoardLang.RIGHT_PAR)
-                pass
-
-            elif la_ == 2:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 408
-                self.match(p_BoardLang.ID)
-                self.state = 409
-                self.match(p_BoardLang.LEFT_PAR)
-                self.state = 410
-                self.match(p_BoardLang.RIGHT_PAR)
-                pass
-
-
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 520093696) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -3275,41 +3275,41 @@ class p_BoardLang ( Parser ):
     def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
         if self._predicates == None:
             self._predicates = dict()
-        self._predicates[6] = self.bool_expr_sempred
-        self._predicates[7] = self.math_expr_sempred
-        self._predicates[9] = self.instructions_sempred
-        self._predicates[15] = self.args_list_sempred
-        self._predicates[24] = self.otherif_statement_sempred
-        self._predicates[28] = self.inside_loop_sempred
-        self._predicates[31] = self.function_declaration_args_sempred
+        self._predicates[3] = self.instructions_sempred
+        self._predicates[5] = self.function_declaration_args_sempred
+        self._predicates[13] = self.bool_expr_sempred
+        self._predicates[14] = self.math_expr_sempred
+        self._predicates[22] = self.otherif_statement_sempred
+        self._predicates[26] = self.inside_loop_sempred
+        self._predicates[28] = self.args_list_sempred
         pred = self._predicates.get(ruleIndex, None)
         if pred is None:
             raise Exception("No predicate with index:" + str(ruleIndex))
         else:
             return pred(localctx, predIndex)
 
-    def bool_expr_sempred(self, localctx:Bool_exprContext, predIndex:int):
+    def instructions_sempred(self, localctx:InstructionsContext, predIndex:int):
             if predIndex == 0:
+                return self.precpred(self._ctx, 10)
+         
+
+    def function_declaration_args_sempred(self, localctx:Function_declaration_argsContext, predIndex:int):
+            if predIndex == 1:
+                return self.precpred(self._ctx, 1)
+         
+
+    def bool_expr_sempred(self, localctx:Bool_exprContext, predIndex:int):
+            if predIndex == 2:
                 return self.precpred(self._ctx, 5)
          
 
-            if predIndex == 1:
+            if predIndex == 3:
                 return self.precpred(self._ctx, 4)
          
 
     def math_expr_sempred(self, localctx:Math_exprContext, predIndex:int):
-            if predIndex == 2:
-                return self.precpred(self._ctx, 4)
-         
-
-    def instructions_sempred(self, localctx:InstructionsContext, predIndex:int):
-            if predIndex == 3:
-                return self.precpred(self._ctx, 10)
-         
-
-    def args_list_sempred(self, localctx:Args_listContext, predIndex:int):
             if predIndex == 4:
-                return self.precpred(self._ctx, 1)
+                return self.precpred(self._ctx, 4)
          
 
     def otherif_statement_sempred(self, localctx:Otherif_statementContext, predIndex:int):
@@ -3322,7 +3322,7 @@ class p_BoardLang ( Parser ):
                 return self.precpred(self._ctx, 1)
          
 
-    def function_declaration_args_sempred(self, localctx:Function_declaration_argsContext, predIndex:int):
+    def args_list_sempred(self, localctx:Args_listContext, predIndex:int):
             if predIndex == 7:
                 return self.precpred(self._ctx, 1)
          

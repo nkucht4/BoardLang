@@ -60,10 +60,10 @@ END_M: '$';
 // Literaly i identyfikatory
 
 INT_V : DIGIT+ ;
-fragment DIGIT : [0-9] ;
+DIGIT : [0-9] ;
 BOOL_V: 'TRUE' | 'FALSE';
-STRING_V: (CHAR_V)*;
-CHAR_V: [0-9a-zA-Z ] ;
+STRING_V: '"' [0-9a-zA-Z _]* '"';
+CHAR_V: '\'' [0-9a-zA-Z _] '\'';
 COLOUR_V:'#'([0-9A-F]){6};
 ID: [A-Za-z_]([A-Za-z0-9_\-])*;
 

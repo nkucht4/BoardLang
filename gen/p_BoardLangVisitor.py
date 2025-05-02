@@ -1,3 +1,4 @@
+# Generated from C:/Users/DELL/PycharmProjects/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .p_BoardLang import p_BoardLang
@@ -7,47 +8,14 @@ else:
 # This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
 class p_BoardLangVisitor(ParseTreeVisitor):
-    def __init__(self):
-        super().__init__()
-        self.memory = {}
 
     # Visit a parse tree produced by p_BoardLang#program.
     def visitProgram(self, ctx:p_BoardLang.ProgramContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by p_BoardLang#literal.
-    def visitLiteral(self, ctx:p_BoardLang.LiteralContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by p_BoardLang#var_types.
-    def visitVar_types(self, ctx:p_BoardLang.Var_typesContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by p_BoardLang#rel_operator.
-    def visitRel_operator(self, ctx:p_BoardLang.Rel_operatorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by p_BoardLang#math_operator.
-    def visitMath_operator(self, ctx:p_BoardLang.Math_operatorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by p_BoardLang#expr.
-    def visitExpr(self, ctx:p_BoardLang.ExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by p_BoardLang#bool_expr.
-    def visitBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by p_BoardLang#math_expr.
-    def visitMath_expr(self, ctx:p_BoardLang.Math_exprContext):
+    # Visit a parse tree produced by p_BoardLang#board_size_definition.
+    def visitBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
         return self.visitChildren(ctx)
 
 
@@ -58,6 +26,21 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#instructions.
     def visitInstructions(self, ctx:p_BoardLang.InstructionsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#function_def.
+    def visitFunction_def(self, ctx:p_BoardLang.Function_defContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#function_declaration_args.
+    def visitFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#function_call.
+    def visitFunction_call(self, ctx:p_BoardLang.Function_callContext):
         return self.visitChildren(ctx)
 
 
@@ -86,13 +69,18 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by p_BoardLang#args_list.
-    def visitArgs_list(self, ctx:p_BoardLang.Args_listContext):
+    # Visit a parse tree produced by p_BoardLang#expr.
+    def visitExpr(self, ctx:p_BoardLang.ExprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by p_BoardLang#board_size_definition.
-    def visitBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
+    # Visit a parse tree produced by p_BoardLang#bool_expr.
+    def visitBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#math_expr.
+    def visitMath_expr(self, ctx:p_BoardLang.Math_exprContext):
         return self.visitChildren(ctx)
 
 
@@ -161,18 +149,28 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by p_BoardLang#function_def.
-    def visitFunction_def(self, ctx:p_BoardLang.Function_defContext):
+    # Visit a parse tree produced by p_BoardLang#args_list.
+    def visitArgs_list(self, ctx:p_BoardLang.Args_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by p_BoardLang#function_declaration_args.
-    def visitFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
+    # Visit a parse tree produced by p_BoardLang#literal.
+    def visitLiteral(self, ctx:p_BoardLang.LiteralContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by p_BoardLang#function_call.
-    def visitFunction_call(self, ctx:p_BoardLang.Function_callContext):
+    # Visit a parse tree produced by p_BoardLang#var_types.
+    def visitVar_types(self, ctx:p_BoardLang.Var_typesContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#rel_operator.
+    def visitRel_operator(self, ctx:p_BoardLang.Rel_operatorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#math_operator.
+    def visitMath_operator(self, ctx:p_BoardLang.Math_operatorContext):
         return self.visitChildren(ctx)
 
 
