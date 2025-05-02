@@ -6,7 +6,7 @@ options {
 
 program: board_size_definition (out_instructions)+;
 
-board_size_definition: BOARDSIZE_T LEFT_SQUARE_PAR id_and_int COLON id_and_int RIGHT_SQUARE_PAR;
+board_size_definition: BOARDSIZE_T LEFT_SQUARE_PAR id_and_int COLON id_and_int RIGHT_SQUARE_PAR END_M;
 
 // Instructions
 
@@ -16,9 +16,10 @@ instructions: instructions instructions | declaration END_M | declaration_with_a
 
 // Functions
 
-function_def: FUNCTION_T ID LEFT_PAR function_declaration_args RIGHT_PAR LEFT_CLAMP_PAR instructions
+function_def: FUNCTION_T ID LEFT_PAR function_declaration_args RIGHT_PAR COLON var_types LEFT_CLAMP_PAR function_instr
 RIGHT_CLAMP_PAR;
 function_declaration_args: var_types ID | function_declaration_args COMA function_declaration_args;
+function_instr: instructions | RETURN_T expr END_M;
 
 function_call: ID LEFT_PAR args_list RIGHT_PAR | ID LEFT_PAR RIGHT_PAR;
 
@@ -26,7 +27,7 @@ function_call: ID LEFT_PAR args_list RIGHT_PAR | ID LEFT_PAR RIGHT_PAR;
 
 declaration: CONST? var_types (LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR)? ID;
 
-declaration_with_assign: CONST? var_types ID 	EQ expr |  CONST? var_types LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR ID EQ args_list;
+declaration_with_assign: CONST? var_types ID 	EQ expr |  CONST? var_types ARRAY_T LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR ID EQ LEFT_SQUARE_PAR args_list RIGHT_SQUARE_PAR;
 tile_decl_w_ass: CONST? TT ID EQ TT LEFT_PAR tt_arg RIGHT_PAR;
 tt_arg: COLOUR_V | STRING_V;
 
@@ -38,7 +39,6 @@ assignment: ID EQ expr | ID LEFT_SQUARE_PAR
 expr: bool_expr | math_expr;
 bool_expr: bool_expr AND_T bool_expr | bool_expr OR_T bool_expr | NOT_T bool_expr | math_expr rel_operator math_expr | LEFT_PAR bool_expr RIGHT_PAR;
 math_expr: LEFT_PAR math_expr RIGHT_PAR | math_expr math_operator math_expr | literal | ID | function_call;
-
 
 //Board instructions
 

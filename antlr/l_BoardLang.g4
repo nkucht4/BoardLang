@@ -69,4 +69,4 @@ ID: [A-Za-z_]([A-Za-z0-9_\-])*;
 
 //Komentarze
 WS: [ \t\r\n]+ -> skip;
-COMMENT: '#';
+COMMENT: '@';
