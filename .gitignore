@@ -2,4 +2,6 @@ venv/
 .idea/
 __pycache__/
 *.pyc
-*.pyo  
+*.pyo
+finish.py
+TileMap.json

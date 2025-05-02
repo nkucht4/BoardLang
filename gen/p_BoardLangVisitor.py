@@ -1,5 +1,7 @@
-# Generated from C:/Users/DELL/PycharmProjects/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
+# Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
+import json
+
 if "." in __name__:
     from .p_BoardLang import p_BoardLang
 else:
@@ -8,6 +10,11 @@ else:
 # This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
 class p_BoardLangVisitor(ParseTreeVisitor):
+    def __init__(self):
+        self.memory = {}
+        self.filename = 'app/TileMap.json'
+        self.tilemap = { 'size': (0, 0),
+                         'map': []}
 
     # Visit a parse tree produced by p_BoardLang#program.
     def visitProgram(self, ctx:p_BoardLang.ProgramContext):
@@ -16,6 +23,13 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#board_size_definition.
     def visitBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
+        width = self.visit(ctx.id_and_int(0))
+        height = self.visit(ctx.id_and_int(1))
+        if width < 0 or height < 0:
+            raise ValueError('Negative numbers not allowed inside board_size definition')
+        self.tilemap['size'] = (width, height)
+        with open(self.filename, 'w') as f:
+            json.dump(self.tilemap, f)
         return self.visitChildren(ctx)
 
 
@@ -36,6 +50,11 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#function_declaration_args.
     def visitFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#function_instr.
+    def visitFunction_instr(self, ctx:p_BoardLang.Function_instrContext):
         return self.visitChildren(ctx)
 
 
@@ -136,7 +155,23 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#id_and_int.
     def visitId_and_int(self, ctx:p_BoardLang.Id_and_intContext):
-        return self.visitChildren(ctx)
+        if ctx.INT_V():
+            return int(ctx.INT_V().getText())
+
+        if ctx.ID():
+            id_text = ctx.ID().getText()
+            if id_text not in self.memory:
+                raise KeyError(f'No such variable as {id_text} defined')
+
+            id_type = self.memory[ctx.ID().get_Text()]['type']
+            if id_type == 'INT':
+                return int(self.memory[ctx.ID().get_Text()])
+            else:
+                raise TypeError(f'Expected INT, got {id_type}')
+        else:
+            print(ctx.INT_V().get_Text())
+
+        raise ValueError("Expected int value")
 
 
     # Visit a parse tree produced by p_BoardLang#inside_loop.
