@@ -1,4 +1,4 @@
-# Generated from C:/Users/DELL/PycharmProjects/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
+# Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .p_BoardLang import p_BoardLang
@@ -59,6 +59,15 @@ class p_BoardLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by p_BoardLang#function_declaration_args.
     def exitFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#function_instr.
+    def enterFunction_instr(self, ctx:p_BoardLang.Function_instrContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#function_instr.
+    def exitFunction_instr(self, ctx:p_BoardLang.Function_instrContext):
         pass
 
 

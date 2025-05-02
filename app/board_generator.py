@@ -16,6 +16,7 @@ class BoardGenerator:
     def run(self):
         with open(self.filename, "rb") as f:
             tilemap = json.load(f)
+            print(tilemap)
         self.render_tilemap(tilemap)
         while self.running:
             for event in pygame.event.get():
@@ -34,7 +35,13 @@ class BoardGenerator:
         pygame.quit()
 
     def render_tilemap(self, tilemap):
-        for x, row in enumerate(tilemap):
+        width = tilemap['size'][0]
+        height = tilemap['size'][1]
+        if self.screen.get_size()[0]/20 != width or self.screen.get_size()[1]/20 != height:
+            self.screen = pygame.display.set_mode((width*20, height*20))
+
+        map = tilemap['map']
+        for x, row in enumerate(map):
             for y, color in enumerate(row):
                 self.render_tile(x, y, pygame.Color(tuple(color)))
         pygame.display.flip()
@@ -45,5 +52,5 @@ class BoardGenerator:
         pygame.draw.rect(self.screen, color, tile)
 
 
-board = BoardGenerator(2, 3, 'temp.json')
+board = BoardGenerator(2, 3, 'TileMap.json')
 board.run()
