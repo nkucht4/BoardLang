@@ -25,19 +25,17 @@ function_call: ID LEFT_PAR args_list RIGHT_PAR | ID LEFT_PAR RIGHT_PAR;
 
 // Declaration and definition
 
-declaration: CONST? var_types (LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR)? ID;
+declaration: CONST? var_types (ARRAY_T LEFT_SQUARE_PAR  INT_V RIGHT_SQUARE_PAR)? ID;
 
-declaration_with_assign: CONST? var_types ID 	EQ expr |  CONST? var_types ARRAY_T LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR ID EQ LEFT_SQUARE_PAR args_list RIGHT_SQUARE_PAR;
+declaration_with_assign: CONST? var_types ID EQ expr | CONST? var_types ARRAY_T LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR ID EQ LEFT_SQUARE_PAR args_list RIGHT_SQUARE_PAR;
 tile_decl_w_ass: CONST? TT ID EQ TT LEFT_PAR tt_arg RIGHT_PAR;
 tt_arg: COLOUR_V | STRING_V;
 
-assignment: ID EQ expr | ID LEFT_SQUARE_PAR
- DIGIT RIGHT_SQUARE_PAR
- EQ expr;
+assignment: ID EQ expr | ID LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR EQ expr;
 
 //Expressions
 expr: bool_expr | math_expr;
-bool_expr: bool_expr AND_T bool_expr | bool_expr OR_T bool_expr | NOT_T bool_expr | math_expr rel_operator math_expr | LEFT_PAR bool_expr RIGHT_PAR;
+bool_expr: bool_expr AND_T bool_expr | bool_expr OR_T bool_expr | NOT_T bool_expr | math_expr rel_operator math_expr | LEFT_PAR bool_expr RIGHT_PAR | BOOL_V;
 math_expr: LEFT_PAR math_expr RIGHT_PAR | math_expr math_operator math_expr | literal | ID | function_call;
 
 //Board instructions
