@@ -53,5 +53,5 @@ class BoardGenerator:
         pygame.draw.rect(self.screen, color, tile)
 
 
-board = BoardGenerator(2, 3, 'TileMap.json')
+board = BoardGenerator(2, 3, '../TileMap.json')
 board.run()
