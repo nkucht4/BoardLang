@@ -86,7 +86,7 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         if id in self.memory_stack[-1].keys():
             raise NameError('Identifier already exists in current scope and cannot be overwritten')
         ctx.var_types()
-        if not bool(ctx.LEFT_SQUARE_PAR()):
+        if not ctx.LEFT_SQUARE_PAR():
             self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": None}
             if ctx.var_types().BOOL_T():
                 val = ctx.expr()
@@ -97,22 +97,26 @@ class p_BoardLangVisitor(ParseTreeVisitor):
                 val = ctx.expr()
                 if not val.math_expr():
                     raise NameError('Wrong value type: should be math expression')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(val.math_expr())} # dodaj math_expr
+                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(val.math_expr())}
             elif ctx.var_types().STRING_T():
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": ctx.expr().getText().strip("\"")}
+                if not self.is_good_type('STRING', ctx.expr().math_expr().literal()):
+                    raise NameError('Not a string')
+                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(ctx.expr())}
             elif ctx.var_types().CHAR_T():
+                if not self.is_good_type('CHAR', ctx.expr().math_expr().literal()):
+                    raise NameError('Not a char')
                 self.memory_stack[-1][id] = {"type": ctx.var_types().getText(),
-                                             "value": ctx.expr().getText().strip("\'")}
+                                             "value": self.visit(ctx.expr())}
             elif ctx.var_types().COLOUR_T():
                 self.memory_stack[-1][id] = {"type": ctx.var_types().getText(),
                                              "value": self.hex_to_rgb(ctx.expr().getText())}
 
         else:
             i = int(ctx.INT_V().getText().strip())
-            ar = self.visit(ctx.args_list())
+            ar = self.visitArgs_listwithver(ctx.var_types().getText(), ctx.args_list())
             if len(ar) != i:
                 raise KeyError("Wrong length of array")
-            self.memory_stack[-1][id] = {"type": ctx.ARRAY_T().getText(),
+            self.memory_stack[-1][id] = {"type": ctx.var_types().getText(),
                                          "value": ar}
         return True
 
@@ -140,13 +144,21 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         if id not in self.memory_stack[-1].keys():
             raise NameError("Identifier does not exists")
         if ctx.LEFT_SQUARE_PAR():
-            if self.memory_stack[-1][id]["type"] != "ARRAY":
+            # if self.memory_stack[-1][id]["type"] != "ARRAY":
+            #    raise NameError("This is not an array")
+            try:
+                len(self.memory_stack[-1][id]["value"])
+            except:
                 raise NameError("This is not an array")
             i = int(ctx.DIGIT().getText())
             if len(self.memory_stack[-1][id]["value"]) < i + 1:
                 raise NameError("Array is too short")
+            if not self.is_good_type(self.memory_stack[-1][id]["type"], ctx.expr().math_expr().literal()):
+                raise NameError("Wrong type")
             self.memory_stack[-1][id]["value"][i] = self.visit(ctx.expr())
         else:
+            if not self.is_good_type(self.memory_stack[-1][id]["type"], ctx.expr().math_expr().literal()):
+                raise NameError("Wrong type")
             self.memory_stack[-1][id]["value"] = self.visit(ctx.expr())
         return True
 
@@ -158,7 +170,9 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#bool_expr.
     def visitBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
-        return self.visitChildren(ctx)
+        # if ctx.BOOL_V():
+        #    return True/false
+        return false
 
 
     # Visit a parse tree produced by p_BoardLang#math_expr.
@@ -344,6 +358,42 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         for scope in reversed(self.memory_stack):
             if z in scope.keys():
                 return scope[z]['type']
+    def is_good_type(self, type: str, ctx: p_BoardLang.literal):
+        if type == 'INT':
+            if ctx.INT_V():
+                return True
+            return False
+        if type == 'STRING':
+            if ctx.STRING_V():
+                return True
+            return False
+        if type == 'CHAR':
+            if ctx.CHAR_V():
+                return True
+            return False
+        if type == 'BOOL':
+            if ctx.BOOL_V():
+                return True
+            return False
+        if type == 'COLOUR':
+            if ctx.COLOUR_V():
+                return True
+            return False
+
+    def visitArgs_listwithver(self, type: str, ctx: p_BoardLang.Args_listContext):
+        if ctx.ID():
+            id = ctx.ID().getText()
+            if id not in self.memory_stack[-1].keys():
+                raise NameError(f'No such identifier as {id}')
+            if type != self.memory_stack[-1][id]['type']:
+                raise NameError('Wrong type in array')
+            return [self.memory_stack[-1][id]['value']]
+        elif ctx.literal():
+            if not self.is_good_type(type, ctx.literal()):
+                raise NameError('Wrong type in array')
+            return [self.visit(ctx.literal())]
+        elif ctx.COMA():
+            return self.visitArgs_listwithver(type, ctx.args_list(0)) + self.visitArgs_listwithver(type, ctx.args_list(1))
 
 
 

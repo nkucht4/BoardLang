@@ -35,7 +35,7 @@ assignment: ID EQ expr | ID LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR EQ expr;
 
 //Expressions
 expr: bool_expr | math_expr;
-bool_expr: bool_expr AND_T bool_expr | bool_expr OR_T bool_expr | NOT_T bool_expr | math_expr rel_operator math_expr | LEFT_PAR bool_expr RIGHT_PAR | BOOL_V;
+bool_expr: bool_expr AND_T bool_expr | bool_expr OR_T bool_expr | NOT_T bool_expr | math_expr rel_operator math_expr | LEFT_PAR bool_expr RIGHT_PAR;
 math_expr: LEFT_PAR math_expr RIGHT_PAR | math_expr math_operator math_expr | literal | ID | function_call;
 
 //Board instructions
