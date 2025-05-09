@@ -13,7 +13,7 @@ class p_BoardLangVisitor(ParseTreeVisitor):
     def __init__(self):
         self.memory = {}
         self.memory_stack = []
-        self.filename = 'app/TileMap.json'
+        self.filename = 'TileMap.json'
         self.tilemap = { 'size': (0, 0),
                          'map': []}
 
