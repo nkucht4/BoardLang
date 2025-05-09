@@ -40,19 +40,19 @@ function_call: ID LEFT_PAR args_list RIGHT_PAR
 
 // Declaration and definition
 
-declaration: CONST? var_types (LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR)? ID;
+declaration: CONST? var_types (ARRAY_T LEFT_SQUARE_PAR  INT_V RIGHT_SQUARE_PAR)? ID;
 
-declaration_with_assign: CONST? var_types ID 	EQ expr
-                        |  CONST? var_types ARRAY_T LEFT_SQUARE_PAR INT_V
+declaration_with_assign: CONST? var_types ID EQ expr
+                        | CONST? var_types ARRAY_T LEFT_SQUARE_PAR INT_V
                         RIGHT_SQUARE_PAR ID EQ LEFT_SQUARE_PAR args_list RIGHT_SQUARE_PAR;
 
 tile_decl_w_ass: CONST? TT ID EQ TT LEFT_PAR tt_arg RIGHT_PAR;
 
+assignment: ID EQ expr 
+          | ID LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR EQ expr;
+
 tt_arg: COLOUR_V
         | STRING_V;
-
-assignment: ID EQ expr
-            | ID LEFT_SQUARE_PAR DIGIT RIGHT_SQUARE_PAR EQ expr;
 
 //Expressions
 expr: bool_expr
