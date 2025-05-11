@@ -1,7 +1,8 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt6.uic import loadUi
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import Qt
+
 import sys
 import os
 
@@ -19,18 +20,47 @@ class MainWindow(QMainWindow):
         super().__init__()
         loadUi("ui/mainwindow.ui", self)
 
-        self.source_filename = "test.txt"               # zmien to pozniej
+        # self.source_filename = "test.txt"  # zmien to pozniej
         self.map_filename = "TileMap.json"
         self.board_renderer = BoardGenerator(self.map_filename)
 
         self.runButton.clicked.connect(self.handle_run_clicked)
+        self.openButton.clicked.connect(self.handle_open_file_clicked)
+        self.saveButton.clicked.connect(self.handle_save_file_clicked)
+
+    def handle_open_file_clicked(self):
+        file_filter = 'Text Files (*.txt)'
+        response = QFileDialog.getOpenFileName(parent=self,
+                                               caption="Wybierz plik, plz",
+                                               filter=file_filter,
+                                               directory=os.getcwd())
+        try:
+            with open(response[0], 'r') as file:
+                text = file.read()
+            self.textEditor.setPlainText(text)
+        except Exception as e:
+            print(f"Błąd podczas uruchamiania: {e}")
+    def handle_save_file_clicked(self):
+        try:
+            text = self.textEditor.toPlainText()
+            name = QFileDialog.getSaveFileName(self, caption="Plz, wybierz plik", filter="Text Files (*.txt")
+            file = open(name, 'w')
+            file.write(text)
+            file.close()
+        except Exception as e:
+            print(f"Błąd podczas uruchamiania: {e}")
 
     def handle_run_clicked(self):
-        self.interpret()
-        self.display_image()
+        try:
+            text = self.textEditor.toPlainText()
+            self.interpret(text)
+            self.display_image()
+            i = 1
+        except Exception as e:
+            print(f"Błąd podczas uruchamiania: {e}")
 
-    def interpret(self):
-        source_stream = FileStream(self.source_filename)
+    def interpret(self, input_string: str):
+        source_stream = InputStream(input_string) #FileStream(self.source_filename)
         lexer = l_BoardLang(source_stream)
         stream = CommonTokenStream(lexer)
         parser = p_BoardLang(stream)

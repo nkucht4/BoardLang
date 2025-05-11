@@ -172,7 +172,7 @@ class p_BoardLangVisitor(ParseTreeVisitor):
     def visitBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
         # if ctx.BOOL_V():
         #    return True/false
-        return false
+        return False
 
 
     # Visit a parse tree produced by p_BoardLang#math_expr.
@@ -213,7 +213,7 @@ class p_BoardLangVisitor(ParseTreeVisitor):
     def visitDraw_instr(self, ctx:p_BoardLang.Draw_instrContext):
         x, y = self.visit(ctx.draw_args())
         tilename = ctx.ID().getText()
-        if tilename not in self.memory.keys():
+        if tilename not in self.memory_stack[-1].keys():
             raise KeyError(f'No such identifier as {tilename}')
         elif self.memory_stack[-1][tilename]['type'] != 'TileType':
             raise TypeError('Expected TileType')
