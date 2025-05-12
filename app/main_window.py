@@ -23,6 +23,7 @@ class MainWindow(QMainWindow):
         # self.source_filename = "test.txt"  # zmien to pozniej
         self.map_filename = "TileMap.json"
         self.board_renderer = BoardGenerator(self.map_filename)
+
         self.runButton.clicked.connect(self.handle_run_clicked)
         self.openButton.clicked.connect(self.handle_open_file_clicked)
         self.saveButton.clicked.connect(self.handle_save_file_clicked)
