@@ -23,16 +23,14 @@ class MainWindow(QMainWindow):
         # self.source_filename = "test.txt"  # zmien to pozniej
         self.map_filename = "TileMap.json"
         self.board_renderer = BoardGenerator(self.map_filename)
-
         self.runButton.clicked.connect(self.handle_run_clicked)
         self.openButton.clicked.connect(self.handle_open_file_clicked)
         self.saveButton.clicked.connect(self.handle_save_file_clicked)
 
     def handle_open_file_clicked(self):
-        file_filter = 'Text Files (*.txt)'
         response = QFileDialog.getOpenFileName(parent=self,
-                                               caption="Wybierz plik, plz",
-                                               filter=file_filter,
+                                               caption="Wybierz plik",
+                                               filter='Text Files (*.txt)',
                                                directory=os.getcwd())
         try:
             with open(response[0], 'r') as file:
@@ -43,7 +41,8 @@ class MainWindow(QMainWindow):
     def handle_save_file_clicked(self):
         try:
             text = self.textEditor.toPlainText()
-            name = QFileDialog.getSaveFileName(self, caption="Plz, wybierz plik", filter="Text Files (*.txt")
+
+            name = QFileDialog.getSaveFileName(self, caption="Wybierz plik", filter="Text Files (*.txt")
             file = open(name, 'w')
             file.write(text)
             file.close()
@@ -53,14 +52,14 @@ class MainWindow(QMainWindow):
     def handle_run_clicked(self):
         try:
             text = self.textEditor.toPlainText()
+
             self.interpret(text)
             self.display_image()
-            i = 1
         except Exception as e:
             print(f"Błąd podczas uruchamiania: {e}")
 
     def interpret(self, input_string: str):
-        source_stream = InputStream(input_string) #FileStream(self.source_filename)
+        source_stream = InputStream(input_string)
         lexer = l_BoardLang(source_stream)
         stream = CommonTokenStream(lexer)
         parser = p_BoardLang(stream)

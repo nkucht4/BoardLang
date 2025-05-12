@@ -9,19 +9,19 @@ else:
 
 # This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
+
 class p_BoardLangVisitor(ParseTreeVisitor):
     def __init__(self):
         self.memory = {}
         self.memory_stack = []
         self.filename = 'TileMap.json'
-        self.tilemap = { 'size': (0, 0),
-                         'map': []}
+        self.tilemap = {'size': (0, 0),
+                        'map': []}
 
     # Visit a parse tree produced by p_BoardLang#program.
-    def visitProgram(self, ctx:p_BoardLang.ProgramContext):
+    def visitProgram(self, ctx: p_BoardLang.ProgramContext):
         self.memory_stack.append({})
         return self.visitChildren(ctx)
-
 
     # Visit a parse tree produced by p_BoardLang#board_size_definition.
     def visitBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
@@ -60,18 +60,15 @@ class p_BoardLangVisitor(ParseTreeVisitor):
     def visitFunction_instr(self, ctx:p_BoardLang.Function_instrContext):
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by p_BoardLang#function_call.
-    def visitFunction_call(self, ctx:p_BoardLang.Function_callContext):
+    def visitFunction_call(self, ctx: p_BoardLang.Function_callContext):
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by p_BoardLang#declaration.
-    def visitDeclaration(self, ctx:p_BoardLang.DeclarationContext):
+    def visitDeclaration(self, ctx: p_BoardLang.DeclarationContext):
         id = ctx.ID().getText().strip()
         if id in self.memory_stack[-1].keys():
             raise NameError('Identifier already exists in current scope and cannot be overwritten')
-
         if not bool(ctx.LEFT_SQUARE_PAR()):
             self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": None}
         else:
@@ -87,29 +84,58 @@ class p_BoardLangVisitor(ParseTreeVisitor):
             raise NameError('Identifier already exists in current scope and cannot be overwritten')
         ctx.var_types()
         if not ctx.LEFT_SQUARE_PAR():
-            self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": None}
             if ctx.var_types().BOOL_T():
                 val = ctx.expr()
-                if not (val.bool_expr() or val.getText() in ('TRUE', 'FALSE')):
+                if not val.bool_expr():
                     raise NameError('Wrong value type: should be boolean')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": bool(val.getText())} # dodaj bool expr
+                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(val.bool_expr())} # dodaj bool expr
             elif ctx.var_types().INT_T():
                 val = ctx.expr()
                 if not val.math_expr():
                     raise NameError('Wrong value type: should be math expression')
                 self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(val.math_expr())}
             elif ctx.var_types().STRING_T():
-                if not self.is_good_type('STRING', ctx.expr().math_expr().literal()):
+                if not ctx.expr().math_expr():
                     raise NameError('Not a string')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(ctx.expr())}
+                if ctx.expr().math_expr().ID():
+                    if not self.is_good_type('STRING', ctx_id=ctx.expr().math_expr().ID()):
+                        raise NameError('Not a string')
+                    st = self.get_value(ctx.expr().math_expr().ID().getText())
+                elif ctx.expr().math_expr().literal():
+                    if not self.is_good_type('STRING', ctx.expr().math_expr().literal()):
+                        raise NameError('Not a string')
+                    st = self.visit(ctx.expr())
+                else:
+                    raise NameError('Not a string')
+                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": st}
             elif ctx.var_types().CHAR_T():
-                if not self.is_good_type('CHAR', ctx.expr().math_expr().literal()):
+                if not ctx.expr().math_expr():
                     raise NameError('Not a char')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(),
-                                             "value": self.visit(ctx.expr())}
+                if ctx.expr().math_expr().ID():
+                    if not self.is_good_type('CHAR', ctx_id=ctx.expr().math_expr().ID()):
+                        raise NameError('Not a char')
+                    st = self.get_value(ctx.expr().math_expr().ID().getText())
+                elif ctx.expr().math_expr().literal():
+                    if not self.is_good_type('CHAR', ctx.expr().math_expr().literal()):
+                        raise NameError('Not a char')
+                    st = self.visit(ctx.expr())
+                else:
+                    raise NameError('Not a char')
+                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": st}
             elif ctx.var_types().COLOUR_T():
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(),
-                                             "value": self.hex_to_rgb(ctx.expr().getText())}
+                if not ctx.expr().math_expr():
+                    raise NameError('Not a colour')
+                if ctx.expr().math_expr().ID():
+                    if not self.is_good_type('COLOUR', ctx_id=ctx.expr().math_expr().ID()):
+                        raise NameError('Not a colour')
+                    st = self.get_value(ctx.expr().math_expr().ID().getText())
+                elif ctx.expr().math_expr().literal():
+                    if not self.is_good_type('COLOUR', ctx.expr().math_expr().literal()):
+                        raise NameError('Not a colour')
+                    st = self.hex_to_rgb(ctx.expr().getText())
+                else:
+                    raise NameError('Not a colour')
+                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": st}
 
         else:
             i = int(ctx.INT_V().getText().strip())
@@ -141,7 +167,7 @@ class p_BoardLangVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by p_BoardLang#assignment.
     def visitAssignment(self, ctx:p_BoardLang.AssignmentContext):
         id = ctx.ID().getText()
-        if id not in self.memory_stack[-1].keys():
+        if not self.if_in_scope(id):
             raise NameError("Identifier does not exists")
         if ctx.LEFT_SQUARE_PAR():
             # if self.memory_stack[-1][id]["type"] != "ARRAY":
@@ -153,7 +179,7 @@ class p_BoardLangVisitor(ParseTreeVisitor):
             i = int(ctx.DIGIT().getText())
             if len(self.memory_stack[-1][id]["value"]) < i + 1:
                 raise NameError("Array is too short")
-            if not self.is_good_type(self.memory_stack[-1][id]["type"], ctx.expr().math_expr().literal()):
+            if not self.is_good_type(self.memory_stack[-1][id]["type"], ctx_lit=ctx.expr().math_expr().literal()): # całkowicie do naprawy, przemyśl to (do: Kaliny)
                 raise NameError("Wrong type")
             self.memory_stack[-1][id]["value"][i] = self.visit(ctx.expr())
         else:
@@ -358,25 +384,32 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         for scope in reversed(self.memory_stack):
             if z in scope.keys():
                 return scope[z]['type']
-    def is_good_type(self, type: str, ctx: p_BoardLang.literal):
+    def get_value(self, z: str):
+        for scope in reversed(self.memory_stack):
+            if z in scope.keys():
+                return scope[z]['value']
+        raise NameError(f'No such identifier as {z}')
+    def is_good_type(self, type: str, ctx_lit: p_BoardLang.literal = None, ctx_id: p_BoardLang.ID = None):
+        if ctx_id is not None:
+            return self.get_type(ctx_id.getText()) == type
         if type == 'INT':
-            if ctx.INT_V():
+            if ctx_lit.INT_V():
                 return True
             return False
         if type == 'STRING':
-            if ctx.STRING_V():
+            if ctx_lit.STRING_V():
                 return True
             return False
         if type == 'CHAR':
-            if ctx.CHAR_V():
+            if ctx_lit.CHAR_V():
                 return True
             return False
         if type == 'BOOL':
-            if ctx.BOOL_V():
+            if ctx_lit.BOOL_V():
                 return True
             return False
         if type == 'COLOUR':
-            if ctx.COLOUR_V():
+            if ctx_lit.COLOUR_V():
                 return True
             return False
 

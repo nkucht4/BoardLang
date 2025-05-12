@@ -62,7 +62,10 @@ bool_expr: bool_expr AND_T bool_expr
             | bool_expr OR_T bool_expr
             | NOT_T bool_expr
             | math_expr rel_operator math_expr
-            | LEFT_PAR bool_expr RIGHT_PAR;
+            | LEFT_PAR bool_expr RIGHT_PAR
+            | BOOL_V
+            | ID
+            | function_call;
 
 math_expr: LEFT_PAR math_expr RIGHT_PAR
             | math_expr math_operator math_expr
