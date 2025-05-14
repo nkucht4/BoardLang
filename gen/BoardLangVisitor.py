@@ -151,7 +151,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitTile_decl_w_ass(self, ctx:p_BoardLang.Tile_decl_w_assContext):
         id = ctx.ID().getText()
         if id in self.memory_stack[-1].keys():
-            raise NameError("Identifier already exists and cannot be overwritten")
+            raise NameError("Identifier already exists in this scope and cannot be overwritten")
         color = self.visit(ctx.tt_arg())
         self.memory_stack[-1][id] = {"type": "TileType", "value": color}
         return True
@@ -207,7 +207,8 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if ctx.literal():
             return self.visit(ctx.literal())
         elif ctx.ID():
-            return self.memory_stack[-1][ctx.ID().getText().strip()]['value']
+            #return self.memory_stack[-1][ctx.ID().getText().strip()]['value']
+            return self.get_value(ctx.ID().getText().strip())
         elif ctx.function_call():
             return self.visit(ctx.function_call())
         elif ctx.LEFT_PAR():
@@ -280,9 +281,20 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#for_loop.
     def visitFor_loop(self, ctx:p_BoardLang.For_loopContext):
-        return self.visitChildren(ctx)
-
-
+        start = self.visit(ctx.math_expr(0))
+        end = self.visit(ctx.math_expr(1))
+        step = self.visit(ctx.math_expr(2))
+        id = ctx.ID().getText().strip()
+        self.memory_stack.append({})
+        self.memory_stack[-1][id] = {"type": 'INT',
+                                     "value": start}
+        for i in range(start, end, step):
+            self.memory_stack.append({})
+            self.memory_stack[-2][id]['value'] = i
+            self.visit(ctx.inside_loop())
+            self.memory_stack.pop()
+        self.memory_stack.pop()
+        return True
 
     # Visit a parse tree produced by p_BoardLang#inside_loop.
     def visitInside_loop(self, ctx:p_BoardLang.Inside_loopContext):
