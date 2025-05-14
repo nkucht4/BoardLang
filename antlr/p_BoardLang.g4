@@ -6,7 +6,7 @@ options {
 
 program: board_size_definition (out_instructions)+;
 
-board_size_definition: BOARDSIZE_T LEFT_SQUARE_PAR id_and_int COLON id_and_int RIGHT_SQUARE_PAR END_M;
+board_size_definition: BOARDSIZE_T LEFT_SQUARE_PAR math_expr COLON math_expr RIGHT_SQUARE_PAR END_M;
 
 // Instructions
 
@@ -82,9 +82,9 @@ board_instr: draw_instr
 draw_instr: DRAW_T LEFT_SQUARE_PAR draw_args RIGHT_SQUARE_PAR ID;
 
 draw_args: HERE_T
-            | id_and_int COLON id_and_int;
+            | math_expr COLON math_expr;
 
-setpos_instr: SETPOS LEFT_SQUARE_PAR id_and_int COLON id_and_int RIGHT_SQUARE_PAR;
+setpos_instr: SETPOS LEFT_SQUARE_PAR math_expr COLON math_expr RIGHT_SQUARE_PAR;
 
 // Conditionals
 
@@ -102,11 +102,8 @@ if_inside_loop_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
 
 //Loops
 
-for_loop: FOR_T LEFT_PAR id_and_int COLON id_and_int COLON id_and_int
+for_loop: FOR_T LEFT_PAR math_expr COLON math_expr COLON math_expr MINUS GT ID
             RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
-
-id_and_int: ID
-            | INT_V;
 
 inside_loop: instructions
             | if_inside_loop_statement

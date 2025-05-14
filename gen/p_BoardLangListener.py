@@ -1,9 +1,9 @@
 # Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
-    from .p_BoardLang import p_BoardLang
+    from gen.p_BoardLang import p_BoardLang
 else:
-    from p_BoardLang import p_BoardLang
+    from gen.p_BoardLang import p_BoardLang
 
 # This class defines a complete listener for a parse tree produced by p_BoardLang.
 class p_BoardLangListener(ParseTreeListener):
@@ -107,21 +107,21 @@ class p_BoardLangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by p_BoardLang#tt_arg.
-    def enterTt_arg(self, ctx:p_BoardLang.Tt_argContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#tt_arg.
-    def exitTt_arg(self, ctx:p_BoardLang.Tt_argContext):
-        pass
-
-
     # Enter a parse tree produced by p_BoardLang#assignment.
     def enterAssignment(self, ctx:p_BoardLang.AssignmentContext):
         pass
 
     # Exit a parse tree produced by p_BoardLang#assignment.
     def exitAssignment(self, ctx:p_BoardLang.AssignmentContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#tt_arg.
+    def enterTt_arg(self, ctx:p_BoardLang.Tt_argContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#tt_arg.
+    def exitTt_arg(self, ctx:p_BoardLang.Tt_argContext):
         pass
 
 
@@ -197,33 +197,6 @@ class p_BoardLangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by p_BoardLang#if_then_statement.
-    def enterIf_then_statement(self, ctx:p_BoardLang.If_then_statementContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#if_then_statement.
-    def exitIf_then_statement(self, ctx:p_BoardLang.If_then_statementContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#if_then_otherwise_statement.
-    def enterIf_then_otherwise_statement(self, ctx:p_BoardLang.If_then_otherwise_statementContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#if_then_otherwise_statement.
-    def exitIf_then_otherwise_statement(self, ctx:p_BoardLang.If_then_otherwise_statementContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#otherif_statement.
-    def enterOtherif_statement(self, ctx:p_BoardLang.Otherif_statementContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#otherif_statement.
-    def exitOtherif_statement(self, ctx:p_BoardLang.Otherif_statementContext):
-        pass
-
-
     # Enter a parse tree produced by p_BoardLang#if_inside_loop_statement.
     def enterIf_inside_loop_statement(self, ctx:p_BoardLang.If_inside_loop_statementContext):
         pass
@@ -239,15 +212,6 @@ class p_BoardLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by p_BoardLang#for_loop.
     def exitFor_loop(self, ctx:p_BoardLang.For_loopContext):
-        pass
-
-
-    # Enter a parse tree produced by p_BoardLang#id_and_int.
-    def enterId_and_int(self, ctx:p_BoardLang.Id_and_intContext):
-        pass
-
-    # Exit a parse tree produced by p_BoardLang#id_and_int.
-    def exitId_and_int(self, ctx:p_BoardLang.Id_and_intContext):
         pass
 
 

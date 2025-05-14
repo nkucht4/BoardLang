@@ -13,7 +13,7 @@ from board_renderer.board_generator import BoardGenerator
 from antlr4 import *
 from gen.l_BoardLang import l_BoardLang
 from gen.p_BoardLang import p_BoardLang
-from gen.p_BoardLangVisitor import p_BoardLangVisitor
+from gen.BoardLangVisitor import BoardLangVisitor
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -48,16 +48,16 @@ class MainWindow(QMainWindow):
             file.write(text)
             file.close()
         except Exception as e:
-            print(f"Błąd podczas uruchamiania: {e}")
+            print(f"Błąd podczas otwierania pliku: {e}")
 
     def handle_run_clicked(self):
-        try:
+        #try:
             text = self.textEditor.toPlainText()
 
             self.interpret(text)
             self.display_image()
-        except Exception as e:
-            print(f"Błąd podczas uruchamiania: {e}")
+        #except Exception as e:
+        #    print(f"Błąd podczas uruchamiania: {e}")
 
     def interpret(self, input_string: str):
         source_stream = InputStream(input_string)
@@ -67,7 +67,7 @@ class MainWindow(QMainWindow):
 
         tree = parser.program()
 
-        visitor = p_BoardLangVisitor()
+        visitor = BoardLangVisitor()
         result = visitor.visit(tree)
 
     def display_image(self):

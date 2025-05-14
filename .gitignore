@@ -5,3 +5,4 @@ __pycache__/
 *.pyo
 finish.py
 TileMap.json
+app/test.txt
