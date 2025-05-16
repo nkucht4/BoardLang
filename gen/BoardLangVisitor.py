@@ -8,8 +8,10 @@ if "." in __name__:
 else:
     from p_BoardLang import p_BoardLang
 
-# This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
+class BreakException(Exception):
+    pass
 
+# This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
 class BoardLangVisitor(p_BoardLangVisitor):
     def __init__(self):
@@ -288,19 +290,26 @@ class BoardLangVisitor(p_BoardLangVisitor):
         end = self.visit(ctx.math_expr(1))
         step = self.visit(ctx.math_expr(2))
         id = ctx.ID().getText().strip()
+
         self.memory_stack.append({})
         self.memory_stack[-1][id] = {"type": 'INT',
                                      "value": start}
+
         for i in range(start, end, step):
             self.memory_stack.append({})
             self.memory_stack[-2][id]['value'] = i
-            self.visit(ctx.inside_loop())
+            try:
+                self.visit(ctx.inside_loop())
+            except BreakException:
+                break
             self.memory_stack.pop()
         self.memory_stack.pop()
         return True
 
     # Visit a parse tree produced by p_BoardLang#inside_loop.
     def visitInside_loop(self, ctx:p_BoardLang.Inside_loopContext):
+        if ctx.BREAK():
+            raise BreakException()
         return self.visitChildren(ctx)
 
 
@@ -308,11 +317,16 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitAs_long_as_loop(self, ctx:p_BoardLang.As_long_as_loopContext):
         condition = self.visit(ctx.expr())
         self.memory_stack.append({})
+
         while condition:
             self.memory_stack.append({})
-            self.visit(ctx.inside_loop())
+            try:
+                self.visit(ctx.inside_loop())
+            except BreakException:
+                break
             self.memory_stack.pop()
             condition = self.visit(ctx.expr())
+
         self.memory_stack.pop()
         return True
 

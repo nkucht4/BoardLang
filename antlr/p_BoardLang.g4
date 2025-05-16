@@ -94,11 +94,11 @@ if_instr: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_P
 
 
 if_inside_loop_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
-            (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR
+            (instructions | BREAK END_M | CONTINUE END_M) RIGHT_CLAMP_PAR
             (OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
-            (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR)*
+            (instructions | BREAK END_M | CONTINUE END_M) RIGHT_CLAMP_PAR)*
             (OTHERWISE_T LEFT_CLAMP_PAR
-            (instructions | BREAK | CONTINUE) RIGHT_CLAMP_PAR)?;
+            (instructions | BREAK END_M| CONTINUE END_M) RIGHT_CLAMP_PAR)?;
 
 //Loops
 
@@ -107,7 +107,9 @@ for_loop: FOR_T LEFT_PAR math_expr COLON math_expr COLON math_expr MINUS GT ID
 
 inside_loop: instructions
             | if_inside_loop_statement
-            | inside_loop inside_loop;
+            | inside_loop inside_loop
+            | BREAK END_M
+            | CONTINUE END_M;
 
 as_long_as_loop: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
 
