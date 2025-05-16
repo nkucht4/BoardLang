@@ -241,13 +241,11 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitDraw_instr(self, ctx:p_BoardLang.Draw_instrContext):
         x, y = self.visit(ctx.draw_args())
         tilename = ctx.ID().getText()
-        if tilename not in self.memory_stack[-1].keys():
-            raise KeyError(f'No such identifier as {tilename}')
-        elif self.memory_stack[-1][tilename]['type'] != 'TileType':
+        tile = self.get_value(tilename)
+        if self.get_type(tilename) != 'TileType':
             raise TypeError('Expected TileType')
         else:
-            color = self.memory_stack[-1][tilename]['value']
-            self.tilemap['map'][x][y] = color
+            self.tilemap['map'][x][y] = tile
             with open(self.filename, 'w') as f:
                 json.dump(self.tilemap, f)
         return x, y
@@ -303,7 +301,16 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#as_long_as_loop.
     def visitAs_long_as_loop(self, ctx:p_BoardLang.As_long_as_loopContext):
-        return self.visitChildren(ctx)
+        condition = self.visit(ctx.expr())
+        self.memory_stack.append({})
+        print("b=", condition)
+        while condition:
+            self.memory_stack.append({})
+            self.visit(ctx.inside_loop())
+            self.memory_stack.pop()
+            condition = self.visit(ctx.expr())
+        self.memory_stack.pop()
+        return True
 
 
     # Visit a parse tree produced by p_BoardLang#args_list.

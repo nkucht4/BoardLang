@@ -109,7 +109,7 @@ inside_loop: instructions
             | if_inside_loop_statement
             | inside_loop inside_loop;
 
-as_long_as_loop: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR;
+as_long_as_loop: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
 
 
 // Help
