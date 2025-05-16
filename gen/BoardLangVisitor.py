@@ -21,7 +21,8 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#program.
     def visitProgram(self, ctx: p_BoardLang.ProgramContext):
-        self.memory_stack.append({})
+        self.memory_stack.append({'here':{'type': 'HERE',
+                                          'value': (0,0)}})
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by p_BoardLang#board_size_definition.
@@ -234,6 +235,8 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#board_instr.
     def visitBoard_instr(self, ctx:p_BoardLang.Board_instrContext):
+        if ctx.RESET_T():
+            self.memory_stack[0]['here']['value'] = (0,0)
         return self.visitChildren(ctx)
 
 
@@ -254,17 +257,19 @@ class BoardLangVisitor(p_BoardLangVisitor):
     # Visit a parse tree produced by p_BoardLang#draw_args.
     def visitDraw_args(self, ctx:p_BoardLang.Draw_argsContext):
         if ctx.HERE_T():
-            raise NotImplementedError
+            x,y = self.memory_stack[0]['here']['value']
         else:
             x = self.visit(ctx.math_expr()[0])
             y = self.visit(ctx.math_expr()[1])
-            print(x,y)
-            return x, y
+        return x, y
 
 
     # Visit a parse tree produced by p_BoardLang#setpos_instr.
     def visitSetpos_instr(self, ctx:p_BoardLang.Setpos_instrContext):
-        return self.visitChildren(ctx)
+        x = self.visit(ctx.math_expr(0))
+        y = self.visit(ctx.math_expr(1))
+        self.memory_stack[0]['here']['value']=(x,y)
+        return x, y
 
 
     # Visit a parse tree produced by p_BoardLang#if_instr.
@@ -303,7 +308,6 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitAs_long_as_loop(self, ctx:p_BoardLang.As_long_as_loopContext):
         condition = self.visit(ctx.expr())
         self.memory_stack.append({})
-        print("b=", condition)
         while condition:
             self.memory_stack.append({})
             self.visit(ctx.inside_loop())
