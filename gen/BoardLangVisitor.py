@@ -1,12 +1,14 @@
 # Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 import json
-from p_BoardLangVisitor import p_BoardLangVisitor
+
 
 if "." in __name__:
     from .p_BoardLang import p_BoardLang
+    from .p_BoardLangVisitor import p_BoardLangVisitor
 else:
     from p_BoardLang import p_BoardLang
+    from p_BoardLangVisitor import p_BoardLangVisitor
 
 class BreakException(Exception):
     pass
@@ -200,9 +202,44 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#bool_expr.
     def visitBool_expr(self, ctx:p_BoardLang.Bool_exprContext):
-        # if ctx.BOOL_V():
-        #    return True/false
-        return False
+        if ctx.BOOL_V():
+            if ctx.BOOL_V().getText() == 'TRUE':
+                return True
+            else:
+                return False
+        if ctx.ID():
+            id = ctx.ID().getText()
+            if not self.if_in_scope(id):
+                raise NameError(f"The variable: {id} does not exists")
+            if self.get_type(id) != "BOOL":
+                raise NameError(f"The type of variable: {id} is not BOOL")
+            return self.get_value(id)
+        if ctx.function_call():
+            return self.visit(ctx.function_call())
+        if ctx.LEFT_PAR():
+            return self.visit(ctx.bool_expr(0))
+        if ctx.math_expr():
+            me1 = self.visit(ctx.math_expr(0))
+            me2 = self.visit(ctx.math_expr(1))
+            op = ctx.rel_operator()
+            if op.CHECK_EQ():
+                return me1 == me2
+            if op.NOT_EQ():
+                return me1 != me2
+            if op.GTOREQ():
+                return me1 >= me2
+            if op.LTOREQ():
+                return me1 <= me2
+            if op.GT():
+                return me1 > me2
+            if op.LT():
+                return me1 < me2
+        if ctx.NOT_T():
+            return not self.visit(ctx.bool_expr(0))
+        if ctx.OR_T():
+            return self.visit(ctx.bool_expr(0)) or self.visit(ctx.bool_expr(1))
+        if ctx.AND_T():
+            return self.visit(ctx.bool_expr(0)) and self.visit(ctx.bool_expr(1))
 
 
     # Visit a parse tree produced by p_BoardLang#math_expr.
@@ -215,7 +252,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         elif ctx.function_call():
             return self.visit(ctx.function_call())
         elif ctx.LEFT_PAR():
-            return self.visit(ctx.math_expr())
+            return self.visit(ctx.math_expr(0))
         elif ctx.math_operator():
             x1 = self.visit(ctx.math_expr(0))
             x2 = self.visit(ctx.math_expr(1))
