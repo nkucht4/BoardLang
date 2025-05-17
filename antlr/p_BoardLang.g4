@@ -26,14 +26,25 @@ instructions: instructions instructions
 
 // Functions
 
-function_def: FUNCTION_T ID LEFT_PAR function_declaration_args RIGHT_PAR COLON
-                var_types LEFT_CLAMP_PAR function_instr RIGHT_CLAMP_PAR;
+function_def: FUNCTION_T ID LEFT_PAR (function_declaration_args)? RIGHT_PAR COLON
+                (var_types | VOID_T) LEFT_CLAMP_PAR function_instr RIGHT_CLAMP_PAR;
 
 function_declaration_args: var_types ID
                            | function_declaration_args COMA function_declaration_args;
 
-function_instr: instructions
-                | RETURN_T expr END_M;
+function_instr: function_instr function_instr
+                | declaration END_M
+                | declaration_with_assign END_M
+                | tile_decl_w_ass END_M
+                | assignment END_M
+                | function_call END_M
+                | board_instr END_M
+                | return_expr
+                | if_inside_functions_statement
+                | for_loop_inside_function
+                | as_long_as_loop_inside_function;
+
+return_expr: RETURN_T expr END_M;
 
 function_call: ID LEFT_PAR args_list RIGHT_PAR
                 | ID LEFT_PAR RIGHT_PAR;
@@ -123,7 +134,42 @@ inside_loop: declaration END_M
 
 break_instruction: BREAK END_M;
 
+// Loops and ifs inside function
 
+if_inside_functions_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+            (function_instr) RIGHT_CLAMP_PAR
+            (OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+            (function_instr) RIGHT_CLAMP_PAR)*
+            (OTHERWISE_T LEFT_CLAMP_PAR
+            (function_instr) RIGHT_CLAMP_PAR)?;
+
+for_loop_inside_function: FOR_T LEFT_PAR math_expr COLON math_expr COLON math_expr MINUS GT ID
+            RIGHT_PAR LEFT_CLAMP_PAR instr_inside_loop_inside_fun RIGHT_CLAMP_PAR;
+
+as_long_as_loop_inside_function: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR
+                                LEFT_CLAMP_PAR instr_inside_loop_inside_fun RIGHT_CLAMP_PAR;
+
+instr_inside_loop_inside_fun: declaration END_M
+            | declaration_with_assign END_M
+            | tile_decl_w_ass END_M
+            | assignment END_M
+            | function_call END_M
+            | board_instr END_M
+            | for_loop
+            | as_long_as_loop
+            | if_inside_loop_inside_fun_statement
+            | inside_loop inside_loop
+            | break_instruction
+            | CONTINUE END_M
+            | inside_loop inside_loop
+            | return_expr;
+
+if_inside_loop_inside_fun_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+            (instr_inside_loop_inside_fun) RIGHT_CLAMP_PAR
+            (OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+            (instr_inside_loop_inside_fun) RIGHT_CLAMP_PAR)*
+            (OTHERWISE_T LEFT_CLAMP_PAR
+            (instr_inside_loop_inside_fun) RIGHT_CLAMP_PAR)?;
 
 // Help
 args_list: ID

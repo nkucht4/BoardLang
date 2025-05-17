@@ -3,7 +3,7 @@ from antlr4 import *
 if "." in __name__:
     from gen.p_BoardLang import p_BoardLang
 else:
-    from p_BoardLang import p_BoardLang
+    from gen.p_BoardLang import p_BoardLang
 
 # This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
@@ -41,6 +41,11 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#function_instr.
     def visitFunction_instr(self, ctx:p_BoardLang.Function_instrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#return_expr.
+    def visitReturn_expr(self, ctx:p_BoardLang.Return_exprContext):
         return self.visitChildren(ctx)
 
 
@@ -136,6 +141,31 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#break_instruction.
     def visitBreak_instruction(self, ctx:p_BoardLang.Break_instructionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#if_inside_functions_statement.
+    def visitIf_inside_functions_statement(self, ctx:p_BoardLang.If_inside_functions_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#for_loop_inside_function.
+    def visitFor_loop_inside_function(self, ctx:p_BoardLang.For_loop_inside_functionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#as_long_as_loop_inside_function.
+    def visitAs_long_as_loop_inside_function(self, ctx:p_BoardLang.As_long_as_loop_inside_functionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#instr_inside_loop_inside_fun.
+    def visitInstr_inside_loop_inside_fun(self, ctx:p_BoardLang.Instr_inside_loop_inside_funContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#if_inside_loop_inside_fun_statement.
+    def visitIf_inside_loop_inside_fun_statement(self, ctx:p_BoardLang.If_inside_loop_inside_fun_statementContext):
         return self.visitChildren(ctx)
 
 

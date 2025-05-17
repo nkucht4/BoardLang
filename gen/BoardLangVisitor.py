@@ -10,11 +10,24 @@ else:
     from p_BoardLang import p_BoardLang
     from p_BoardLangVisitor import p_BoardLangVisitor
 
+
 class BreakException(Exception):
     pass
 
-# This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
+class FunctionReturn(Exception):
+    def __init__(self, val):
+        self.value = val
+
+
+class Function:
+    def __init__(self, arg_list, return_type, body):
+        self.arg_list = arg_list
+        self.return_type = return_type
+        self.body = body
+
+
+# This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 class BoardLangVisitor(p_BoardLangVisitor):
     def __init__(self):
         self.memory = {}
@@ -23,14 +36,16 @@ class BoardLangVisitor(p_BoardLangVisitor):
         self.tilemap = {'size': (0, 0),
                         'map': []}
 
+
     # Visit a parse tree produced by p_BoardLang#program.
     def visitProgram(self, ctx: p_BoardLang.ProgramContext):
-        self.memory_stack.append({'here':{'type': 'HERE',
-                                          'value': (0,0)}})
+        self.memory_stack.append({'here': {'type': 'HERE',
+                                          'value': (0, 0)}})
         return self.visitChildren(ctx)
 
+
     # Visit a parse tree produced by p_BoardLang#board_size_definition.
-    def visitBoard_size_definition(self, ctx:p_BoardLang.Board_size_definitionContext):
+    def visitBoard_size_definition(self, ctx: p_BoardLang.Board_size_definitionContext):
         width = self.visit(ctx.math_expr(0))
         height = self.visit(ctx.math_expr(1))
         if width < 0 or height < 0:
@@ -43,18 +58,30 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
 
     # Visit a parse tree produced by p_BoardLang#out_instructions.
-    def visitOut_instructions(self, ctx:p_BoardLang.Out_instructionsContext):
+    def visitOut_instructions(self, ctx: p_BoardLang.Out_instructionsContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by p_BoardLang#instructions.
-    def visitInstructions(self, ctx:p_BoardLang.InstructionsContext):
+    def visitInstructions(self, ctx: p_BoardLang.InstructionsContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by p_BoardLang#function_def.
-    def visitFunction_def(self, ctx:p_BoardLang.Function_defContext):
-        return self.visitChildren(ctx)
+    def visitFunction_def(self, ctx: p_BoardLang.Function_defContext):
+        name = ctx.ID().getText().strip()
+
+        if name in self.memory_stack[-1].keys():
+            raise NameError("Identifier already exists in current scope and cannot be overwritten")
+
+        args = {}
+        return_type = self.visit(ctx.var_types())
+        body = ctx.function_instr()
+        fun = Function(args, return_type, body)
+
+        self.memory_stack[-1][name] = { 'type': 'FUNCTION',
+                                        'value': fun}
+        return True
 
 
     # Visit a parse tree produced by p_BoardLang#function_declaration_args.
@@ -62,13 +89,27 @@ class BoardLangVisitor(p_BoardLangVisitor):
         return self.visitChildren(ctx)
 
 
+
     # Visit a parse tree produced by p_BoardLang#function_instr.
     def visitFunction_instr(self, ctx:p_BoardLang.Function_instrContext):
         return self.visitChildren(ctx)
 
+    # Visit a parse tree produced by p_BoardLang#return_expr.
+    def visitReturn_expr(self, ctx: p_BoardLang.Return_exprContext):
+        value = self.visit(ctx.expr())
+        raise FunctionReturn(value)
+
     # Visit a parse tree produced by p_BoardLang#function_call.
     def visitFunction_call(self, ctx: p_BoardLang.Function_callContext):
-        return self.visitChildren(ctx)
+        name = ctx.ID().getText().strip()
+        if self.get_type(name) != 'FUNCTION':
+            raise TypeError(f'{name} is not a callable function')
+        fun = self.get_value(name)
+        try:
+            self.visit(fun.body)
+        except FunctionReturn as r:
+            return r.value
+
 
     # Visit a parse tree produced by p_BoardLang#declaration.
     def visitDeclaration(self, ctx: p_BoardLang.DeclarationContext):

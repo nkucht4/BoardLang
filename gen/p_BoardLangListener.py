@@ -3,7 +3,7 @@ from antlr4 import *
 if "." in __name__:
     from gen.p_BoardLang import p_BoardLang
 else:
-    from p_BoardLang import p_BoardLang
+    from gen.p_BoardLang import p_BoardLang
 
 # This class defines a complete listener for a parse tree produced by p_BoardLang.
 class p_BoardLangListener(ParseTreeListener):
@@ -68,6 +68,15 @@ class p_BoardLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by p_BoardLang#function_instr.
     def exitFunction_instr(self, ctx:p_BoardLang.Function_instrContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#return_expr.
+    def enterReturn_expr(self, ctx:p_BoardLang.Return_exprContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#return_expr.
+    def exitReturn_expr(self, ctx:p_BoardLang.Return_exprContext):
         pass
 
 
@@ -239,6 +248,51 @@ class p_BoardLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by p_BoardLang#break_instruction.
     def exitBreak_instruction(self, ctx:p_BoardLang.Break_instructionContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#if_inside_functions_statement.
+    def enterIf_inside_functions_statement(self, ctx:p_BoardLang.If_inside_functions_statementContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#if_inside_functions_statement.
+    def exitIf_inside_functions_statement(self, ctx:p_BoardLang.If_inside_functions_statementContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#for_loop_inside_function.
+    def enterFor_loop_inside_function(self, ctx:p_BoardLang.For_loop_inside_functionContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#for_loop_inside_function.
+    def exitFor_loop_inside_function(self, ctx:p_BoardLang.For_loop_inside_functionContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#as_long_as_loop_inside_function.
+    def enterAs_long_as_loop_inside_function(self, ctx:p_BoardLang.As_long_as_loop_inside_functionContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#as_long_as_loop_inside_function.
+    def exitAs_long_as_loop_inside_function(self, ctx:p_BoardLang.As_long_as_loop_inside_functionContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#instr_inside_loop_inside_fun.
+    def enterInstr_inside_loop_inside_fun(self, ctx:p_BoardLang.Instr_inside_loop_inside_funContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#instr_inside_loop_inside_fun.
+    def exitInstr_inside_loop_inside_fun(self, ctx:p_BoardLang.Instr_inside_loop_inside_funContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#if_inside_loop_inside_fun_statement.
+    def enterIf_inside_loop_inside_fun_statement(self, ctx:p_BoardLang.If_inside_loop_inside_fun_statementContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#if_inside_loop_inside_fun_statement.
+    def exitIf_inside_loop_inside_fun_statement(self, ctx:p_BoardLang.If_inside_loop_inside_fun_statementContext):
         pass
 
 

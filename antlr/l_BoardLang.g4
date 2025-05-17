@@ -26,6 +26,7 @@ CHAR_T: 'CHAR';
 STRING_T: 'STRING';
 COLOUR_T: 'COLOUR';
 ARRAY_T: 'ARRAY';
+VOID_T: 'VOID';
 
 //Opearatory
 PLUS: '+';
