@@ -3,7 +3,7 @@ from antlr4 import *
 if "." in __name__:
     from gen.p_BoardLang import p_BoardLang
 else:
-    from gen.p_BoardLang import p_BoardLang
+    from p_BoardLang import p_BoardLang
 
 # This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 
@@ -124,13 +124,18 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by p_BoardLang#as_long_as_loop.
+    def visitAs_long_as_loop(self, ctx:p_BoardLang.As_long_as_loopContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by p_BoardLang#inside_loop.
     def visitInside_loop(self, ctx:p_BoardLang.Inside_loopContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by p_BoardLang#as_long_as_loop.
-    def visitAs_long_as_loop(self, ctx:p_BoardLang.As_long_as_loopContext):
+    # Visit a parse tree produced by p_BoardLang#break_instruction.
+    def visitBreak_instruction(self, ctx:p_BoardLang.Break_instructionContext):
         return self.visitChildren(ctx)
 
 

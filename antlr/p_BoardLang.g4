@@ -105,6 +105,8 @@ if_inside_loop_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
 for_loop: FOR_T LEFT_PAR math_expr COLON math_expr COLON math_expr MINUS GT ID
             RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
 
+as_long_as_loop: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
+
 inside_loop: declaration END_M
             | declaration_with_assign END_M
             | tile_decl_w_ass END_M
@@ -115,11 +117,12 @@ inside_loop: declaration END_M
             | as_long_as_loop
             | if_inside_loop_statement
             | inside_loop inside_loop
-            | BREAK END_M
+            | break_instruction
             | CONTINUE END_M
             | inside_loop inside_loop;
 
-as_long_as_loop: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
+break_instruction: BREAK END_M;
+
 
 
 // Help
