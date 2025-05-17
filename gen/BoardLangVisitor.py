@@ -364,9 +364,10 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#inside_loop.
     def visitInside_loop(self, ctx:p_BoardLang.Inside_loopContext):
-        if ctx.BREAK():
-            raise BreakException()
         return self.visitChildren(ctx)
+
+    def visitBreak_instruction(self, ctx:p_BoardLang.Break_instructionContext):
+        raise BreakException()
 
 
     # Visit a parse tree produced by p_BoardLang#as_long_as_loop.
