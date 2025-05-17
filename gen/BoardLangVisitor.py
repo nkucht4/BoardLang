@@ -313,10 +313,29 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#if_instr.
     def visitIf_instr(self, ctx:p_BoardLang.If_instrContext):
-        return self.visitChildren(ctx)
+        if self.visit(ctx.expr(0)):
+            self.memory_stack.append({})
+            self.visit(ctx.instructions(0))
+            self.memory_stack.pop()
+            return
+        otherifs = len(ctx.OTHERIF_T())
+        for i in range(0, otherifs):
+            if self.visit(ctx.expr(i+1)):
+                self.memory_stack.append({})
+                self.visit(ctx.instructions(i+1))
+                self.memory_stack.pop()
+                return
+
+        if self.OTHERWISE_T():
+            self.memory_stack.append({})
+            self.visit(ctx.instructions(-1))
+            self.memory_stack.pop()
+            return
 
 
-    # Visit a parse tree produced by p_BoardLang#if_inside_loop_statement.
+
+
+            # Visit a parse tree produced by p_BoardLang#if_inside_loop_statement.
     def visitIf_inside_loop_statement(self, ctx:p_BoardLang.If_inside_loop_statementContext):
         return self.visitChildren(ctx)
 
