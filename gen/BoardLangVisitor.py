@@ -1,12 +1,14 @@
 # Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 import json
-from p_BoardLangVisitor import p_BoardLangVisitor
+
 
 if "." in __name__:
     from .p_BoardLang import p_BoardLang
+    from .p_BoardLangVisitor import p_BoardLangVisitor
 else:
     from p_BoardLang import p_BoardLang
+    from p_BoardLangVisitor import p_BoardLangVisitor
 
 class BreakException(Exception):
     pass
@@ -215,7 +217,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if ctx.function_call():
             return self.visit(ctx.function_call())
         if ctx.LEFT_PAR():
-            return self.visit(ctx.bool_expr())
+            return self.visit(ctx.bool_expr(0))
         if ctx.math_expr():
             me1 = self.visit(ctx.math_expr(0))
             me2 = self.visit(ctx.math_expr(1))
@@ -233,7 +235,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             if op.LT():
                 return me1 < me2
         if ctx.NOT_T():
-            return not self.visit(ctx.bool_expr())
+            return not self.visit(ctx.bool_expr(0))
         if ctx.OR_T():
             return self.visit(ctx.bool_expr(0)) or self.visit(ctx.bool_expr(1))
         if ctx.AND_T():
@@ -250,7 +252,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         elif ctx.function_call():
             return self.visit(ctx.function_call())
         elif ctx.LEFT_PAR():
-            return self.visit(ctx.math_expr())
+            return self.visit(ctx.math_expr(0))
         elif ctx.math_operator():
             x1 = self.visit(ctx.math_expr(0))
             x2 = self.visit(ctx.math_expr(1))
