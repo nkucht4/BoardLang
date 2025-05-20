@@ -74,20 +74,24 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if name in self.memory_stack[-1].keys():
             raise NameError("Identifier already exists in current scope and cannot be overwritten")
 
-        args = {}
-        return_type = self.visit(ctx.var_types())
+        args = self.visit(ctx.function_declaration_args())
+        if ctx.var_types():
+            return_type = self.visit(ctx.var_types())
+        else:
+            return_type = 'VOID'
         body = ctx.function_instr()
         fun = Function(args, return_type, body)
-
-        self.memory_stack[-1][name] = { 'type': 'FUNCTION',
+        self.memory_stack[-1][name] = {'type': 'FUNCTION',
                                         'value': fun}
         return True
 
 
     # Visit a parse tree produced by p_BoardLang#function_declaration_args.
     def visitFunction_declaration_args(self, ctx:p_BoardLang.Function_declaration_argsContext):
-        return self.visitChildren(ctx)
-
+        if ctx.ID():
+            return [(ctx.ID().getText().strip(), ctx.var_types().getText())]
+        else:
+            return self.visit(ctx.function_declaration_args(0)) + self.visit(ctx.function_declaration_args(1))
 
 
     # Visit a parse tree produced by p_BoardLang#function_instr.
@@ -105,11 +109,39 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if self.get_type(name) != 'FUNCTION':
             raise TypeError(f'{name} is not a callable function')
         fun = self.get_value(name)
-        try:
-            self.visit(fun.body)
-        except FunctionReturn as r:
-            return r.value
+        if not ctx.args_list():
+            try:
+                self.functionBody(fun.body)
+            except FunctionReturn as r:
+                return r.value
+        else:
+            args = self.visit(ctx.args_list())
+            fun_args = fun.arg_list
+            if len(args) != len(fun_args):
+                raise NameError("Wrong number of arguments")
+            scope_this = {}
+            for i in range(0, len(args)):
+                if not self.is_good_type(fun_args[i][1], args[i]):
+                    raise NameError(f"Wrong type of argument: {fun_args[i][0]}")
+                s = self.get_from_literal_or_id(args[i])
+                scope_this.update({fun_args[i][0]: {'value': s, 'type': fun_args[i][1]}})
+            try:
+                self.functionBody(fun.body, scope_this)
+            except FunctionReturn as r:
+                return r.value
 
+    def get_from_literal_or_id(self, ctx_lit: p_BoardLang.literal = None, ctx_id: p_BoardLang.ID = None):
+        if ctx_id is not None:
+            return self.get_value(ctx_id.getText())
+        if ctx_lit is not None:
+            return self.visit(ctx_lit)
+
+    def functionBody(self, ctx:p_BoardLang.Function_instrContext, args = None):
+        if args is None:
+            self.memory_stack.append({})
+        else:
+            self.memory_stack.append(args)
+        return self.visitChildren(ctx)
 
     # Visit a parse tree produced by p_BoardLang#declaration.
     def visitDeclaration(self, ctx: p_BoardLang.DeclarationContext):
@@ -407,11 +439,11 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitArgs_list(self, ctx:p_BoardLang.Args_listContext):
         if ctx.ID():
             id = ctx.ID().getText()
-            if id not in self.memory_stack[-1].keys():
+            if self.if_in_scope(id):
                 raise NameError(f'No such identifier as {id}')
-            return [self.memory_stack[-1][id]['value']]
+            return [ctx.ID()]
         elif ctx.literal():
-            return [self.visit(ctx.literal())]
+            return [ctx.literal()]
         elif ctx.COMA():
             return self.visit(ctx.args_list(0)) + self.visit(ctx.args_list(1))
 
@@ -513,6 +545,11 @@ class BoardLangVisitor(p_BoardLangVisitor):
                     raise NameError('Wrong value type: should be boolean')
                 return self.get_value(ctx.math_expr().ID().getText())
             elif ctx.math_expr().function_call():
+                if self.get_type(ctx.math_expr().function_call().ID().getText()) != 'FUNCTION':
+                    raise NameError('That is not a function')
+                if self.get_value(ctx.math_expr().function_call().ID().getText()).return_type != "BOOL":
+                    raise NameError(
+                        f'Function returns {self.get_value(ctx.math_expr().function_call().ID().getText()).return_type} instead of BOOL')
                 return self.visit(ctx.math_expr().function_call())
             else:
                 raise NameError('Wrong value type: should be boolean')
@@ -526,6 +563,11 @@ class BoardLangVisitor(p_BoardLangVisitor):
                     raise NameError('Wrong value type: should be math expression')
                 return self.get_value(ctx.bool_expr().ID().getText())
             elif ctx.bool_expr().function_call():
+                if self.get_type(ctx.bool_expr().function_call().ID().getText()) != 'FUNCTION':
+                    raise NameError('That is not a function')
+                if self.get_value(ctx.bool_expr().function_call().ID().getText()).return_type != "INT":
+                    raise NameError(
+                        f'Function returns {self.get_value(ctx.bool_expr().function_call().ID().getText()).return_type} instead of INT')
                 return self.visit(ctx.bool_expr().function_call())
             else:
                 raise NameError('Wrong value type: should be math expression')
@@ -544,6 +586,10 @@ class BoardLangVisitor(p_BoardLangVisitor):
                 raise NameError('Not a string')
             st = self.visit(c.literal())
         elif c.function_call():
+            if self.get_type(c.function_call().ID().getText()) != 'FUNCTION':
+                raise NameError('That is not a function')
+            if self.get_value(c.function_call().ID().getText()).return_type != "STRING":
+                raise NameError(f'Function returns {self.get_value(c.function_call().ID().getText()).return_type} instead of STRING')
             st = self.visit(c.function_call())
         else:
             raise NameError('Not a string')
@@ -563,6 +609,10 @@ class BoardLangVisitor(p_BoardLangVisitor):
                 raise NameError('Not a char')
             st = self.visit(c.literal())
         elif c.function_call():
+            if self.get_type(c.function_call().ID().getText()) != 'FUNCTION':
+                raise NameError('That is not a function')
+            if self.get_value(c.function_call().ID().getText()).return_type != "CHAR":
+                raise NameError(f'Function returns {self.get_value(c.function_call().ID().getText()).return_type} instead of CHAR')
             st = self.visit(c.function_call())
         else:
             raise NameError('Not a char')
@@ -582,6 +632,10 @@ class BoardLangVisitor(p_BoardLangVisitor):
                 raise NameError('Not a colour')
             st = self.hex_to_rgb(c.literal().getText())
         elif c.function_call():
+            if self.get_type(c.function_call().ID().getText()) != 'FUNCTION':
+                raise NameError('That is not a function')
+            if self.get_value(c.function_call().ID().getText()).return_type != "COLOUR":
+                raise NameError(f'Function returns {self.get_value(c.function_call().ID().getText()).return_type} instead of COLOUR')
             st = self.visit(c.function_call())
         else:
             raise NameError('Not a colour')
