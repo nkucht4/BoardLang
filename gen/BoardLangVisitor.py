@@ -53,7 +53,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         self.tilemap['size'] = (width, height)
         with open(self.filename, 'w') as f:
             json.dump(self.tilemap, f)
-        self.tilemap['map'] = [[0 for _ in range(width)] for _ in range(height)]
+        self.tilemap['map'] = [[0 for _ in range(height)] for _ in range(width)]
         return True
 
 
