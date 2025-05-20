@@ -40,7 +40,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
     # Visit a parse tree produced by p_BoardLang#program.
     def visitProgram(self, ctx: p_BoardLang.ProgramContext):
         self.memory_stack.append({'here': {'type': 'HERE',
-                                          'value': (0, 0)}})
+                                           'value': (0, 0)}})
         return self.visitChildren(ctx)
 
 
@@ -126,64 +126,26 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#declaration_with_assign.
     def visitDeclaration_with_assign(self, ctx:p_BoardLang.Declaration_with_assignContext):
+        # ctx.expr()
         id = ctx.ID().getText().strip()
         if id in self.memory_stack[-1].keys():
             raise NameError('Identifier already exists in current scope and cannot be overwritten')
-        ctx.var_types()
         if not ctx.LEFT_SQUARE_PAR():
             if ctx.var_types().BOOL_T():
-                val = ctx.expr()
-                if not val.bool_expr():
-                    raise NameError('Wrong value type: should be boolean')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(val.bool_expr())} # dodaj bool expr
+                handler = self.handle_bool
             elif ctx.var_types().INT_T():
-                val = ctx.expr()
-                if not val.math_expr():
-                    raise NameError('Wrong value type: should be math expression')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": self.visit(val.math_expr())}
+                handler = self.handle_int
             elif ctx.var_types().STRING_T():
-                if not ctx.expr().math_expr():
-                    raise NameError('Not a string')
-                if ctx.expr().math_expr().ID():
-                    if not self.is_good_type('STRING', ctx_id=ctx.expr().math_expr().ID()):
-                        raise NameError('Not a string')
-                    st = self.get_value(ctx.expr().math_expr().ID().getText())
-                elif ctx.expr().math_expr().literal():
-                    if not self.is_good_type('STRING', ctx.expr().math_expr().literal()):
-                        raise NameError('Not a string')
-                    st = self.visit(ctx.expr())
-                else:
-                    raise NameError('Not a string')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": st}
+                handler = self.handle_string
             elif ctx.var_types().CHAR_T():
-                if not ctx.expr().math_expr():
-                    raise NameError('Not a char')
-                if ctx.expr().math_expr().ID():
-                    if not self.is_good_type('CHAR', ctx_id=ctx.expr().math_expr().ID()):
-                        raise NameError('Not a char')
-                    st = self.get_value(ctx.expr().math_expr().ID().getText())
-                elif ctx.expr().math_expr().literal():
-                    if not self.is_good_type('CHAR', ctx.expr().math_expr().literal()):
-                        raise NameError('Not a char')
-                    st = self.visit(ctx.expr())
-                else:
-                    raise NameError('Not a char')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": st}
+                handler = self.handle_char
             elif ctx.var_types().COLOUR_T():
-                if not ctx.expr().math_expr():
-                    raise NameError('Not a colour')
-                if ctx.expr().math_expr().ID():
-                    if not self.is_good_type('COLOUR', ctx_id=ctx.expr().math_expr().ID()):
-                        raise NameError('Not a colour')
-                    st = self.get_value(ctx.expr().math_expr().ID().getText())
-                elif ctx.expr().math_expr().literal():
-                    if not self.is_good_type('COLOUR', ctx.expr().math_expr().literal()):
-                        raise NameError('Not a colour')
-                    st = self.hex_to_rgb(ctx.expr().getText())
-                else:
-                    raise NameError('Not a colour')
-                self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": st}
+                handler = self.handle_colour
+            else:
+                raise NameError('Unsupported type')
 
+            val = handler(ctx.expr())
+            self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": val}
         else:
             i = int(ctx.INT_V().getText().strip())
             ar = self.visitArgs_listwithver(ctx.var_types().getText(), ctx.args_list())
@@ -216,23 +178,39 @@ class BoardLangVisitor(p_BoardLangVisitor):
         id = ctx.ID().getText()
         if not self.if_in_scope(id):
             raise NameError("Identifier does not exists")
+        type = self.get_type(id)
+        if type == "BOOL":
+            handler = self.handle_bool
+        elif type == "INT":
+            handler = self.handle_int
+        elif type == "STRING":
+            handler = self.handle_string
+        elif type == "CHAR":
+            handler = self.handle_char
+        elif type == "COLOUR":
+            handler = self.handle_colour
+        else:
+            raise NameError('Unsupported type')
+
+        val = handler(ctx.expr())
         if ctx.LEFT_SQUARE_PAR():
-            # if self.memory_stack[-1][id]["type"] != "ARRAY":
-            #    raise NameError("This is not an array")
             try:
-                len(self.memory_stack[-1][id]["value"])
+                self.get_value(id)
             except:
                 raise NameError("This is not an array")
-            i = int(ctx.DIGIT().getText())
-            if len(self.memory_stack[-1][id]["value"]) < i + 1:
+            i = int(ctx.INT_V().getText())
+            if len(self.get_value(id)) < i + 1:
                 raise NameError("Array is too short")
-            if not self.is_good_type(self.memory_stack[-1][id]["type"], ctx_lit=ctx.expr().math_expr().literal()): # całkowicie do naprawy, przemyśl to (do: Kaliny)
-                raise NameError("Wrong type")
-            self.memory_stack[-1][id]["value"][i] = self.visit(ctx.expr())
+
+            for j in self.memory_stack:
+                if id in j.keys():
+                    j[id]["value"][i] = val
+                    break
         else:
-            if not self.is_good_type(self.memory_stack[-1][id]["type"], ctx.expr().math_expr().literal()):
-                raise NameError("Wrong type")
-            self.memory_stack[-1][id]["value"] = self.visit(ctx.expr())
+            for j in self.memory_stack:
+                if id in j.keys():
+                    j[id]["value"] = val
+
         return True
 
 
@@ -288,7 +266,6 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if ctx.literal():
             return self.visit(ctx.literal())
         elif ctx.ID():
-            #return self.memory_stack[-1][ctx.ID().getText().strip()]['value']
             return self.get_value(ctx.ID().getText().strip())
         elif ctx.function_call():
             return self.visit(ctx.function_call())
@@ -373,10 +350,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             self.memory_stack.pop()
             return
 
-
-
-
-            # Visit a parse tree produced by p_BoardLang#if_inside_loop_statement.
+    # Visit a parse tree produced by p_BoardLang#if_inside_loop_statement.
     def visitIf_inside_loop_statement(self, ctx:p_BoardLang.If_inside_loop_statementContext):
         return self.visitChildren(ctx)
 
@@ -491,7 +465,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             if z in scope.keys():
                 return scope[z]['value']
         raise NameError(f'No such identifier as {z}')
-    def is_good_type(self, type: str, ctx_lit: p_BoardLang.literal = None, ctx_id: p_BoardLang.ID = None):
+    def is_good_type(self, type: str, ctx_lit: p_BoardLang.literal = None, ctx_id: p_BoardLang.ID = None): # sprawdź, czy na pewno dobrze (do:  KALINY)
         if ctx_id is not None:
             return self.get_type(ctx_id.getText()) == type
         if type == 'INT':
@@ -518,11 +492,11 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitArgs_listwithver(self, type: str, ctx: p_BoardLang.Args_listContext):
         if ctx.ID():
             id = ctx.ID().getText()
-            if id not in self.memory_stack[-1].keys():
+            if not self.if_in_scope(id):
                 raise NameError(f'No such identifier as {id}')
-            if type != self.memory_stack[-1][id]['type']:
+            if type != self.get_type(id):
                 raise NameError('Wrong type in array')
-            return [self.memory_stack[-1][id]['value']]
+            return [self.get_value(id)]
         elif ctx.literal():
             if not self.is_good_type(type, ctx.literal()):
                 raise NameError('Wrong type in array')
@@ -530,6 +504,88 @@ class BoardLangVisitor(p_BoardLangVisitor):
         elif ctx.COMA():
             return self.visitArgs_listwithver(type, ctx.args_list(0)) + self.visitArgs_listwithver(type, ctx.args_list(1))
 
+    def handle_bool(self, ctx:p_BoardLang.ExprContext):
+        if ctx.bool_expr():
+            return self.visit(ctx.bool_expr())
+        if ctx.math_expr():
+            if ctx.math_expr().ID():
+                if self.get_type(ctx.math_expr().ID().getText()) != "BOOL":
+                    raise NameError('Wrong value type: should be boolean')
+                return self.get_value(ctx.math_expr().ID().getText())
+            elif ctx.math_expr().function_call():
+                return self.visit(ctx.math_expr().function_call())
+            else:
+                raise NameError('Wrong value type: should be boolean')
+
+    def handle_int(self, ctx:p_BoardLang.ExprContext):
+        if ctx.math_expr():
+            return self.visit(ctx.math_expr())
+        if ctx.bool_expr():
+            if ctx.bool_expr().ID():
+                if self.get_type(ctx.bool_expr().ID().getText()) != "INT":
+                    raise NameError('Wrong value type: should be math expression')
+                return self.get_value(ctx.bool_expr().ID().getText())
+            elif ctx.bool_expr().function_call():
+                return self.visit(ctx.bool_expr().function_call())
+            else:
+                raise NameError('Wrong value type: should be math expression')
+
+    def handle_string(self, ctx:p_BoardLang.ExprContext):
+        if ctx.math_expr():
+            c = ctx.math_expr()
+        elif ctx.bool_expr():
+            c = ctx.bool_expr()
+        if c.ID():
+            if not self.is_good_type('STRING', ctx_id=c.ID()):
+                raise NameError('Not a string')
+            st = self.get_value(c.ID().getText())
+        elif c.literal():
+            if not self.is_good_type('STRING', c.literal()):
+                raise NameError('Not a string')
+            st = self.visit(c.literal())
+        elif c.function_call():
+            st = self.visit(c.function_call())
+        else:
+            raise NameError('Not a string')
+        return st
+
+    def handle_char(self, ctx: p_BoardLang.ExprContext):
+        if ctx.math_expr():
+            c = ctx.math_expr()
+        elif ctx.bool_expr():
+            c = ctx.bool_expr()
+        if c.ID():
+            if not self.is_good_type('CHAR', ctx_id=c.ID()):
+                raise NameError('Not a char')
+            st = self.get_value(c.ID().getText())
+        elif c.literal():
+            if not self.is_good_type('CHAR', c.literal()):
+                raise NameError('Not a char')
+            st = self.visit(c.literal())
+        elif c.function_call():
+            st = self.visit(c.function_call())
+        else:
+            raise NameError('Not a char')
+        return st
+
+    def handle_colour(self, ctx: p_BoardLang.ExprContext): # oki, trzeba to przedyskutować, zrobiłam by działało
+        if ctx.math_expr():
+            c = ctx.math_expr()
+        elif ctx.bool_expr():
+            c = ctx.bool_expr()
+        if c.ID():
+            if not self.is_good_type('COLOUR', ctx_id=c.ID()):
+                raise NameError('Not a colour')
+            st = self.get_value(c.ID().getText())
+        elif c.literal():
+            if not self.is_good_type('COLOUR', c.literal()):
+                raise NameError('Not a colour')
+            st = self.hex_to_rgb(c.literal().getText())
+        elif c.function_call():
+            st = self.visit(c.function_call())
+        else:
+            raise NameError('Not a colour')
+        return st
 
 
 del p_BoardLang
