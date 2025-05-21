@@ -74,7 +74,10 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if name in self.memory_stack[-1].keys():
             raise NameError("Identifier already exists in current scope and cannot be overwritten")
 
-        args = self.visit(ctx.function_declaration_args())
+        if ctx.function_declaration_args():
+            args = self.visit(ctx.function_declaration_args())
+        else:
+            args = {}
         if ctx.var_types():
             return_type = self.visit(ctx.var_types())
         else:
@@ -121,7 +124,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
                 raise NameError("Wrong number of arguments")
             scope_this = {}
             for i in range(0, len(args)):
-                if not self.is_good_type(fun_args[i][1], args[i]):
+                if self.is_good_type(fun_args[i][1], args[i]):
                     raise NameError(f"Wrong type of argument: {fun_args[i][0]}")
                 s = self.get_from_literal_or_id(args[i])
                 scope_this.update({fun_args[i][0]: {'value': s, 'type': fun_args[i][1]}})
@@ -439,7 +442,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitArgs_list(self, ctx:p_BoardLang.Args_listContext):
         if ctx.ID():
             id = ctx.ID().getText()
-            if self.if_in_scope(id):
+            if not self.if_in_scope(id):
                 raise NameError(f'No such identifier as {id}')
             return [ctx.ID()]
         elif ctx.literal():

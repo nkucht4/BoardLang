@@ -1,0 +1,26 @@
+board_size[10:10] $
+
+TileType one = TileType(#a8b7ed) $
+TileType two = TileType(#102b8f) $
+
+for (0:10:2 -> i){
+
+    for (0:10:2 -> x){
+        draw [x:i] one $
+    }
+
+    for (1:10:2 -> x){
+        draw [x:i] two $
+    }
+}
+
+for (1:10:2 -> i){
+
+    for (0:10:2 -> x){
+        draw [x:i] two $
+    }
+
+    for (1:10:2 -> x){
+        draw [x:i] one $
+    }
+}
