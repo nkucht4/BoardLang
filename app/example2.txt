@@ -1,0 +1,27 @@
+board_size [12:14] $
+
+INT a = 0 $
+TileType grass = TileType(#53e835) $
+TileType red = TileType(#de182f) $
+
+as long as (a < 5){
+    draw [ a:3 ] grass $
+    a = a + 1 $
+}
+
+if ( a == 5){
+    draw [10:10] red $
+}
+otherwise{
+	draw [10:10] grass $
+}
+
+draw [here] red $
+
+setpos [5:9] $
+
+draw [here] red $
+
+reset $
+
+draw [here] red $
