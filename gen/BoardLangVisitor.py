@@ -388,7 +388,25 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#if_inside_loop_statement.
     def visitIf_inside_loop_statement(self, ctx:p_BoardLang.If_inside_loop_statementContext):
-        return self.visitChildren(ctx)
+        if self.visit(ctx.expr(0)):
+            self.memory_stack.append({})
+            self.visit(ctx.inside_loop(0))
+            self.memory_stack.pop()
+            return
+        otherifs = len(ctx.OTHERIF_T())
+        if otherifs > 0:
+            for i in range(0, otherifs):
+                if self.visit(ctx.expr(i + 1)):
+                    self.memory_stack.append({})
+                    self.visit(ctx.inside_loop(i + 1))
+                    self.memory_stack.pop()
+                    return
+
+        if ctx.OTHERWISE_T():
+            self.memory_stack.append({})
+            self.visit(ctx.inside_loop(-1))
+            self.memory_stack.pop()
+            return
 
 
     # Visit a parse tree produced by p_BoardLang#for_loop.
@@ -419,6 +437,57 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     def visitBreak_instruction(self, ctx:p_BoardLang.Break_instructionContext):
         raise BreakException()
+
+    # Visit a parse tree produced by p_BoardLang#if_inside_functions_statement.
+    def visitIf_inside_functions_statement(self, ctx: p_BoardLang.If_inside_functions_statementContext):
+        return self.visitChildren(ctx)
+
+    # Visit a parse tree produced by p_BoardLang#for_loop_inside_function.
+    def visitFor_loop_inside_function(self, ctx: p_BoardLang.For_loop_inside_functionContext):
+        start = self.visit(ctx.math_expr(0))
+        end = self.visit(ctx.math_expr(1))
+        step = self.visit(ctx.math_expr(2))
+        id = ctx.ID().getText().strip()
+
+        self.memory_stack.append({})
+        self.memory_stack[-1][id] = {"type": 'INT',
+                                     "value": start}
+
+        for i in range(start, end, step):
+            self.memory_stack.append({})
+            self.memory_stack[-2][id]['value'] = i
+            try:
+                self.visit(ctx.instr_inside_loop_inside_fun())
+            except BreakException:
+                break
+            self.memory_stack.pop()
+        self.memory_stack.pop()
+        return True
+
+        # Visit a parse tree produced by p_BoardLang#as_long_as_loop_inside_function.
+    def visitAs_long_as_loop_inside_function(self, ctx: p_BoardLang.As_long_as_loop_inside_functionContext):
+        condition = self.visit(ctx.expr())
+        self.memory_stack.append({})
+
+        while condition:
+            self.memory_stack.append({})
+            try:
+                self.visit(ctx.instr_inside_loop_inside_fun())
+            except BreakException:
+                break
+            self.memory_stack.pop()
+            condition = self.visit(ctx.expr())
+
+        self.memory_stack.pop()
+        return True
+
+    # Visit a parse tree produced by p_BoardLang#instr_inside_loop_inside_fun.
+    def visitInstr_inside_loop_inside_fun(self, ctx: p_BoardLang.Instr_inside_loop_inside_funContext):
+        return self.visitChildren(ctx)
+
+        # Visit a parse tree produced by p_BoardLang#if_inside_loop_inside_fun_statement.
+    def visitIf_inside_loop_inside_fun_statement(self, ctx: p_BoardLang.If_inside_loop_inside_fun_statementContext):
+        return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by p_BoardLang#as_long_as_loop.
