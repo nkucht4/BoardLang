@@ -372,14 +372,15 @@ class BoardLangVisitor(p_BoardLangVisitor):
             self.memory_stack.pop()
             return
         otherifs = len(ctx.OTHERIF_T())
-        for i in range(0, otherifs):
-            if self.visit(ctx.expr(i+1)):
-                self.memory_stack.append({})
-                self.visit(ctx.instructions(i+1))
-                self.memory_stack.pop()
-                return
+        if otherifs > 0:
+            for i in range(0, otherifs):
+                if self.visit(ctx.expr(i+1)):
+                    self.memory_stack.append({})
+                    self.visit(ctx.instructions(i+1))
+                    self.memory_stack.pop()
+                    return
 
-        if self.OTHERWISE_T():
+        if ctx.OTHERWISE_T():
             self.memory_stack.append({})
             self.visit(ctx.instructions(-1))
             self.memory_stack.pop()

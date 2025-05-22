@@ -1,0 +1,17 @@
+board_size[15:15] $
+
+TileType blue = TileType(#0062ff) $
+
+INT a = 1 $
+INT b = 9$
+
+if(a != b){
+	INT b = 14 $
+	draw [b:b] blue $
+	if(b % 2 == 0){
+		INT a = 0 $
+		draw [a:b] blue $
+	}
+}
+
+draw [a:b] blue $
