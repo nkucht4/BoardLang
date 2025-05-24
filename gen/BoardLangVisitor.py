@@ -115,37 +115,53 @@ class BoardLangVisitor(p_BoardLangVisitor):
         fun = self.get_value(name)
         if not ctx.args_list():
             try:
-                self.functionBody(fun.body)
+                self.memory_stack.append({})
+                self.visit(fun.body)
+                self.memory_stack.pop()
             except FunctionReturn as r:
+                self.memory_stack.pop()
                 return r.value
+            return
         else:
-            args = self.visit(ctx.args_list())
+            args = self._Args_list_tuple(ctx.args_list())
             fun_args = fun.arg_list
             if len(args) != len(fun_args):
                 raise NameError("Wrong number of arguments")
             scope_this = {}
             for i in range(0, len(args)):
-                if self.is_good_type(fun_args[i][1], args[i]):
-                    raise NameError(f"Wrong type of argument: {fun_args[i][0]}")
-                s = self.get_from_literal_or_id(args[i])
-                scope_this.update({fun_args[i][0]: {'value': s, 'type': fun_args[i][1]}})
+                if fun_args[i][1] != args[i][1]:
+                    raise NameError(f"Wrong type of argument: {fun_args[i][0]} is not {args[i][1]}")
+
+                scope_this.update({fun_args[i][0]: {'value': args[i][0], 'type': fun_args[i][1]}})
             try:
-                self.functionBody(fun.body, scope_this)
+                self.memory_stack.append(scope_this)
+                self.visit(fun.body)
+                self.memory_stack.pop()
             except FunctionReturn as r:
+                self.memory_stack.pop()
                 return r.value
-
-    def get_from_literal_or_id(self, ctx_lit: p_BoardLang.literal = None, ctx_id: p_BoardLang.ID = None):
-        if ctx_id is not None:
-            return self.get_value(ctx_id.getText())
-        if ctx_lit is not None:
-            return self.visit(ctx_lit)
-
-    def functionBody(self, ctx:p_BoardLang.Function_instrContext, args = None):
-        if args is None:
-            self.memory_stack.append({})
-        else:
-            self.memory_stack.append(args)
-        return self.visitChildren(ctx)
+            return
+    def _Args_list_tuple(self, ctx:p_BoardLang.Args_listContext):
+        if ctx.ID():
+            id = ctx.ID().getText()
+            if not self.if_in_scope(id):
+                raise NameError(f'No such identifier as {id}')
+            return [(self.get_value(id), self.get_type(id))]
+        elif ctx.literal():
+            type = ""
+            if ctx.literal().INT_V():
+                type = "INT"
+            elif ctx.literal().BOOL_V():
+                type = "BOOL"
+            elif ctx.literal().COLOUR_V():
+                type = "COLOUR"
+            elif ctx.literal().STRING_V():
+                type = "STRING"
+            elif ctx.literal().CHAR_V():
+                type = "CHAR"
+            return [(self._Args_list_tuple(ctx.literal()), type)]
+        elif ctx.COMA():
+            return self._Args_list_tuple(ctx.args_list(0)) + self._Args_list_tuple(ctx.args_list(1))
 
     # Visit a parse tree produced by p_BoardLang#declaration.
     def visitDeclaration(self, ctx: p_BoardLang.DeclarationContext):
@@ -520,9 +536,9 @@ class BoardLangVisitor(p_BoardLangVisitor):
             id = ctx.ID().getText()
             if not self.if_in_scope(id):
                 raise NameError(f'No such identifier as {id}')
-            return [ctx.ID()]
+            return [self.get_value(id)]
         elif ctx.literal():
-            return [ctx.literal()]
+            return [self.visit(ctx.literal())]
         elif ctx.COMA():
             return self.visit(ctx.args_list(0)) + self.visit(ctx.args_list(1))
 
