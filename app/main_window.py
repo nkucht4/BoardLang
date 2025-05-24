@@ -44,7 +44,7 @@ class MainWindow(QMainWindow):
         try:
             text = self.textEditor.toPlainText()
 
-            name = QFileDialog.getSaveFileName(self, caption="Wybierz plik", filter="Text Files (*.txt")
+            name, _ = QFileDialog.getSaveFileName(self, caption="Wybierz plik", filter="Text Files (*.txt")
             file = open(name, 'w')
             file.write(text)
             file.close()
