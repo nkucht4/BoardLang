@@ -51,9 +51,10 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if width < 0 or height < 0:
             raise ValueError('Negative numbers not allowed inside board_size definition')
         self.tilemap['size'] = (width, height)
+        self.tilemap['map'] = [[0 for _ in range(height)] for _ in range(width)]
+        self.tilemap['images'] = {}
         with open(self.filename, 'w') as f:
             json.dump(self.tilemap, f)
-        self.tilemap['map'] = [[0 for _ in range(height)] for _ in range(width)]
         return True
 
 
@@ -196,6 +197,9 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if id in self.memory_stack[-1].keys():
             raise NameError("Identifier already exists in this scope and cannot be overwritten")
         color = self.visit(ctx.tt_arg())
+        print(color)
+        if isinstance(color, str):
+            self.tilemap['images'][id] = color
         self.memory_stack[-1][id] = {"type": "TileType", "value": color}
         return True
 
@@ -337,6 +341,8 @@ class BoardLangVisitor(p_BoardLangVisitor):
         x, y = self.visit(ctx.draw_args())
         tilename = ctx.ID().getText()
         tile = self.get_value(tilename)
+        if isinstance(tile, str):
+            tile = tilename
         if self.get_type(tilename) != 'TileType':
             raise TypeError('Expected TileType')
         else:

@@ -6,3 +6,4 @@ __pycache__/
 finish.py
 TileMap.json
 app/test.txt
+*.png
