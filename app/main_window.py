@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
         self.runButton.clicked.connect(self.handle_run_clicked)
         self.openButton.clicked.connect(self.handle_open_file_clicked)
         self.saveButton.clicked.connect(self.handle_save_file_clicked)
+        self.saveImageButton.clicked.connect(self.handle_save_image_clicked)
 
     def handle_open_file_clicked(self):
         response = QFileDialog.getOpenFileName(parent=self,
@@ -75,8 +76,27 @@ class MainWindow(QMainWindow):
         surface, surface_size = self.board_renderer.get_surface()
         surface_qimage = QImage(surface, surface_size[0], surface_size[1], QImage.Format.Format_RGB888)
         surface_pixmap = QPixmap.fromImage(surface_qimage)
+
+        self.imageSpace.setScaledContents(False)
         self.imageSpace.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.imageSpace.setPixmap(surface_pixmap)
+
+        self.scrollArea.setWidgetResizable(True)
+
+    def handle_save_image_clicked(self):
+        surface = self.board_renderer.get_surface()
+
+        file_path, _ = QFileDialog.getSaveFileName(
+            parent=None,
+            caption="Wybierz plik",
+            directory="",
+            filter="All Files (*)"
+        )
+
+        file_path += '.png'
+
+        self.board_renderer.save_to_file(file_path)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

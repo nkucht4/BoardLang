@@ -33,7 +33,7 @@ class BoardGenerator:
         for x, row in enumerate(map):
             for y, color in enumerate(row):
                 if color != 0:
-                    if isinstance(color, tuple):
+                    if isinstance(color, tuple) or isinstance(color, list):
                         self.render_tile(x, y, pygame.Color(tuple(color)))
                     else:
                         self.render_image_tile(x, y, color.strip('"\''))
@@ -60,6 +60,9 @@ class BoardGenerator:
         screen = self.screen.convert(24)
         surface = pygame.image.tostring(screen, "RGB", False)
         return surface, self.screen.get_size()
+
+    def save_to_file(self, path: str):
+        pygame.image.save(self.screen, path)
 
 #if __name__ == "__main__":
  #   board = BoardGenerator( '../TileMap.json')
