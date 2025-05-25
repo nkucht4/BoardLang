@@ -63,7 +63,8 @@ assignment: ID EQ expr
           | ID LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR EQ expr;
 
 tt_arg: COLOUR_V
-        | STRING_V;
+        | STRING_V
+        | ID;
 
 //Expressions
 expr: bool_expr

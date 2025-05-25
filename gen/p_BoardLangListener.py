@@ -1,9 +1,9 @@
-# Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
+# Generated from C:/Users/DELL/PycharmProjects/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
-    from gen.p_BoardLang import p_BoardLang
+    from .p_BoardLang import p_BoardLang
 else:
-    from gen.p_BoardLang import p_BoardLang
+    from p_BoardLang import p_BoardLang
 
 # This class defines a complete listener for a parse tree produced by p_BoardLang.
 class p_BoardLangListener(ParseTreeListener):

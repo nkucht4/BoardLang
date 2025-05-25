@@ -208,7 +208,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         return True
 
     # Visit a parse tree produced by p_BoardLang#tile_decl_w_ass.
-    def visitTile_decl_w_ass(self, ctx:p_BoardLang.Tile_decl_w_assContext):
+    def visitTile_decl_w_ass(self, ctx: p_BoardLang.Tile_decl_w_assContext):
         id = ctx.ID().getText()
         if id in self.memory_stack[-1].keys():
             raise NameError("Identifier already exists in this scope and cannot be overwritten")
@@ -221,11 +221,19 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
 
     # Visit a parse tree produced by p_BoardLang#tt_arg.
-    def visitTt_arg(self, ctx:p_BoardLang.Tt_argContext):
+    def visitTt_arg(self, ctx: p_BoardLang.Tt_argContext):
         if ctx.COLOUR_V():
             return self.hex_to_rgb(ctx.COLOUR_V().getText())
         if ctx.STRING_V():
             return ctx.STRING_V().getText()
+        if ctx.ID():
+            if not self.if_in_scope(ctx.ID().getText()):
+                raise NameError("Identifier does not exists")
+            typ = self.get_type(ctx.ID().getText())
+            if not (typ == "COLOUR" or typ == "STRING"):
+                raise NameError("Invalid type: should be COLOUR or STRING, not " + typ)
+            return self.get_value(ctx.ID().getText())
+
 
 
     # Visit a parse tree produced by p_BoardLang#assignment.

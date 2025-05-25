@@ -1,4 +1,4 @@
-# Generated from C:/Users/kucht/Documents/Studia/Rok2/S4/Kompilatory/Projekt/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
+# Generated from C:/Users/DELL/PycharmProjects/BoardLang/antlr/p_BoardLang.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -58,7 +58,7 @@ def serializedATN():
         32,1,32,5,32,571,8,32,10,32,12,32,574,9,32,1,33,1,33,1,34,1,34,1,
         35,1,35,1,36,1,36,1,36,0,7,6,10,12,30,32,50,64,37,0,2,4,6,8,10,12,
         14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,
-        58,60,62,64,66,68,70,72,0,5,2,0,56,56,58,58,2,0,53,53,55,58,1,0,
+        58,60,62,64,66,68,70,72,0,5,2,0,56,56,58,59,2,0,53,53,55,58,1,0,
         18,22,2,0,36,37,39,42,1,0,25,29,628,0,74,1,0,0,0,2,80,1,0,0,0,4,
         90,1,0,0,0,6,114,1,0,0,0,8,123,1,0,0,0,10,139,1,0,0,0,12,174,1,0,
         0,0,14,183,1,0,0,0,16,195,1,0,0,0,18,198,1,0,0,0,20,231,1,0,0,0,
@@ -1711,6 +1711,9 @@ class p_BoardLang ( Parser ):
         def STRING_V(self):
             return self.getToken(p_BoardLang.STRING_V, 0)
 
+        def ID(self):
+            return self.getToken(p_BoardLang.ID, 0)
+
         def getRuleIndex(self):
             return p_BoardLang.RULE_tt_arg
 
@@ -1740,7 +1743,7 @@ class p_BoardLang ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 255
             _la = self._input.LA(1)
-            if not(_la==56 or _la==58):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 936748722493063168) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
