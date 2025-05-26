@@ -160,6 +160,33 @@ class BoardLangVisitor(p_BoardLangVisitor):
             elif ctx.literal().CHAR_V():
                 type = "CHAR"
             return [(self._Args_list_tuple(ctx.literal()), type)]
+        elif ctx.expr():
+            if ctx.expr().math_expr():
+                c = ctx.expr().math_expr()
+                st = "INT"
+            else:
+                c = ctx.expr().bool_expr()
+                st = "BOOL"
+            if c.ID():
+                id = c.ID().getText()
+                if not self.if_in_scope(id):
+                    raise NameError(f'No such identifier as {id}')
+                return [(self.get_value(id), self.get_type(id))]
+            elif c.literal():
+                type = ""
+                if ctx.literal().INT_V():
+                    type = "INT"
+                elif ctx.literal().BOOL_V():
+                    type = "BOOL"
+                elif ctx.literal().COLOUR_V():
+                    type = "COLOUR"
+                elif ctx.literal().STRING_V():
+                    type = "STRING"
+                elif ctx.literal().CHAR_V():
+                    type = "CHAR"
+                return [(self._Args_list_tuple(ctx.literal()), type)]
+            else:
+                return [(self.visit(c), st)]
         elif ctx.COMA():
             return self._Args_list_tuple(ctx.args_list(0)) + self._Args_list_tuple(ctx.args_list(1))
 
@@ -178,7 +205,6 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#declaration_with_assign.
     def visitDeclaration_with_assign(self, ctx:p_BoardLang.Declaration_with_assignContext):
-        # ctx.expr()
         id = ctx.ID().getText().strip()
         if id in self.memory_stack[-1].keys():
             raise NameError('Identifier already exists in current scope and cannot be overwritten')
@@ -470,6 +496,25 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#if_inside_functions_statement.
     def visitIf_inside_functions_statement(self, ctx: p_BoardLang.If_inside_functions_statementContext):
+        if self.visit(ctx.expr(0)):
+            self.memory_stack.append({})
+            self.visit(ctx.function_instr(0))
+            self.memory_stack.pop()
+            return
+        otherifs = len(ctx.OTHERIF_T())
+        if otherifs > 0:
+            for i in range(0, otherifs):
+                if self.visit(ctx.expr(i+1)):
+                    self.memory_stack.append({})
+                    self.visit(ctx.function_instr(i+1))
+                    self.memory_stack.pop()
+                    return
+
+        if ctx.OTHERWISE_T():
+            self.memory_stack.append({})
+            self.visit(ctx.function_instr(-1))
+            self.memory_stack.pop()
+            return
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by p_BoardLang#for_loop_inside_function.
@@ -636,6 +681,29 @@ class BoardLangVisitor(p_BoardLangVisitor):
             if not self.is_good_type(type, ctx.literal()):
                 raise NameError('Wrong type in array')
             return [self.visit(ctx.literal())]
+        elif ctx.expr():
+            if ctx.expr().math_expr():
+                c = ctx.expr().math_expr()
+                st = "INT"
+            else:
+                c = ctx.expr().bool_expr()
+                st = "BOOL"
+            if c.literal():
+                if not self.is_good_type(type, c.literal()):
+                    raise NameError('Wrong type in array')
+                return [self.visit(c.literal())]
+            elif c.ID():
+                id = c.ID().getText()
+                if not self.if_in_scope(id):
+                    raise NameError(f'No such identifier as {id}')
+                if type != self.get_type(id):
+                    raise NameError('Wrong type in array')
+                return [self.get_value(id)]
+            else:
+                if type != st:
+                    raise NameError('Wrong type in array')
+                else:
+                    return [self.visit(c)]
         elif ctx.COMA():
             return self.visitArgs_listwithver(type, ctx.args_list(0)) + self.visitArgs_listwithver(type, ctx.args_list(1))
 

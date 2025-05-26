@@ -175,6 +175,7 @@ if_inside_loop_inside_fun_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
 // Help
 args_list: ID
             | literal
+            | expr
             | args_list COMA args_list;
 
 literal: INT_V
