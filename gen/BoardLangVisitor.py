@@ -104,7 +104,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#return_expr.
     def visitReturn_expr(self, ctx: p_BoardLang.Return_exprContext):
-        value = self.visit(ctx.expr())
+        value = self.visit(ctx.value())
         raise FunctionReturn(value)
 
     # Visit a parse tree produced by p_BoardLang#function_call.
@@ -222,7 +222,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             else:
                 raise NameError('Unsupported type')
 
-            val = handler(ctx.expr())
+            val = handler(ctx.value())
             self.memory_stack[-1][id] = {"type": ctx.var_types().getText(), "value": val}
         else:
             i = int(ctx.INT_V().getText().strip())
@@ -281,7 +281,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         else:
             raise NameError('Unsupported type')
 
-        val = handler(ctx.expr())
+        val = handler(ctx.value())
         if ctx.LEFT_SQUARE_PAR():
             try:
                 self.get_value(id)
@@ -302,7 +302,16 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
         return True
 
-
+    def visitValue(self, ctx: p_BoardLang.ValueContext):
+        if ctx.expr():
+            return self.visit(ctx.expr())
+        elif ctx.literal():
+            return self.visit(ctx.literal())
+        else:
+            id = ctx.ID().getText()
+            if not self.if_in_scope(id):
+                raise NameError(f"Identifier: {id} does not exist")
+            return self.visit(ctx.ID())
     # Visit a parse tree produced by p_BoardLang#expr.
     def visitExpr(self, ctx:p_BoardLang.ExprContext):
         return self.visitChildren(ctx)
@@ -352,35 +361,53 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#math_expr.
     def visitMath_expr(self, ctx:p_BoardLang.Math_exprContext):
-        if ctx.literal():
+        return self.visitChildren(ctx)
+
+    def visitMath_expr_addition(self, ctx:p_BoardLang.Math_expr_additionContext):
+        if ctx.PLUS():
+            return self.visit(ctx.math_expr_addition()) + self.visit(ctx.math_expr_multiplication())
+        elif ctx.MINUS():
+            return self.visit(ctx.math_expr_addition()) - self.visit(ctx.math_expr_multiplication())
+        else:
+            return self.visit(ctx.math_expr_multiplication())
+
+
+    # Visit a parse tree produced by p_BoardLang#math_expr_multiplication.
+    def visitMath_expr_multiplication(self, ctx:p_BoardLang.Math_expr_multiplicationContext):
+        if ctx.DIVIDE():
+            return int(self.visit(ctx.math_expr_multiplication()) / self.visit(ctx.math_expr_atom()))
+        elif ctx.MULTIPLY():
+            return self.visit(ctx.math_expr_multiplication()) * self.visit(ctx.math_expr_atom())
+        elif ctx.MOD():
+            return self.visit(ctx.math_expr_multiplication()) % self.visit(ctx.math_expr_atom())
+        else:
+            return self.visit(ctx.math_expr_atom())
+
+
+    # Visit a parse tree produced by p_BoardLang#math_expr_atom.
+    def visitMath_expr_atom(self, ctx:p_BoardLang.Math_expr_atomContext):
+        if ctx.math_expr():
+            return self.visit(ctx.math_expr())
+        elif ctx.literal():
+            if not ctx.literal().INT_V():
+                raise NameError('Not an interger')
             return self.visit(ctx.literal())
         elif ctx.ID():
-            return self.get_value(ctx.ID().getText().strip())
+            id = ctx.ID().getText()
+            if not self.if_in_scope(id):
+                raise NameError(f'Identifier does not exits: {id}')
+            elif self.get_type(id) != "INT":
+                raise NameError(f'The type of: {id} is not an integer')
+            return self.get_value(id)
         elif ctx.function_call():
+            if self.get_type(ctx.function_call().ID().getText()) != 'FUNCTION':
+                raise NameError('That is not a function')
+            if self.get_value(ctx.function_call().ID().getText()).return_type != "INT":
+                raise NameError(f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of INT')
             return self.visit(ctx.function_call())
-        elif ctx.LEFT_PAR():
-            return self.visit(ctx.math_expr(0))
-        elif ctx.math_operator():
-            x1 = self.visit(ctx.math_expr(0))
-            x2 = self.visit(ctx.math_expr(1))
-            x = self.visit(ctx.math_operator())
-            if not isinstance(x1, int) or not isinstance(x2, int):
-                raise NameError("Invalid expression: not an int")
-            if x == "+":
-                return x1 + x2
-            elif x == "-":
-                return x1 - x2
-            elif x == "/":
-                return int(x1 / x2)
-            elif x == "%":
-                return x1 % x2
-            elif x == "*":
-                return x1 * x2
-        return True
-
 
     # Visit a parse tree produced by p_BoardLang#board_instr.
-    def visitBoard_instr(self, ctx:p_BoardLang.Board_instrContext):
+    def visitBoard_instr(self, ctx: p_BoardLang.Board_instrContext):
         if ctx.RESET_T():
             self.memory_stack[0]['here']['value'] = (0,0)
         return self.visitChildren(ctx)
@@ -422,7 +449,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#if_instr.
     def visitIf_instr(self, ctx:p_BoardLang.If_instrContext):
-        if self.visit(ctx.expr(0)):
+        if self.visit(ctx.value(0)):
             self.memory_stack.append({})
             self.visit(ctx.instructions(0))
             self.memory_stack.pop()
@@ -430,7 +457,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         otherifs = len(ctx.OTHERIF_T())
         if otherifs > 0:
             for i in range(0, otherifs):
-                if self.visit(ctx.expr(i+1)):
+                if self.visit(ctx.value(i+1)):
                     self.memory_stack.append({})
                     self.visit(ctx.instructions(i+1))
                     self.memory_stack.pop()
@@ -444,7 +471,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#if_inside_loop_statement.
     def visitIf_inside_loop_statement(self, ctx:p_BoardLang.If_inside_loop_statementContext):
-        if self.visit(ctx.expr(0)):
+        if self.visit(ctx.value(0)):
             self.memory_stack.append({})
             self.visit(ctx.inside_loop(0))
             self.memory_stack.pop()
@@ -452,7 +479,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         otherifs = len(ctx.OTHERIF_T())
         if otherifs > 0:
             for i in range(0, otherifs):
-                if self.visit(ctx.expr(i + 1)):
+                if self.visit(ctx.value(i + 1)):
                     self.memory_stack.append({})
                     self.visit(ctx.inside_loop(i + 1))
                     self.memory_stack.pop()
@@ -496,7 +523,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#if_inside_functions_statement.
     def visitIf_inside_functions_statement(self, ctx: p_BoardLang.If_inside_functions_statementContext):
-        if self.visit(ctx.expr(0)):
+        if self.visit(ctx.value(0)):
             self.memory_stack.append({})
             self.visit(ctx.function_instr(0))
             self.memory_stack.pop()
@@ -504,7 +531,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         otherifs = len(ctx.OTHERIF_T())
         if otherifs > 0:
             for i in range(0, otherifs):
-                if self.visit(ctx.expr(i+1)):
+                if self.visit(ctx.value(i+1)):
                     self.memory_stack.append({})
                     self.visit(ctx.function_instr(i+1))
                     self.memory_stack.pop()
@@ -541,7 +568,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
         # Visit a parse tree produced by p_BoardLang#as_long_as_loop_inside_function.
     def visitAs_long_as_loop_inside_function(self, ctx: p_BoardLang.As_long_as_loop_inside_functionContext):
-        condition = self.visit(ctx.expr())
+        condition = self.visit(ctx.value())
         self.memory_stack.append({})
 
         while condition:
@@ -551,7 +578,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             except BreakException:
                 break
             self.memory_stack.pop()
-            condition = self.visit(ctx.expr())
+            condition = self.visit(ctx.value())
 
         self.memory_stack.pop()
         return True
@@ -567,7 +594,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#as_long_as_loop.
     def visitAs_long_as_loop(self, ctx:p_BoardLang.As_long_as_loopContext):
-        condition = self.visit(ctx.expr())
+        condition = self.visit(ctx.value())
         self.memory_stack.append({})
 
         while condition:
@@ -577,7 +604,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             except BreakException:
                 break
             self.memory_stack.pop()
-            condition = self.visit(ctx.expr())
+            condition = self.visit(ctx.value())
 
         self.memory_stack.pop()
         return True
@@ -707,107 +734,109 @@ class BoardLangVisitor(p_BoardLangVisitor):
         elif ctx.COMA():
             return self.visitArgs_listwithver(type, ctx.args_list(0)) + self.visitArgs_listwithver(type, ctx.args_list(1))
 
-    def handle_bool(self, ctx:p_BoardLang.ExprContext):
-        if ctx.bool_expr():
-            return self.visit(ctx.bool_expr())
-        if ctx.math_expr():
-            if ctx.math_expr().ID():
-                if self.get_type(ctx.math_expr().ID().getText()) != "BOOL":
-                    raise NameError('Wrong value type: should be boolean')
-                return self.get_value(ctx.math_expr().ID().getText())
-            elif ctx.math_expr().function_call():
-                if self.get_type(ctx.math_expr().function_call().ID().getText()) != 'FUNCTION':
-                    raise NameError('That is not a function')
-                if self.get_value(ctx.math_expr().function_call().ID().getText()).return_type != "BOOL":
-                    raise NameError(
-                        f'Function returns {self.get_value(ctx.math_expr().function_call().ID().getText()).return_type} instead of BOOL')
-                return self.visit(ctx.math_expr().function_call())
+    def handle_bool(self, ctx:p_BoardLang.ValueContext):
+        if ctx.expr():
+            if ctx.expr().bool_expr():
+                return self.visit(ctx.expr().bool_expr())
             else:
                 raise NameError('Wrong value type: should be boolean')
-
-    def handle_int(self, ctx:p_BoardLang.ExprContext):
-        if ctx.math_expr():
-            return self.visit(ctx.math_expr())
-        if ctx.bool_expr():
-            if ctx.bool_expr().ID():
-                if self.get_type(ctx.bool_expr().ID().getText()) != "INT":
-                    raise NameError('Wrong value type: should be math expression')
-                return self.get_value(ctx.bool_expr().ID().getText())
-            elif ctx.bool_expr().function_call():
-                if self.get_type(ctx.bool_expr().function_call().ID().getText()) != 'FUNCTION':
-                    raise NameError('That is not a function')
-                if self.get_value(ctx.bool_expr().function_call().ID().getText()).return_type != "INT":
-                    raise NameError(
-                        f'Function returns {self.get_value(ctx.bool_expr().function_call().ID().getText()).return_type} instead of INT')
-                return self.visit(ctx.bool_expr().function_call())
+        elif ctx.ID():
+            id = ctx.ID().getText()
+            if not self.if_in_scope(id):
+                raise NameError(f'Identifier: {id} does not exist')
+            elif self.get_type(id) != "BOOL":
+                raise NameError('Wrong value type: should be boolean')
+            return self.get_value(id)
+        elif ctx.literal():
+            if not ctx.literal().BOOL_V():
+                raise NameError('Wrong value type: should be boolean')
             else:
-                raise NameError('Wrong value type: should be math expression')
-
-    def handle_string(self, ctx:p_BoardLang.ExprContext):
-        if ctx.math_expr():
-            c = ctx.math_expr()
-        elif ctx.bool_expr():
-            c = ctx.bool_expr()
-        if c.ID():
-            if not self.is_good_type('STRING', ctx_id=c.ID()):
-                raise NameError('Not a string')
-            st = self.get_value(c.ID().getText())
-        elif c.literal():
-            if not self.is_good_type('STRING', c.literal()):
-                raise NameError('Not a string')
-            st = self.visit(c.literal())
-        elif c.function_call():
-            if self.get_type(c.function_call().ID().getText()) != 'FUNCTION':
+                return self.visit(ctx.literal())
+        else:
+            if self.get_type(ctx.function_call().ID().getText()) != 'FUNCTION':
                 raise NameError('That is not a function')
-            if self.get_value(c.function_call().ID().getText()).return_type != "STRING":
-                raise NameError(f'Function returns {self.get_value(c.function_call().ID().getText()).return_type} instead of STRING')
-            st = self.visit(c.function_call())
+            if self.get_value(ctx.function_call().ID().getText()).return_type != "BOOL":
+                raise NameError(
+                    f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of BOOL')
+
+    def handle_int(self, ctx: p_BoardLang.ValueContext):
+        if ctx.expr():
+            if ctx.expr().math_expr():
+                return self.visit(ctx.expr().math_expr())
+            else:
+                raise NameError('Wrong value type: should be integer')
+        elif ctx.ID():
+            id = ctx.ID().getText()
+            if not self.if_in_scope(id):
+                raise NameError(f'Identifier: {id} does not exist')
+            elif self.get_type(id) != "INT":
+                raise NameError('Wrong value type: should be integer')
+            return self.get_value(id)
+        elif ctx.literal():
+            if not ctx.literal().INT_V():
+                raise NameError('Wrong value type: should be integer')
+            else:
+                return self.visit(ctx.literal())
+        else:
+            if self.get_type(ctx.function_call().ID().getText()) != 'FUNCTION':
+                raise NameError('That is not a function')
+            if self.get_value(ctx.function_call().ID().getText()).return_type != "INT":
+                raise NameError(
+                    f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of INT')
+
+    def handle_string(self, ctx: p_BoardLang.ValueContext):
+        if ctx.ID():
+            if not self.is_good_type('STRING', ctx_id=ctx.ID()):
+                raise NameError('Not a string')
+            st = self.get_value(ctx.ID().getText())
+        elif ctx.literal():
+            if not self.is_good_type('STRING', ctx.literal()):
+                raise NameError('Not a string')
+            st = self.visit(ctx.literal())
+        elif ctx.function_call():
+            if self.get_type(ctx.function_call().ID().getText()) != 'FUNCTION':
+                raise NameError('That is not a function')
+            if self.get_value(ctx.function_call().ID().getText()).return_type != "STRING":
+                raise NameError(f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of STRING')
+            st = self.visit(ctx.function_call())
         else:
             raise NameError('Not a string')
         return st
 
-    def handle_char(self, ctx: p_BoardLang.ExprContext):
-        if ctx.math_expr():
-            c = ctx.math_expr()
-        elif ctx.bool_expr():
-            c = ctx.bool_expr()
-        if c.ID():
-            if not self.is_good_type('CHAR', ctx_id=c.ID()):
+    def handle_char(self, ctx: p_BoardLang.ValueContext):
+        if ctx.ID():
+            if not self.is_good_type('CHAR', ctx_id=ctx.ID()):
                 raise NameError('Not a char')
-            st = self.get_value(c.ID().getText())
-        elif c.literal():
-            if not self.is_good_type('CHAR', c.literal()):
+            st = self.get_value(ctx.ID().getText())
+        elif ctx.literal():
+            if not self.is_good_type('CHAR', ctx.literal()):
                 raise NameError('Not a char')
-            st = self.visit(c.literal())
-        elif c.function_call():
-            if self.get_type(c.function_call().ID().getText()) != 'FUNCTION':
+            st = self.visit(ctx.literal())
+        elif ctx.function_call():
+            if self.get_type(ctx.function_call().ID().getText()) != 'FUNCTION':
                 raise NameError('That is not a function')
-            if self.get_value(c.function_call().ID().getText()).return_type != "CHAR":
-                raise NameError(f'Function returns {self.get_value(c.function_call().ID().getText()).return_type} instead of CHAR')
-            st = self.visit(c.function_call())
+            if self.get_value(ctx.function_call().ID().getText()).return_type != "CHAR":
+                raise NameError(f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of CHAR')
+            st = self.visit(ctx.function_call())
         else:
             raise NameError('Not a char')
         return st
 
-    def handle_colour(self, ctx: p_BoardLang.ExprContext): # oki, trzeba to przedyskutować, zrobiłam by działało
-        if ctx.math_expr():
-            c = ctx.math_expr()
-        elif ctx.bool_expr():
-            c = ctx.bool_expr()
-        if c.ID():
-            if not self.is_good_type('COLOUR', ctx_id=c.ID()):
+    def handle_colour(self, ctx: p_BoardLang.ValueContext): # oki, trzeba to przedyskutować, zrobiłam by działało
+        if ctx.ID():
+            if not self.is_good_type('COLOUR', ctx_id=ctx.ID()):
                 raise NameError('Not a colour')
-            st = self.get_value(c.ID().getText())
-        elif c.literal():
-            if not self.is_good_type('COLOUR', c.literal()):
+            st = self.get_value(ctx.ID().getText())
+        elif ctx.literal():
+            if not self.is_good_type('COLOUR', ctx.literal()):
                 raise NameError('Not a colour')
-            st = self.hex_to_rgb(c.literal().getText())
-        elif c.function_call():
-            if self.get_type(c.function_call().ID().getText()) != 'FUNCTION':
+            st = self.hex_to_rgb(ctx.literal().getText())
+        elif ctx.function_call():
+            if self.get_type(ctx.function_call().ID().getText()) != 'FUNCTION':
                 raise NameError('That is not a function')
-            if self.get_value(c.function_call().ID().getText()).return_type != "COLOUR":
-                raise NameError(f'Function returns {self.get_value(c.function_call().ID().getText()).return_type} instead of COLOUR')
-            st = self.visit(c.function_call())
+            if self.get_value(ctx.function_call().ID().getText()).return_type != "COLOUR":
+                raise NameError(f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of COLOUR')
+            st = self.visit(ctx.function_call())
         else:
             raise NameError('Not a colour')
         return st

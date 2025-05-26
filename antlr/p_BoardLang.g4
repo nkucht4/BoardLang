@@ -44,7 +44,7 @@ function_instr: function_instr function_instr
                 | for_loop_inside_function
                 | as_long_as_loop_inside_function;
 
-return_expr: RETURN_T expr END_M;
+return_expr: RETURN_T value END_M;
 
 function_call: ID LEFT_PAR args_list RIGHT_PAR
                 | ID LEFT_PAR RIGHT_PAR;
@@ -53,20 +53,21 @@ function_call: ID LEFT_PAR args_list RIGHT_PAR
 
 declaration: CONST? var_types (ARRAY_T LEFT_SQUARE_PAR  INT_V RIGHT_SQUARE_PAR)? ID;
 
-declaration_with_assign: CONST? var_types ID EQ expr
+declaration_with_assign: CONST? var_types ID EQ value
                         | CONST? var_types ARRAY_T LEFT_SQUARE_PAR INT_V
                         RIGHT_SQUARE_PAR ID EQ LEFT_SQUARE_PAR args_list RIGHT_SQUARE_PAR;
 
 tile_decl_w_ass: CONST? TT ID EQ TT LEFT_PAR tt_arg RIGHT_PAR;
 
-assignment: ID EQ expr 
-          | ID LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR EQ expr;
+assignment: ID EQ value
+          | ID LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR EQ value;
 
 tt_arg: COLOUR_V
         | STRING_V
         | ID;
 
 //Expressions
+value:  ID | literal | function_call | expr;
 expr: bool_expr
       | math_expr;
 
@@ -79,12 +80,19 @@ bool_expr: bool_expr AND_T bool_expr
             | ID
             | function_call;
 
-math_expr: LEFT_PAR math_expr RIGHT_PAR
-            | math_expr math_operator math_expr
-            | literal
-            | ID
-            | function_call;
+math_expr: math_expr_addition;
 
+math_expr_addition: math_expr_addition (PLUS|MINUS) math_expr_multiplication
+    | math_expr_multiplication;
+
+math_expr_multiplication: math_expr_multiplication (DIVIDE | MULTIPLY | MOD) math_expr_atom
+    | math_expr_atom;
+
+math_expr_atom
+    : LEFT_PAR math_expr RIGHT_PAR
+    | literal
+    | ID
+    | function_call;
 //Board instructions
 
 board_instr: draw_instr
@@ -100,14 +108,14 @@ setpos_instr: SETPOS LEFT_SQUARE_PAR math_expr COLON math_expr RIGHT_SQUARE_PAR;
 
 // Conditionals
 
-if_instr: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR
-        (OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR)*
+if_instr: IF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR
+        (OTHERIF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR)*
         (OTHERWISE_T LEFT_CLAMP_PAR instructions RIGHT_CLAMP_PAR)?;
 
 
-if_inside_loop_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+if_inside_loop_statement: IF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR
             (inside_loop) RIGHT_CLAMP_PAR
-            (OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+            (OTHERIF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR
             (inside_loop) RIGHT_CLAMP_PAR)*
             (OTHERWISE_T LEFT_CLAMP_PAR
             (inside_loop) RIGHT_CLAMP_PAR)?;
@@ -117,7 +125,7 @@ if_inside_loop_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
 for_loop: FOR_T LEFT_PAR math_expr COLON math_expr COLON math_expr MINUS GT ID
             RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
 
-as_long_as_loop: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
+as_long_as_loop: AS_T LONG_T AS_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR inside_loop RIGHT_CLAMP_PAR;
 
 inside_loop: declaration END_M
             | declaration_with_assign END_M
@@ -137,9 +145,9 @@ break_instruction: BREAK END_M;
 
 // Loops and ifs inside function
 
-if_inside_functions_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+if_inside_functions_statement: IF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR
             (function_instr) RIGHT_CLAMP_PAR
-            (OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+            (OTHERIF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR
             (function_instr) RIGHT_CLAMP_PAR)*
             (OTHERWISE_T LEFT_CLAMP_PAR
             (function_instr) RIGHT_CLAMP_PAR)?;
@@ -147,7 +155,7 @@ if_inside_functions_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
 for_loop_inside_function: FOR_T LEFT_PAR math_expr COLON math_expr COLON math_expr MINUS GT ID
             RIGHT_PAR LEFT_CLAMP_PAR instr_inside_loop_inside_fun RIGHT_CLAMP_PAR;
 
-as_long_as_loop_inside_function: AS_T LONG_T AS_T LEFT_PAR expr RIGHT_PAR
+as_long_as_loop_inside_function: AS_T LONG_T AS_T LEFT_PAR value RIGHT_PAR
                                 LEFT_CLAMP_PAR instr_inside_loop_inside_fun RIGHT_CLAMP_PAR;
 
 instr_inside_loop_inside_fun: declaration END_M
@@ -165,9 +173,9 @@ instr_inside_loop_inside_fun: declaration END_M
             | inside_loop inside_loop
             | return_expr;
 
-if_inside_loop_inside_fun_statement: IF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+if_inside_loop_inside_fun_statement: IF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR
             (instr_inside_loop_inside_fun) RIGHT_CLAMP_PAR
-            (OTHERIF_T LEFT_PAR expr RIGHT_PAR LEFT_CLAMP_PAR
+            (OTHERIF_T LEFT_PAR value RIGHT_PAR LEFT_CLAMP_PAR
             (instr_inside_loop_inside_fun) RIGHT_CLAMP_PAR)*
             (OTHERWISE_T LEFT_CLAMP_PAR
             (instr_inside_loop_inside_fun) RIGHT_CLAMP_PAR)?;

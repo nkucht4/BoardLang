@@ -134,6 +134,15 @@ class p_BoardLangListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by p_BoardLang#value.
+    def enterValue(self, ctx:p_BoardLang.ValueContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#value.
+    def exitValue(self, ctx:p_BoardLang.ValueContext):
+        pass
+
+
     # Enter a parse tree produced by p_BoardLang#expr.
     def enterExpr(self, ctx:p_BoardLang.ExprContext):
         pass
@@ -158,6 +167,33 @@ class p_BoardLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by p_BoardLang#math_expr.
     def exitMath_expr(self, ctx:p_BoardLang.Math_exprContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#math_expr_addition.
+    def enterMath_expr_addition(self, ctx:p_BoardLang.Math_expr_additionContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#math_expr_addition.
+    def exitMath_expr_addition(self, ctx:p_BoardLang.Math_expr_additionContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#math_expr_multiplication.
+    def enterMath_expr_multiplication(self, ctx:p_BoardLang.Math_expr_multiplicationContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#math_expr_multiplication.
+    def exitMath_expr_multiplication(self, ctx:p_BoardLang.Math_expr_multiplicationContext):
+        pass
+
+
+    # Enter a parse tree produced by p_BoardLang#math_expr_atom.
+    def enterMath_expr_atom(self, ctx:p_BoardLang.Math_expr_atomContext):
+        pass
+
+    # Exit a parse tree produced by p_BoardLang#math_expr_atom.
+    def exitMath_expr_atom(self, ctx:p_BoardLang.Math_expr_atomContext):
         pass
 
 

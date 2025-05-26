@@ -79,6 +79,11 @@ class p_BoardLangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by p_BoardLang#value.
+    def visitValue(self, ctx:p_BoardLang.ValueContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by p_BoardLang#expr.
     def visitExpr(self, ctx:p_BoardLang.ExprContext):
         return self.visitChildren(ctx)
@@ -91,6 +96,21 @@ class p_BoardLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by p_BoardLang#math_expr.
     def visitMath_expr(self, ctx:p_BoardLang.Math_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#math_expr_addition.
+    def visitMath_expr_addition(self, ctx:p_BoardLang.Math_expr_additionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#math_expr_multiplication.
+    def visitMath_expr_multiplication(self, ctx:p_BoardLang.Math_expr_multiplicationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by p_BoardLang#math_expr_atom.
+    def visitMath_expr_atom(self, ctx:p_BoardLang.Math_expr_atomContext):
         return self.visitChildren(ctx)
 
 
