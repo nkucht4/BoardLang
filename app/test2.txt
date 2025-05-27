@@ -1,0 +1,9 @@
+board_size[10:10] $
+
+FUNCTION aaa():INT{
+	return 2 $
+}
+
+TileType flower = TileType("C:\Users\kucht\Documents\Studia\Rok2\S4\Kompilatory\Projekt\BoardLang\app\flower.png") $
+draw [aaa():aaa()] flower $
+
