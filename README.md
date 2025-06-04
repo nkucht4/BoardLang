@@ -13,6 +13,11 @@ Projekt realizowany w ramach przedmiotu Teoria Kompilacji i Kompilatory.
 Użytkownik definiuje rozmiar planszy, liczony w “kratkach”, po której następnie może się dowolnie poruszać używając instrukcji języka.
 Użytkownik umieszcza wcześniej zdefiniowane przez siebie płytki (Tiles) na kratkach, tworząc własne plansze do gry.
 
+## Użyte technologie
+- ANTLR4
+- pygame
+- PyQt
+
 ## Opis tokenów oraz gramatyka
  - [Spis tokenów](https://github.com/nkucht4/BoardLang/blob/main/antlr/l_BoardLang.g4)
  - [Gramatyka](https://github.com/nkucht4/BoardLang/blob/main/antlr/p_BoardLang.g4)
