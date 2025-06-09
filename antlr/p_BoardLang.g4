@@ -27,7 +27,7 @@ instructions: instructions instructions
 // Functions
 
 function_def: FUNCTION_T ID LEFT_PAR (function_declaration_args)? RIGHT_PAR COLON
-                (var_types | VOID_T) LEFT_CLAMP_PAR function_instr RIGHT_CLAMP_PAR;
+                (var_types | VOID_T | TT) LEFT_CLAMP_PAR function_instr RIGHT_CLAMP_PAR;
 
 function_declaration_args: var_types ID
                            | function_declaration_args COMA function_declaration_args;
@@ -57,7 +57,7 @@ declaration_with_assign: CONST? var_types ID EQ value
                         | CONST? var_types ARRAY_T LEFT_SQUARE_PAR INT_V
                         RIGHT_SQUARE_PAR ID EQ LEFT_SQUARE_PAR args_list RIGHT_SQUARE_PAR;
 
-tile_decl_w_ass: CONST? TT ID EQ TT LEFT_PAR tt_arg RIGHT_PAR;
+tile_decl_w_ass: CONST? TT ID EQ ((TT LEFT_PAR tt_arg RIGHT_PAR) | function_call);
 
 assignment: ID EQ value
           | ID LEFT_SQUARE_PAR INT_V RIGHT_SQUARE_PAR EQ value;
@@ -190,7 +190,8 @@ literal: INT_V
         | BOOL_V
         | STRING_V
         | CHAR_V
-        | COLOUR_V;
+        | COLOUR_V
+        ;
 
 var_types: INT_T
             | BOOL_T

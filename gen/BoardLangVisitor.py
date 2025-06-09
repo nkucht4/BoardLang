@@ -81,6 +81,8 @@ class BoardLangVisitor(p_BoardLangVisitor):
             args = {}
         if ctx.var_types():
             return_type = self.visit(ctx.var_types())
+        elif ctx.TT():
+            return_type = 'TileType'
         else:
             return_type = 'VOID'
         body = ctx.function_instr()
@@ -159,7 +161,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
                 type = "STRING"
             elif ctx.literal().CHAR_V():
                 type = "CHAR"
-            return [(self._Args_list_tuple(ctx.literal()), type)]
+            return [(self.visit(ctx.literal()), type)]
         elif ctx.expr():
             if ctx.expr().math_expr():
                 c = ctx.expr().math_expr()
@@ -167,26 +169,27 @@ class BoardLangVisitor(p_BoardLangVisitor):
             else:
                 c = ctx.expr().bool_expr()
                 st = "BOOL"
-            if c.ID():
-                id = c.ID().getText()
-                if not self.if_in_scope(id):
-                    raise NameError(f'No such identifier as {id}')
-                return [(self.get_value(id), self.get_type(id))]
-            elif c.literal():
-                type = ""
-                if ctx.literal().INT_V():
-                    type = "INT"
-                elif ctx.literal().BOOL_V():
-                    type = "BOOL"
-                elif ctx.literal().COLOUR_V():
-                    type = "COLOUR"
-                elif ctx.literal().STRING_V():
-                    type = "STRING"
-                elif ctx.literal().CHAR_V():
-                    type = "CHAR"
-                return [(self._Args_list_tuple(ctx.literal()), type)]
-            else:
-                return [(self.visit(c), st)]
+            return [(self.visit(c), st)]
+            # if c.ID():
+            #     id = c.ID().getText()
+            #     if not self.if_in_scope(id):
+            #         raise NameError(f'No such identifier as {id}')
+            #     return [(self.get_value(id), self.get_type(id))]
+            # elif c.literal():
+            #     type = ""
+            #     if ctx.literal().INT_V():
+            #         type = "INT"
+            #     elif ctx.literal().BOOL_V():
+            #         type = "BOOL"
+            #     elif ctx.literal().COLOUR_V():
+            #         type = "COLOUR"
+            #     elif ctx.literal().STRING_V():
+            #         type = "STRING"
+            #     elif ctx.literal().CHAR_V():
+            #         type = "CHAR"
+            #     return [(self.visit(ctx.literal()), type)]
+            # else:
+            #     return [(self.visit(c), st)]
         elif ctx.COMA():
             return self._Args_list_tuple(ctx.args_list(0)) + self._Args_list_tuple(ctx.args_list(1))
 
@@ -238,11 +241,19 @@ class BoardLangVisitor(p_BoardLangVisitor):
         id = ctx.ID().getText()
         if id in self.memory_stack[-1].keys():
             raise NameError("Identifier already exists in this scope and cannot be overwritten")
-        color = self.visit(ctx.tt_arg())
-        print(color)
-        if isinstance(color, str):
-            self.tilemap['images'][id] = color
-        self.memory_stack[-1][id] = {"type": "TileType", "value": color}
+        if ctx.function_call():
+            if self.get_type(ctx.function_call().ID().getText()) != 'FUNCTION':
+                raise NameError('That is not a function')
+            if self.get_value(ctx.function_call().ID().getText()).return_type != "TileType":
+                raise NameError(
+                    f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of TileType')
+            tt = self.visit(ctx.function_call())
+            self.memory_stack[-1][id] = {"type": "TileType", "value": tt}
+        else:
+            color = self.visit(ctx.tt_arg())
+            if isinstance(color, str):
+                self.tilemap['images'][id] = color
+            self.memory_stack[-1][id] = {"type": "TileType", "value": color}
         return True
 
 
@@ -304,17 +315,22 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     def visitValue(self, ctx: p_BoardLang.ValueContext):
         if ctx.expr():
-            return self.visit(ctx.expr())
+            return self.visitExpr(ctx.expr())
         elif ctx.literal():
             return self.visit(ctx.literal())
-        else:
+        elif ctx.ID():
             id = ctx.ID().getText()
             if not self.if_in_scope(id):
                 raise NameError(f"Identifier: {id} does not exist")
-            return self.visit(ctx.ID())
+            return self.get_value(id)
+        elif ctx.function_call():
+            return self.visit(ctx.function_call())
     # Visit a parse tree produced by p_BoardLang#expr.
     def visitExpr(self, ctx:p_BoardLang.ExprContext):
-        return self.visitChildren(ctx)
+        if ctx.math_expr():
+            return self.visit(ctx.math_expr())
+        else:
+            return self.visit(ctx.bool_expr())
 
 
     # Visit a parse tree produced by p_BoardLang#bool_expr.
@@ -423,6 +439,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if self.get_type(tilename) != 'TileType':
             raise TypeError('Expected TileType')
         else:
+            print(x,y)
             self.tilemap['map'][x][y] = tile
             with open(self.filename, 'w') as f:
                 json.dump(self.tilemap, f)
@@ -525,7 +542,11 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitIf_inside_functions_statement(self, ctx: p_BoardLang.If_inside_functions_statementContext):
         if self.visit(ctx.value(0)):
             self.memory_stack.append({})
-            self.visit(ctx.function_instr(0))
+            try:
+                self.visit(ctx.function_instr(0))
+            except FunctionReturn as r:
+                self.memory_stack.pop()
+                raise FunctionReturn(r.value)
             self.memory_stack.pop()
             return
         otherifs = len(ctx.OTHERIF_T())
@@ -533,13 +554,20 @@ class BoardLangVisitor(p_BoardLangVisitor):
             for i in range(0, otherifs):
                 if self.visit(ctx.value(i+1)):
                     self.memory_stack.append({})
-                    self.visit(ctx.function_instr(i+1))
+                    try:
+                        self.visit(ctx.function_instr(i+1))
+                    except FunctionReturn as r:
+                        self.memory_stack.pop()
+                        raise FunctionReturn(r.value)
                     self.memory_stack.pop()
                     return
-
         if ctx.OTHERWISE_T():
             self.memory_stack.append({})
-            self.visit(ctx.function_instr(-1))
+            try:
+                self.visit(ctx.function_instr(otherifs+1))
+            except FunctionReturn as r:
+                self.memory_stack.pop()
+                raise FunctionReturn(r.value)
             self.memory_stack.pop()
             return
         return self.visitChildren(ctx)
@@ -559,7 +587,12 @@ class BoardLangVisitor(p_BoardLangVisitor):
             self.memory_stack.append({})
             self.memory_stack[-2][id]['value'] = i
             try:
-                self.visit(ctx.instr_inside_loop_inside_fun())
+                try:
+                    self.visit(ctx.instr_inside_loop_inside_fun())
+                except FunctionReturn as r:
+                    self.memory_stack.pop()
+                    self.memory_stack.pop()
+                    raise FunctionReturn(r.value)
             except BreakException:
                 break
             self.memory_stack.pop()
@@ -574,7 +607,12 @@ class BoardLangVisitor(p_BoardLangVisitor):
         while condition:
             self.memory_stack.append({})
             try:
-                self.visit(ctx.instr_inside_loop_inside_fun())
+                try:
+                    self.visit(ctx.instr_inside_loop_inside_fun())
+                except FunctionReturn as r:
+                    self.memory_stack.pop()
+                    self.memory_stack.pop()
+                    raise FunctionReturn(r.value)
             except BreakException:
                 break
             self.memory_stack.pop()
@@ -639,6 +677,16 @@ class BoardLangVisitor(p_BoardLangVisitor):
 
     # Visit a parse tree produced by p_BoardLang#var_types.
     def visitVar_types(self, ctx:p_BoardLang.Var_typesContext):
+        if ctx.BOOL_T():
+            return "BOOL"
+        elif ctx.INT_T():
+            return "INT"
+        elif ctx.CHAR_T():
+            return "CHAR"
+        elif ctx.STRING_T():
+            return "STRING"
+        elif ctx.COLOUR_T():
+            return "COLOUR"
         return self.visitChildren(ctx)
 
 
@@ -734,7 +782,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
         elif ctx.COMA():
             return self.visitArgs_listwithver(type, ctx.args_list(0)) + self.visitArgs_listwithver(type, ctx.args_list(1))
 
-    def handle_bool(self, ctx:p_BoardLang.ValueContext):
+    def handle_bool(self, ctx: p_BoardLang.ValueContext):
         if ctx.expr():
             if ctx.expr().bool_expr():
                 return self.visit(ctx.expr().bool_expr())
@@ -758,6 +806,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             if self.get_value(ctx.function_call().ID().getText()).return_type != "BOOL":
                 raise NameError(
                     f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of BOOL')
+            return self.visit(ctx.function_call())
 
     def handle_int(self, ctx: p_BoardLang.ValueContext):
         if ctx.expr():
@@ -783,6 +832,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             if self.get_value(ctx.function_call().ID().getText()).return_type != "INT":
                 raise NameError(
                     f'Function returns {self.get_value(ctx.function_call().ID().getText()).return_type} instead of INT')
+            return self.visit(ctx.function_call())
 
     def handle_string(self, ctx: p_BoardLang.ValueContext):
         if ctx.ID():
