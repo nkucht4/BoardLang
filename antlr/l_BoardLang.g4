@@ -63,7 +63,7 @@ END_M: '$';
 INT_V: ('0' | [1-9] DIGIT*);
 DIGIT : [0-9] ;
 BOOL_V: 'TRUE' | 'FALSE';
-STRING_V: '"' [-a-zA-Z0-9_ /\\(){}]+ '"';
+STRING_V: '"' [-a-zA-Z0-9_ ./:\\(){}]+ '"';
 CHAR_V: '\'' [0-9a-zA-Z \\_] '\'';
 COLOUR_V:'#'([0-9A-Fa-f])([0-9A-Fa-f])([0-9A-Fa-f])([0-9A-Fa-f])([0-9A-Fa-f])([0-9A-Fa-f]);
 ID: [A-Za-z_]([A-Za-z0-9_])*;

@@ -20,6 +20,7 @@ class BoardGenerator:
         self.render_tilemap(self.tilemap)
 
     def render_tilemap(self, tilemap):
+        self.screen.fill((0,0,0))
         width = tilemap['size'][0]
         height = tilemap['size'][1]
         if self.screen.get_size()[0]/20 != width or self.screen.get_size()[1]/20 != height:
