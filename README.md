@@ -7,6 +7,8 @@ Kontakt: karaczka@student.agh.edu.pl, nkuchta@student.agh.edu.pl
 
 Projekt skupia się na stworzenie języka programowania (oraz jego interpretera) służącego do generacji plansz do gier planszowych lub fabularnych. Projekt jest implementowany w języku Python z pomocą narzędzia ANTLR4.
 
+Projekt może być wykorzystywany przez nauczycieli, którzy chcą zachęcić dzieci do nauki programowania poprzez zaprezentowanie im języka, którym mogą uczyć się poprzez zabawę oraz rozwijać swoje umiejętności programistyczne na konceptach realnie stosowanych przez języki programowania ogólnego zastosowania. Drugą grupą docelową są gracze gier planszowych oraz fabularnych, którzy chcą stworzyć prototyp własnej gry w kreatywny i pobudzający do myślenia sposób.
+
 Projekt realizowany w ramach przedmiotu Teoria Kompilacji i Kompilatory.
 
 ## Podstawowe zasady działania projektu:
@@ -46,7 +48,8 @@ COLOR
 Tile "płytka" jest podstawową jednostką działania programu. Definiując typ płytki (TileType) użytkownik tworzy szablon płytki, który może wielokrotnie umiejscawiać na wielu polach. Aby zdefiniować płytkę, trzeba jako argument podać albo jej kolor albo string zawierający ścieżkę / link do obrazu, który ma zostać użyty na gotowej planszy.
 
 ```
-TileType touch_grass = TileType(#5ec15f)
+TileType touch_grass = TileType(#5ec15f) $
+TileType photo_tile = TileType("domek.png") $
 ```
 
 
@@ -83,13 +86,10 @@ draw [x:9] touch_grass $
 ```
 
 ### setpos i reset
-Instrukcje setpos i reset służą do ustawiania obecnej pozycji kursora na planszy. Do obecnej pozycji kursora można się odwołać używając 'here'.
+Instrukcje setpos i reset służą do ustawiania obecnej pozycji kursora na planszy.
 ```
 reset $
 setpos [5:8] $
-setpos [here.x+2:here.y] $
-int x = here.x $
-
 ```
 
 ## Dostępne operatory
@@ -146,10 +146,10 @@ as long as (warunek){
 
 ### Pętla for
 
-Pętlę definiuje się poprzez słowo kluczowe ,,for”, po czym następuje sposób iterowania w nawiasach okrągłych, po kolei Liczba początkowa : Liczba końcowa : Wielkość kroku. Przykład:
+Pętlę definiuje się poprzez słowo kluczowe ,,for”, po czym następuje sposób iterowania w nawiasach okrągłych, po kolei Liczba początkowa : Liczba końcowa : Wielkość kroku. Identyfikator po strzałce jest nazwą zmiennej do której będą przypisane wartości, poprzez każdą iterację pętli. Przykład:
 
 ```
-for (0:5:2){
+for (0:5:2 -> i){
 	instr $ 
 }
 ```
