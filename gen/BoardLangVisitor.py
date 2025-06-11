@@ -439,7 +439,6 @@ class BoardLangVisitor(p_BoardLangVisitor):
         if self.get_type(tilename) != 'TileType':
             raise TypeError('Expected TileType')
         else:
-            print(x,y)
             self.tilemap['map'][x][y] = tile
             with open(self.filename, 'w') as f:
                 json.dump(self.tilemap, f)

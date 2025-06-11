@@ -52,14 +52,14 @@ class MainWindow(QMainWindow):
             print(f"Błąd podczas otwierania pliku: {e}")
 
     def handle_run_clicked(self):
-        #try:
+        try:
             text = self.textEditor.toPlainText()
 
             self.interpret(text)
             self.display_image()
-        #except Exception as e:
-        #    self.consoleOutput.setAlignment(Qt.AlignmentFlag.AlignTop)
-        #    self.consoleOutput.setText(str(e))
+        except Exception as e:
+            self.consoleOutput.setAlignment(Qt.AlignmentFlag.AlignTop)
+            self.consoleOutput.setText(str(e))
 
     def interpret(self, input_string: str):
         source_stream = InputStream(input_string)
