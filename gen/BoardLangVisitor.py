@@ -310,7 +310,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             for j in self.memory_stack:
                 if id in j.keys():
                     j[id]["value"] = val
-
+        print(self.memory_stack)
         return True
 
     def visitValue(self, ctx: p_BoardLang.ValueContext):
@@ -489,7 +489,11 @@ class BoardLangVisitor(p_BoardLangVisitor):
     def visitIf_inside_loop_statement(self, ctx:p_BoardLang.If_inside_loop_statementContext):
         if self.visit(ctx.value(0)):
             self.memory_stack.append({})
-            self.visit(ctx.inside_loop(0))
+            try:
+                self.visit(ctx.inside_loop(0))
+            except BreakException as b:
+                self.memory_stack.pop()
+                raise BreakException(b)
             self.memory_stack.pop()
             return
         otherifs = len(ctx.OTHERIF_T())
@@ -525,6 +529,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             try:
                 self.visit(ctx.inside_loop())
             except BreakException:
+                self.memory_stack.pop()
                 break
             self.memory_stack.pop()
         self.memory_stack.pop()
@@ -593,6 +598,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
                     self.memory_stack.pop()
                     raise FunctionReturn(r.value)
             except BreakException:
+                self.memory_stack.pop()
                 break
             self.memory_stack.pop()
         self.memory_stack.pop()
@@ -613,6 +619,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
                     self.memory_stack.pop()
                     raise FunctionReturn(r.value)
             except BreakException:
+                self.memory_stack.pop()
                 break
             self.memory_stack.pop()
             condition = self.visit(ctx.value())
@@ -639,6 +646,7 @@ class BoardLangVisitor(p_BoardLangVisitor):
             try:
                 self.visit(ctx.inside_loop())
             except BreakException:
+                self.memory_stack.pop()
                 break
             self.memory_stack.pop()
             condition = self.visit(ctx.value())

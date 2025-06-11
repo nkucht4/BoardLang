@@ -1,0 +1,4 @@
+board_size[10:10]$
+
+TileType grass = TileType(#53e835) $
+draw[10:10] grass $

@@ -1,10 +1,13 @@
-board_size[6:5] $
+board_size[7:10] $
 
 TileType grass = TileType("grass.png") $
 TileType water = TileType("woda.png") $
-
-
-draw [0:0] grass $
+TileType domek = TileType("domek.png") $
+for(0:7:1 -> i){
+	for(0:10:1 -> j){
+	draw[i:j] grass $
+}
+}
 
 draw [3:0] water $
 draw [3:1] water $
@@ -13,4 +16,12 @@ draw [2:2] water $
 draw [3:3] water $
 draw [2:3] water $
 draw [3:4] water $
+draw [3:5] water $
+draw [4:5] water $
+draw [5:5] water $
+draw [5:6] water $
+draw [5:7] water $
+draw [6:7] water $
+draw [2:7] domek $
+draw [5:2] domek $
 

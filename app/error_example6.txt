@@ -1,0 +1,8 @@
+board_size[10:10] $
+
+FUNCTION i(INT x, INT y):INT{
+	return x*y $
+}
+
+
+INT a = i(3,4,5) $

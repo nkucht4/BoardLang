@@ -1,0 +1,48 @@
+board_size[40:40] $
+TileType pink = TileType(#fc039d) $
+TileType red = TileType(#fc0303) $
+TileType orange = TileType(#fc8403) $
+TileType yellow = TileType(#fce303) $
+TileType green = TileType(#28fc03) $
+TileType blue = TileType(#03befc) $
+TileType purple = TileType(#9803fc) $
+
+FUNCTION fib(INT x): INT{
+    if(x == 0 OR x == 1){
+        return 1 $
+    }
+    otherwise{
+        INT a1 = 1 $
+        INT a2 = 1 $
+        INT temp = 0 $
+        INT ii = x - 1 $
+        for(1:ii:1 -> i){
+            temp = a1 $
+            a1 = a2 $
+            a2 = a2 + temp $
+        }
+        return a2 $
+    }
+
+}
+
+FUNCTION draw1(INT y, INT size1, INT size2): VOID{
+INT t = 1 $
+for(1:size1:1 -> i){
+if(t + 6 >= size2){
+break $
+}
+draw[i: t] pink $
+draw[i: t+1] red $
+draw[i: t+2] orange $
+draw[i: t+3] yellow $
+draw[i: t+4] green $
+draw[i: t+5] blue $
+draw[i: t+6] purple $
+    if(i >= fib(t)){
+        t = t + 1 $}
+
+}
+}
+
+draw1(10, 40, 40) $
