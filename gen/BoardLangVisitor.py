@@ -30,7 +30,6 @@ class Function:
 # This class defines a complete generic visitor for a parse tree produced by p_BoardLang.
 class BoardLangVisitor(p_BoardLangVisitor):
     def __init__(self):
-        self.memory = {}
         self.memory_stack = []
         self.filename = 'TileMap.json'
         self.tilemap = {'size': (0, 0),
@@ -501,13 +500,21 @@ class BoardLangVisitor(p_BoardLangVisitor):
             for i in range(0, otherifs):
                 if self.visit(ctx.value(i + 1)):
                     self.memory_stack.append({})
-                    self.visit(ctx.inside_loop(i + 1))
+                    try:
+                        self.visit(ctx.inside_loop(i + 1))
+                    except BreakException as b:
+                        self.memory_stack.pop()
+                        raise BreakException(b)
                     self.memory_stack.pop()
                     return
 
         if ctx.OTHERWISE_T():
             self.memory_stack.append({})
-            self.visit(ctx.inside_loop(-1))
+            try:
+                self.visit(ctx.inside_loop(-1))
+            except BreakException as b:
+                self.memory_stack.pop()
+                raise BreakException(b)
             self.memory_stack.pop()
             return
 
